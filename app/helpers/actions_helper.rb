@@ -318,6 +318,12 @@ module ActionsHelper
 						background-color:#FF686B!important;
 						color:white!important;
 					}
+					.row{
+						margin-left: 0px!important;
+					}
+					.col-sm-offset-1{
+						margin-left:0px!important;
+					}
 
 					</style>"
 		html.html_safe
