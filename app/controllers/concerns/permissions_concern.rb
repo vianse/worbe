@@ -1,4 +1,4 @@
 module PermissionsConcern
-	Extend ActiveSupport::Concern
+	#Extend ActiveSupport::Concern
 
 end
