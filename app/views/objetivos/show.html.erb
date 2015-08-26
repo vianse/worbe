@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cv:</strong>
+  <%= @objetivo.cv %>
+</p>
+
+<p>
+  <strong>Idioma:</strong>
+  <%= @objetivo.idioma %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @objetivo.user %>
+</p>
+
+<p>
+  <strong>Objetivos:</strong>
+  <%= @objetivo.objetivos %>
+</p>
+
+<%= link_to 'Edit', edit_objetivo_path(@objetivo) %> |
+<%= link_to 'Back', objetivos_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @cv.user %>
+</p>
+
+<p>
+  <strong>Idioma:</strong>
+  <%= @cv.idioma %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @cv.title %>
+</p>
+
+<%= link_to 'Edit', edit_cv_path(@cv) %> |
+<%= link_to 'Back', cvs_path %>

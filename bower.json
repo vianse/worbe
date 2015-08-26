@@ -1,0 +1,24 @@
+{
+  "name": "CloudPolymer",
+  "version": "1.0.0",
+  "authors": [
+    "Juan Carlos Santiago <krlos013@gmail.com>"
+  ],
+  "description": "UI",
+  "main": "index.html",
+  "keywords": [
+    "Cloud"
+  ],
+  "license": "MIT",
+  "homepage": "/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}

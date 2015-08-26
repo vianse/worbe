@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dg.name %>
+</p>
+
+<p>
+  <strong>Datebirthday:</strong>
+  <%= @dg.datebirthday %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @dg.age %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @dg.address %>
+</p>
+
+<p>
+  <strong>Phone1:</strong>
+  <%= @dg.phone1 %>
+</p>
+
+<p>
+  <strong>Phone2:</strong>
+  <%= @dg.phone2 %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @dg.email %>
+</p>
+<p>
+  <strong>Photo:</strong>
+  <%= @dg.photo %>
+</p>
+
+<%= link_to 'Edit', edit_dg_path(@dg) %> |
+<%= link_to 'Back', dgs_path %>

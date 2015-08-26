@@ -1,0 +1,77 @@
+
+<%= estilo_form_inicio %>
+<%= fondo %>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<div class="container">
+    <div class="row">
+        <div class="[ col-xs-12 col-sm-offset-1 col-sm-5 ]">
+            <div class="[ panel panel-default ] panel-google-plus" id="tags">
+                <div class="panel-heading">
+                    <span> Tu CV se encuentra <%= @status %></span>
+                	<span class="title">Cv completado al:  
+                        <% if @resultado > 57 %>
+                        <span style ="color: #84DCC6;"><%= @resultado %></span> %</span>
+                        <% end %>
+                         <% if @resultado >= 20 and @resultado <= 29 %>
+                        <span style ="color: #FF686B;"><%= @resultado %></span> %</span>
+                        <% end %>
+                        <% if @resultado >= 30 and @resultado <= 57 %>
+                        <span style ="color: #FDE74C;"><%= @resultado %></span> %</span>
+                        <% end %>
+                        <% if @dgs.nil? %>
+                        <% else %>
+                        <% if @dgs.guid.blank? %>
+                            <% else %>
+                            <div class="url">URL Publica: <a href="<%= @server %>/worbe?guid=<%= @dgs.guid %>"><%= @server %>/worbe?guid=<%= @dgs.guid %></a></div>
+                        <% end %>
+                        <% end %>
+                </div>
+                <div class="panel-body">
+            <div class="botonera">
+                <a href="/dashboard" class="btn boton tamaño_boton botons">
+                	<div>
+                		<i class="fa fa-eye fa-4x"></i> 
+                	</div>
+                	<div class="text"> Previsualizar CV</div>
+                </a>
+                <a href="/cvs"   class="btn boton1 tamaño_boton botons">
+                	<div><i class="fa fa-pencil fa-4x"></i></div>
+                	<div class="text"> Mi encabezado </div> 
+                </a>
+                <a href="/dgs" class="btn boton2 tamaño_boton botons">
+                	<div><i class="fa fa-male fa-4x"></i></div>
+                	 <div class="text">Datos Generales </div>
+                </a>
+                <a href="/educations" class="btn boton3 tamaño_boton botons">
+                	<div>
+                		<i class="fa fa-graduation-cap fa-4x"></i>
+                	</div>
+                	<div class="text"> Mis Estudios </div> 
+                </a>
+                <a href="/experiences" class="btn boton4 tamaño_boton botons">
+                	<div>
+                		<i class="fa fa-building-o fa-4x"></i>
+                	</div> 
+                	<div class="text">Mi Experiencia</div>
+                </a>
+                <a href="/courses" class="btn boton5 tamaño_boton botons">
+                	<div>
+                		<i class="fa fa-book fa-4x"></i>
+                	</div>
+                	<div class="text"> Mis Cursos </div> </a>
+                <a href="/certificates" class="btn boton6 tamaño_boton botons">
+                	<div>
+                		<i class="fa fa-bookmark fa-4x"></i>
+                	</div> 
+                	<div class="text">Mis Certificaciones</div></a>
+                <a href="/languages" class="btn boton7 tamaño_boton botons">
+                	<div><i class="fa fa-language fa-4x"></i></div>
+                	<div class="text"> Idiomas </div>
+                </a>
+             </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>

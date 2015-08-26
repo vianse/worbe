@@ -1,0 +1,18 @@
+<header id="header">
+    <div class="wrap">
+        <a href="/" class="logo">
+            <span class="header">Jobs</span>
+        </a>
+        <nav>
+            
+            <a href="/mis_vacantes" class=""><%= I18n.t('Business_home') %></a>      
+            <a href="/nueva_empresa" class=" selected"><%= I18n.t('Business_new') %></a> 
+            <a href="/user/edit" class="mobile-hide "><%= I18n.t('Nav_security') %></a>
+
+            <%= link_to I18n.t('Nav_session'), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+            
+        </nav>
+    </div>
+</header>
+
+<%= render 'style/style' %>

@@ -1,0 +1,29 @@
+<h4><%= I18n.t('listado_experiences_title') %></h4>
+<%= botonera_index_experiences %>
+<br>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Año Inicial</th>
+      <th>Año Final</th>
+      <th>Empresa</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @experiences.each do |experience| %>
+      <tr>
+        <td><%= experience.datei %></td>
+        <td><%= experience.datef %></td>
+        <td><%= experience.business %></td>
+        <td><%= link_to 'Editar', edit_experience_path(experience) %></td>
+        <td><%= link_to 'Eliminar', experience, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

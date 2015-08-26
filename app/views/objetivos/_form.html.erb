@@ -1,0 +1,33 @@
+<%= form_for(@objetivo) do |f| %>
+  <% if @objetivo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@objetivo.errors.count, "error") %> prohibited this objetivo from being saved:</h2>
+
+      <ul>
+      <% @objetivo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cv_id %><br>
+    <%= f.text_field :cv_id %>
+  </div>
+  <div class="field">
+    <%= f.label :idioma_id %><br>
+    <%= f.text_field :idioma_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :objetivos %><br>
+    <%= f.text_field :objetivos %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

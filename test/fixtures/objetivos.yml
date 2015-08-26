@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cv_id: 
+  idioma_id: 
+  user_id: 
+  objetivos: MyString
+
+two:
+  cv_id: 
+  idioma_id: 
+  user_id: 
+  objetivos: MyString

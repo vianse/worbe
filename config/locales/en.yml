@@ -1,0 +1,191 @@
+
+en:
+  #Etiquetas para CV
+  cv_tags:                   "Tags de interes"
+  cv_titulo_datos_generales: "Datos Generales"
+  cv_nombre:                 "Nombre :"
+  cv_fecha_nacimiento:       "Fecha nacimiento :"
+  cv_edad:                   "Edad :"
+  cv_direccion:              "Dirección :"
+  cv_telefono1:              "Telefono 1 :"
+  cv_telefono2:              "Telefono 2 :"
+  cv_email:                  "Correo electronico :"
+
+  cv_titulo_educacion:       "Formación academica"
+  cv_nivel:                  "Nivel :"
+  cv_escuela:                "Escuela :"
+  cv_año_inicial:            "Año inicial :"
+  cv_año_final:              "Año final :"
+  cv_documento_recibido:     "Documento recibido :"
+  cv_promedio:               "Promedio :"
+  cv_comentarios:            "Comentarios :"
+
+  cv_titulo_experiencia:     "Experiencia laboral"
+  cv_empresa:                "Empresa :"
+
+  cv_titulo_cursos:          "Cursos"
+  cv_nombre_curso:           "Nombre del curso :"
+  cv_descripcion_curso:      "Descripcion del curso :"
+
+  cv_titulo_idiomas:         "Idiomas"
+  cv_nombre_idioma:          "Idioma :"
+  cv_idioma_lectura:         "% Lectura :"
+  cv_idioma_escritura:       "% Escritura :"
+  cv_idioma_hablado:         "% Hablado :"
+
+  cv_titulo_certificados:    "Certificados"
+
+  cv_boton_descargar:        "Descargar PDF"
+  cv_boton_publicar:         "Publicar"
+  cv_boton_compartir:        "Compartir"
+
+
+
+  title: "Bienvenidos a Cloud CV"
+  mycloud: "My CloudCV"
+  shared: "Shared CV"
+  update: "Update CV"
+  preview: "Preview"
+
+  #links del menu en el preview del cv
+  link_titulo:              "Editar título"
+  link_informacion_general: "Editar Información General"
+  link_formacion_academica: "Editar Formación Academica"
+  link_experiencia_laboral: "Experiencia Laboral"
+  link_cursos:              "Cursos"
+  link_idiomas:             "Idiomas"
+  link_certificados:        "Certificados"
+
+
+  #Forumulario de cvs
+  form_titulo_cv:           "Ingresa el título para tu cv"
+  form_titulo_placeholder:  "Eje. Administración de Empresas"
+  form_boton_cv:            "Guardar"
+
+  #formulario de Dg
+  form_nombre_dg:           "Nombre"
+  form_fecha_nacimiento_dg: "Fecha Nacimiento"
+  form_edad_dg:             "Edad"
+  form_direccion_dg:        "Dirección"
+  form_telefono1_dg:        "Telefono 1"
+  form_telefono2_dg:        "Telefono 2"
+  form_correo_dg:           "Correo electronico"
+  form_foto_dg:             "Foto"
+  form_boton_dg:            "Guardar"
+
+  #formulario de educations
+  form_escuela_ed:           "Escuela"
+  form_nivel_ed:             "Nivel"
+  form_titulo_ed:            "Título"
+  form_añoinicial_ed:        "Año inicial"
+  form_añofinal_ed:          "Año Final"
+  form_concluido_ed:          "Concluido?"
+  form_documento_ed:         "Documento recibido"
+  form_promedio_ed:          "Promedio"
+  form_comentarios_ed:       "Comentarios"
+
+  listado_educations_title:  "Mi Educación"
+
+  #formulario de experiences
+  form_empresa_ex:           "Empresa"
+  form_añoinicial_ex:        "Año inicial"
+  form_añofinal_ex:          "Año Final"
+  form_puesto_ex:            "Puesto"
+  form_descripcion_corta_ex: "Descripción corta"
+  form_descripcion_ex:       "Descripción de actividades"
+
+  listado_experiences_title:  "Mi Experiencia"
+
+  form_nombre_co:            "Nombre del curso"
+  form_descripcion_co:       "Descripción del curso"
+
+  listado_courses_title:     "Mis Cursos"
+
+  form_nombre_la:            "Idioma"
+  form_lectura_la:           "% Lectura"
+  form_escritura_la:         "% Escritura"
+  form_spok_la:              "% Hablado"
+
+  listado_la_title:          "Mis Idiomas"
+
+  form_nombre_ce:            "Nombre del certificado"
+
+  listado_ce_title:          "Mis Certificados"
+
+
+  EditHead: "Editing Head"
+  EditHeadTitle: "Header CV"
+  EditHeadButton: "Update header"
+
+  titulo_listado_cvs: "Mis encabezados"
+  vacantes_sugeridas_titulo: "Vacantes Sugeridas"
+  #Titulos empresas
+
+  Business_title: "Empresas"
+  Business_create: "Nueva empresa"
+  #formulario empresas
+
+  Business_nombre: "Nombre empresa"
+  Business_razon: "Razon Social"
+  Business_rfc: "RFC"
+  Business_contactname: "Nombre de contacto"
+  Business_contactemail: "Email de contacto"
+  Business_phone1: "Telefono 1"
+  Business_phone2: "Telefono 2"
+  Business_pais: "País"
+  Business_estado: "Estado"
+  Business_ciudad: "Ciudad"
+  Business_cp: "Codigo Postal"
+  Business_direccion: "Dirección"
+  Business_sector: "Sector"
+  Business_numero_empleados: "Numero de empleados"
+  Business_tipo: "Tipo de empresa"
+  Business_descripcion: "Descripción"
+  Business_web: "Pagina web"
+  Business_logo: "Selecciona un logo"
+  Business_guardar: "Guardar"
+
+
+  #menu empresas
+  Business_home: "Mis vacantes"
+  Business_new: "Configuración"
+
+
+  Jobs_title: "Mis vacantes"
+  #form jobs
+  Jobs_form_new: "Nueva vacante"
+  Jobs_name: "Titulo de la vacante"
+  Jobs_profession: "Profesión"
+  Jobs_tools: "Conocimiento de las sigueintes herramientas"
+  Jobs_knowledge: "Experiencia en"
+  Jobs_provision: "Prestaciones"
+  Jobs_tag: "Tags"
+  Jobs_area: "Area"
+  Jobs_descripcion: "Descripción"
+  Jobs_pais: "Pais"
+  Jobs_estado: "Estado"
+  Jobs_ciudad: "Ciudad"
+  Jobs_jornada: "Jornada"
+  Jobs_contrato: "Tipo de contrato"
+  Jobs_salario: "Salario Mensual en pesos mexicanos"
+  Jobs_fecha_contratacion: "Fecha de contratación"
+  Jobs_numero_vacantes: "Número de vacantes"
+  Jobs_años_experiencia: "Años de experiencia"
+  Jobs_edad_minima: "Edad minima"
+  Jobs_edad_maxima: "Edad maxima"
+  Jobs_idioma: "Idiomas requeridos"
+  Jobs_idioma_porcentaje: "Porcentaje de Idioma"
+  Jobs_ofimatica: "Ofimatica"
+  Jobs_disponibilidad_viajar: "Diponibilidad para viajar"
+  Jobs_disponibilidad_cambio_residencia: "Diponibilidad para cambiar de residencia"
+  Jobs_discapacidad: "Se aceptan discapacidades"
+  Jobs_boton_guardar: "Guardar"
+
+
+
+  Nav_home: "Inicio"
+  Nav_cloud: "Curriculum"
+  Nav_share: "Compartir"
+  Nav_settings: "Mis tags"
+  Nav_security: "Seguridad"
+  Nav_session: "Cerrar sesion"

@@ -1,0 +1,103 @@
+<%= estilo_cv %>
+<script type="text/javascript">
+	 $(document).ready(function() {
+  /* Activating Best In Place */
+ 	 jQuery(".best_in_place").best_in_place();
+	 });
+</script>
+<div class="container">
+  	<div class="row">
+        <div class="[ col-xs-12 col-sm-offset-1 col-sm-5 ]">
+            <div class="[ panel panel-default ] panel-google-plus" id="panel">
+              <div class="panel-heading">
+              	<div class="background"></div>
+              </div>
+              <div class="panel-body">
+              	<h4 class="centrar"><%= @cv.title if @cv.title?  %></h4>
+				<h3 class="centrar"><%= I18n.t('cv_tags') %></h3>
+					<%  @list_tags.each do |a| %>
+							<div class="centrar"><%= a.name if a.name? %></div>		
+   					<% end -%>
+				<h4 class ="title"><%=  I18n.t('cv_titulo_datos_generales')  %></h4>
+				<div id="contenedor">
+					<div class="margendgs">
+						<div class="nombre"><strong><%= @nombre.name %></strong></div>
+						<div><%= I18n.t('cv_fecha_nacimiento')%><%= @datebirthday.datebirthday %></div>
+						<div><%= I18n.t('cv_edad')     %> <%= @age.age %>        </div>
+						<div><%= I18n.t('cv_direccion')%> <%= @address.address %></div>
+						<div><%= I18n.t('cv_telefono1')%> <%= @phone1.phone1  %> </div>
+						<div><%= I18n.t('cv_telefono2')%> <%= @phone2.phone2  %> </div>
+						<div><%= I18n.t('cv_email')    %> <%= @email.email   %>  </div>
+					</div>
+					<div class="imagen">
+						<img class= "img" src="<%= @photo.photo_url(:thumb) %>" width ="130px" >
+					</div>
+				</div>
+				<%= educations_margen_botton %>
+				<h4 class="margen"><%= I18n.t('cv_titulo_educacion') %></h4>
+					<% @educations.each do |a| %>
+						<div class="margen">
+							<div><strong><%= I18n.t('cv_nivel') if a.level  %></strong> <%= a.level %></div>
+							<div><strong><%= I18n.t('form_titulo_ed') if a.title? %></strong> <%= a.title%></div>
+							<div><strong><%= I18n.t('cv_escuela')if a.school %></strong> <%= a.school%></div>
+							<div>
+							<strong><%= I18n.t('cv_año_inicial') if a.yearInitial?%></strong> <%= a.yearInitial %>
+						    <strong><%= I18n.t('cv_año_final')   if a.yearFinal?  %></strong> <%= a.yearFinal %>
+							</div>
+							<div><strong><%= I18n.t('cv_documento_recibido')if a.DocumentReceived? %></strong> <%= a.DocumentReceived %></div>
+							<div><strong><%= I18n.t('cv_promedio')    if a.average?  %></strong> <%= a.average %></div>
+							<div><strong><%= I18n.t('cv_comentarios') if a.comments? %></strong> <%= a.comments%></div>
+							<hr>
+						</div>
+					<% end -%>
+				<h4 class="margen"><%= I18n.t('cv_titulo_experiencia') %></h4>
+				<% @experiences.each do |g| %>
+					<div class="margen">
+						<div><strong><%= g.datei %> -- <%= g.datef %></strong></div>
+						<div><strong><%= I18n.t('cv_empresa') %><span class="margen"><%= g.business %></span></strong></div>
+						<div><strong>Puesto: <%= g.Puesto %></strong></div>
+						<div><strong>Actividades desempeñadas:</strong></div>
+						<div class="multilinea"><%= g.description %></div>
+					</div>
+				<% end -%>
+				<h4 class="margen"><%= I18n.t('cv_titulo_cursos') %></h4>
+				<% @courses.each do |b| %>
+					<div class="margen">
+						<div class="curso_name">* <%= b.name %></div>
+						<div><strong><%= I18n.t('cv_descripcion_curso') if b.description? %></strong><%= b.description %></div>
+					</div>	
+				<% end -%>
+				<hr>
+				<h4 class="margen"><%= I18n.t('cv_titulo_idiomas') %></h4>
+				<% @languages.each do |d| %>
+					<div class="margen">
+						<div><strong><%= I18n.t('cv_nombre_idioma') if d.name? %></strong> <%= d.name %></div>
+						<div><strong><%= I18n.t('cv_idioma_lectura') if d.read?  %></strong><%= d.read %></div>
+						<div><strong><%= I18n.t('cv_idioma_escritura')if d.write? %></strong><%= d.write %></div>
+						<div><strong><%= I18n.t('cv_idioma_hablado') if d.spoken?%></strong><%= d.spoken %></div>
+						<span>==============================================</span>
+					</div>
+				<% end -%>
+				<% if @certificates.blank? %>
+				<% else %>
+					<h4 class="margen"><%= I18n.t('cv_titulo_certificados') %></h4>
+					<% @certificates.each do |f| %>
+						<div class="margen">
+							<div><%= f.name %></div>
+						</div>
+					<% end -%> 
+				<% end %>
+					<div class="panel-footer">
+						<%= link_to I18n.t('cv_boton_descargar') , "/preview.pdf", :class => "[ btn btn-default ]" %>
+						<%= link_to 'Publicar', publicar_cv_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
+						<%= link_to I18n.t('cv_boton_compartir'), "/preview.pdf", :class => "[ btn btn-default ]" %>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,54 @@
+
+<section class="primary"><h2><%= I18n.t('Business_title') %></h2></section>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Business name</th>
+      <th>Rfc</th>
+      <th>Country</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Postal code</th>
+      <th>Address</th>
+      <th>Sector</th>
+      <th>Number of employees</th>
+      <th>Business type</th>
+      <th>Business description</th>
+      <th>Web</th>
+      <th>Logo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @businesses.each do |business| %>
+      <tr>
+
+        <td><%= business.name %></td>
+        <td><%= business.business_name %></td>
+        <td><%= business.rfc %></td>
+        <td><%= business.country.name %></td>
+        <td><%= business.state.name %></td>
+        <td><%= business.city.name %></td>
+        <td><%= business.Postal_Code %></td>
+        <td><%= business.address %></td>
+        <td><%= business.sector %></td>
+        <td><%= business.Number_of_employees %></td>
+        <td><%= business.business_type %></td>
+        <td><%= business.business_description %></td>
+        <td><%= business.web %></td>
+        <td><%= business.logo %></td>
+        <td><%= link_to 'Show', business %></td>
+        <td><%= link_to 'Edit', edit_business_path(business) %></td>
+        <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Business', new_business_path %>

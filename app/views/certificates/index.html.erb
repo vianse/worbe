@@ -1,0 +1,24 @@
+<h4><%= I18n.t('listado_ce_title') %></h4>
+<%= botonera_index_ce %>
+<br>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @certificates.each do |certificate| %>
+      <tr>
+        <td><%= certificate.name %></td>
+        <td><%= link_to 'Editar', edit_certificate_path(certificate) %></td>
+        <td><%= link_to 'Eliminar', certificate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

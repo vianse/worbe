@@ -1,0 +1,7 @@
+<% if @titlecv.nil? %>
+<div><a href="/header"><%= I18n.t('new') %></a></div>
+<% else %>
+<div><a href="/dashboard"><%= I18n.t('update') %></a></div>
+<div><a href="/preview"><%= I18n.t('preview') %></a></div>
+<% end %>
+

@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  business_id: 
+  user_id: 
+  name: MyString
+  tag_id: 
+  area_id: 
+  description: MyString
+  country_id: 
+  state_id: 
+  city_id: 
+  day_type: MyString
+  type_contract: MyString
+  salary: MyString
+  date_recruitment: MyString
+  number_jobs: MyString
+  year_experience: MyString
+  minimum_age: MyString
+  maximum_age: MyString
+  language: MyString
+  percentage_language: MyString
+  ofimatica: MyString
+  availability_travel: false
+  change_home: false
+  disability: false
+
+two:
+  business_id: 
+  user_id: 
+  name: MyString
+  tag_id: 
+  area_id: 
+  description: MyString
+  country_id: 
+  state_id: 
+  city_id: 
+  day_type: MyString
+  type_contract: MyString
+  salary: MyString
+  date_recruitment: MyString
+  number_jobs: MyString
+  year_experience: MyString
+  minimum_age: MyString
+  maximum_age: MyString
+  language: MyString
+  percentage_language: MyString
+  ofimatica: MyString
+  availability_travel: false
+  change_home: false
+  disability: false

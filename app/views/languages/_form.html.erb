@@ -1,0 +1,52 @@
+<%= estilo_form %>
+<div class="container">
+    <div class="row">
+        <div class="[ col-xs-12 col-sm-offset-1 col-sm-5 ]">
+            <div class="[ panel panel-default ] panel-google-plus" id="tags">
+                <div class="panel-heading">
+                 
+                </div>
+                <div class="panel-body">
+                    <%= form_for(@language) do |f| %>
+                      <% if @language.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@language.errors.count, "error") %> prohibited this language from being saved:</h2>
+
+                          <ul>
+                          <% @language.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                          <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+
+                      <div class="field">
+                        <%= f.label I18n.t('form_nombre_la')  %><br>
+                        <%= f.text_field :name, class:'form-control' %>
+                      </div>
+                      <div class="field">
+                        <%= f.label I18n.t('form_lectura_la') %><br>
+                        <%= f.text_field :read, class:'form-control' %>
+                      </div>
+                      <div class="field">
+                        <%= f.label I18n.t('form_escritura_la') %><br>
+                        <%= f.text_field :write , class:'form-control'%>
+                      </div>
+                      <div class="field">
+                        <%= f.label I18n.t('form_spok_la') %><br>
+                        <%= f.text_field :spoken, class:'form-control' %>
+                      </div>
+                      <div class="field">
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                      </div>
+                      <div class="actions">
+                        <%= botonera_la %>
+                      </div>
+                    <% end %>
+
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+

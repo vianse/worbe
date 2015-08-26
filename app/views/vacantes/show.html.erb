@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @vacante.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @vacante.description %>
+</p>
+
+<p>
+  <strong>Business:</strong>
+  <%= @vacante.business %>
+</p>
+
+<p>
+  <strong>Business:</strong>
+  <%= @vacante.business_id %>
+</p>
+
+<%= link_to 'Edit', edit_vacante_path(@vacante) %> |
+<%= link_to 'Back', vacantes_path %>

@@ -1,0 +1,21 @@
+<h4><%= I18n.t('listado_la_title') %></h4>
+<%= botonera_index_la %>
+<br>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+</thead>
+<tbody>
+    <% @languages.each do |language| %>
+      <tr>
+        <td><%= language.name %></td>
+        <td><%= link_to 'Editar', edit_language_path(language) %></td>
+        <td><%= link_to 'Eliminar', language, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

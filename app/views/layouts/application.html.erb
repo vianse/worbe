@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloudcv</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<body>
+  
+<% if empresa_signed_in? %>
+<header id="header">
+    <div class="wrap">
+        <a href="/" class="logo"><span class="header">Workers</span></a>
+        <nav>     
+            <a href="/empresas/edit" class="mobile-hide "><%= I18n.t('Nav_security') %></a>
+            <%= link_to I18n.t('Nav_session'), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        </nav>
+    </div>
+</header>
+<%= render 'style/style' %>
+<% end %>
+    <% if user_signed_in? %>
+    <header id="header">
+        <div class="wrap">
+            <a href="/" class="logo">
+                <span class="header">worbe</span>
+            </a>
+            <nav>
+                <a href="/user/edit" class="mobile-hide "><%= I18n.t('Nav_security') %></a>
+                <%= link_to I18n.t('Nav_session'), destroy_user_session_path, method: :delete, :class => 'navbar-link btn btn-default btn-close'  %>
+            </nav>
+        </div>
+    </header>
+    <%= render 'style/style' %>
+    <% end %>
+<%= yield %>
+</body>
+</html>
