@@ -14,10 +14,8 @@
               </div>
               <div class="panel-body">
               	<h4 class="centrar"><%= @cv.title if @cv.title?  %></h4>
-				<h3 class="centrar"><%= I18n.t('cv_tags') %></h3>
-					<%  @list_tags.each do |a| %>
-							<div class="centrar"><%= a.name if a.name? %></div>		
-   					<% end -%>
+				<br>
+				<br>
 				<h4 class ="title"><%=  I18n.t('cv_titulo_datos_generales')  %></h4>
 				<div id="contenedor">
 					<div class="margendgs">
@@ -87,6 +85,10 @@
 						</div>
 					<% end -%> 
 				<% end %>
+				<h3 class="margen"><%= I18n.t('cv_tags') %></h3>
+					<%  @list_tags.each do |a| %>
+							<div class="margen"><%= a.name if a.name? %></div>		
+   					<% end -%>
 					<div class="panel-footer">
 						<%= link_to I18n.t('cv_boton_descargar') , "/preview.pdf", :class => "[ btn btn-default ]" %>
 						<%= link_to 'Publicar', publicar_cv_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>

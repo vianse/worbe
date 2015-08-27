@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824182948) do
+ActiveRecord::Schema.define(version: 20150827032711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20150824182948) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "guid"
+    t.string   "countclick"
   end
 
   add_index "cvs", ["idioma_id"], name: "index_cvs_on_idioma_id", using: :btree
@@ -278,6 +279,7 @@ ActiveRecord::Schema.define(version: 20150824182948) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "guid"
+    t.string   "name"
   end
 
   add_index "my_tags", ["cv_id"], name: "index_my_tags_on_cv_id", using: :btree

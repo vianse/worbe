@@ -571,6 +571,9 @@ module InicioHelper
 
 				background-color:#114B5F;
 			}
+			.boton8{
+				background-color:#508AA8;
+			}
 
 			.botons:hover{
 				opacity:.85;

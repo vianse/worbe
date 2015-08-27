@@ -23,7 +23,7 @@ class MyTagsController < ApplicationController
   def create
     @my_tag = MyTag.new(my_tag_params)
     @my_tag.save
-    redirect_to "/vacantes_sugeridas"
+    redirect_to "/"
   end
 
   def update
@@ -42,6 +42,6 @@ class MyTagsController < ApplicationController
     end
 
     def my_tag_params
-      params.require(:my_tag).permit(:cv_id, :idioma_id, :user_id, :tag_id)
+      params.require(:my_tag).permit(:cv_id, :idioma_id, :user_id, :tag_id, :name)
     end
 end

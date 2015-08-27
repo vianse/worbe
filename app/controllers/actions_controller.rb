@@ -56,7 +56,8 @@ class ActionsController < ApplicationController
     @certificates = Certificate.where(:user_id => current_user)
     @languages    = Language.where(:user_id => current_user)
     @experiences  = Experience.where(:user_id => current_user)
-    @list_tags    = Tag.where(:id => MyTag.where(:user_id => current_user.id).pluck(:tag_id))
+   # @list_tags    = Tag.where(:id => MyTag.where(:user_id => current_user.id).pluck(:tag_id))
+    @list_tags    = MyTag.where(:user_id => current_user.id)
     @guid   = Digest::MD5.hexdigest(current_user.id.to_s)
     @server = "http://" + request.host_with_port
     logger.debug @server
@@ -65,8 +66,8 @@ class ActionsController < ApplicationController
    respond_to do |format|
       format.html
       format.pdf do
-        pdf =  ReportPdf.new(@dgs,@titlecv, @photo,@age, @name, @areas,@datebirthday,@address,@phone1,@phone2,@email,@educations,@experiences,@courses,@languages,@certificates,@server)
-        send_data pdf.render, filename: 'cloudcv-'+"#{@name}-#{@guid}"+'.pdf', type: 'application/pdf'
+        pdf =  ReportPdf.new(@dgs,@titlecv, @photo,@age, @name, @list_tags,@datebirthday,@address,@phone1,@phone2,@email,@educations,@experiences,@courses,@languages,@certificates,@server)
+        send_data pdf.render, filename: 'worbe-'+"#{@name}-#{@guid}"+'.pdf', type: 'application/pdf'
       end
     end
   end
@@ -96,7 +97,8 @@ class ActionsController < ApplicationController
     @certificates  = Certificate.where(:user_id => current_user)
     @languages     = Language.where(:user_id => current_user)
     @experiences   = Experience.where(:user_id => current_user)
-    @list_tags     = Tag.where(:id => MyTag.where(:user_id => current_user.id).pluck(:tag_id))
+    @list_tags    = MyTag.where(:user_id => current_user.id)
+    #@list_tags     = Tag.where(:id => MyTag.where(:user_id => current_user.id).pluck(:tag_id))
     @guid          = Digest::MD5.hexdigest(current_user.id.to_s)
     @server        = "http://" + request.host_with_port
     logger.debug @server
@@ -105,8 +107,8 @@ class ActionsController < ApplicationController
    respond_to do |format|
       format.html
       format.pdf do
-        pdf =  ReportPdf.new(@dgs,@titlecv, @photo,@age, @name, @areas,@datebirthday,@address,@phone1,@phone2,@email,@educations,@experiences,@courses,@languages,@certificates,@server)
-        send_data pdf.render, filename: 'cloudcv-'+"#{@name}-#{@guid}"+'.pdf', type: 'application/pdf'
+        pdf =  ReportPdf.new(@dgs,@titlecv, @photo,@age, @name, @list_tags,@datebirthday,@address,@phone1,@phone2,@email,@educations,@experiences,@courses,@languages,@certificates,@server)
+        send_data pdf.render, filename: 'worbe-'+"#{@name}-#{@guid}"+'.pdf', type: 'application/pdf'
       end
    end
  end

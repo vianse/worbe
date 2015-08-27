@@ -39,8 +39,7 @@ class ReportPdf < Prawn::Document
     text  "#{@titlecv}", size: 15, style: :bold, :align => :center
 
     move_down 5
-    text  "Tags de interes", size: 13, style: :bold, :align => :center
-    text  "#{@tags}", size: 10, :align => :center
+  
 
     move_down 25
     text  "Datos Generales", size: 13, style: :bold
@@ -128,7 +127,12 @@ class ReportPdf < Prawn::Document
         move_down 5
       end   
     end
+    move_down 5
+    text  "Tags de interes", size: 13, style: :bold
+    @tags.each do |q|
+    text  "#{q.name}", size: 10, :align => :justify
+    end
+  
   end
-  
-  
+
 end
