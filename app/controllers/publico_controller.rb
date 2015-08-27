@@ -28,7 +28,8 @@ class PublicoController < ApplicationController
     @certificates = Certificate.where(guid: @guid)
     @languages    = Language.where(guid: @guid)
     @experiences  = Experience.where(guid: @guid)
-    @list_tags    = Tag.where(:id => MyTag.where(guid: @guid).pluck(:tag_id))
+    #@list_tags    = Tag.where(:id => MyTag.where(guid: @guid).pluck(:tag_id))
+    @list_tags    = MyTag.where(:user_id => current_user.id)
    
     @server = "http://" + request.host_with_port
     logger.debug @cv
@@ -37,8 +38,8 @@ class PublicoController < ApplicationController
     respond_to do |format|
        format.html
        format.pdf do
-         pdf =  ReportPdf.new(@dgs,@titlecv, @photo,@age, @name, @areas,@datebirthday,@address,@phone1,@phone2,@email,@educations,@experiences,@courses,@languages,@certificates,@server)
-         send_data pdf.render, filename: 'cloudcv-'+"#{@name}-#{@guid}"+'.pdf', type: 'application/pdf'
+         pdf =  ReportPdf.new(@dgs,@titlecv, @photo,@age, @name, @list_tags,@datebirthday,@address,@phone1,@phone2,@email,@educations,@experiences,@courses,@languages,@certificates,@server)
+         send_data pdf.render, filename: 'worbe-'+"#{@name}-#{@guid}"+'.pdf', type: 'application/pdf'
        end
     end
  end
