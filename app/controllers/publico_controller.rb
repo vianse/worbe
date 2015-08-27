@@ -29,7 +29,7 @@ class PublicoController < ApplicationController
     @languages    = Language.where(guid: @guid)
     @experiences  = Experience.where(guid: @guid)
     #@list_tags    = Tag.where(:id => MyTag.where(guid: @guid).pluck(:tag_id))
-    @list_tags    = MyTag.where(:user_id => current_user.id)
+    @list_tags    = MyTag.where(guid: @guid)
    
     @server = "http://" + request.host_with_port
     logger.debug @cv
