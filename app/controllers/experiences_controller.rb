@@ -24,7 +24,7 @@ class ExperiencesController < ApplicationController
   def create
     @experience = Experience.new(experience_params)
     @experience.save
-    respond_with(@experience)
+    redirect_to "/experiences"
   end
 
   def update

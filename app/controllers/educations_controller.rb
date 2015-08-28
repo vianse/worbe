@@ -25,7 +25,7 @@ class EducationsController < ApplicationController
   def create
     @education = Education.new(education_params)
     @education.save
-    respond_with(@education)
+    redirect_to "/educations"
   end
 
   def update
