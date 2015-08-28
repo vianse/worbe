@@ -4,19 +4,10 @@ class MyTagsController < ApplicationController
   respond_to :html
 
   def index
-    if user_signed_in?
+ 
       @my_tags = MyTag.where(user_id: current_user.id)
       respond_with(@my_tags)
-    else
-
-      #@projects = MyTag.search(params[:search])
-      @projects = MyTag.search(params[:search]).pluck(:guid)
-      @ed = Education.where(:guid => @projects)
-      @dg = Dg.where(:guid => @projects)
-      @cv = Cv.where(:guid => @projects)
-      @ex = Experience.where(:guid => @projects)
-     
-    end
+   
   end
 
   def show

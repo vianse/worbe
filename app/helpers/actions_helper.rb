@@ -327,6 +327,20 @@ module ActionsHelper
 					.tag{
 						padding-left: 50px;
 					}
+					/* CSS PARA CV */
+					.centrar{
+						background-color:#F9F9F9;
+						border-style: dashed;
+						border-color:#E2E2E2;
+						color:#CCCCCC;
+						padding: 5px;
+					}
+					.centrar:hover{
+						border-style: dashed;
+						border-color:#FFC4BF;
+						color:black;
+						padding: 5px;
+					}
 					
 					</style>"
 		html.html_safe
@@ -349,6 +363,8 @@ module ActionsHelper
 				#panel {
 					top: 10px!important;
 				}
+
+
 			   </style>"
 		html.html_safe
 		

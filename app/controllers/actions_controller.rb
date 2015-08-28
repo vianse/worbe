@@ -1,6 +1,6 @@
 class ActionsController < ApplicationController
  before_action :authenticate_user!
- respond_to :html
+ respond_to :html, :json
   def index
   	@titlecv = Cv.where(user_id: current_user.id).pluck(:title).first
   end

@@ -5,6 +5,7 @@
  	 jQuery(".best_in_place").best_in_place();
 	 });
 </script>
+
 <div class="container">
   	<div class="row">
         <div class="[ col-xs-12 col-sm-offset-1 col-sm-5 ]">
@@ -13,10 +14,16 @@
               	<div class="background"></div>
               </div>
               <div class="panel-body">
-              	<h4 class="centrar"><%= @cv.title if @cv.title?  %></h4>
+              	<% if @cv.blank? %>
+              	<h4 class="centrar">Click para agregar un título</h4>
+              	<% else %>
+              	<h4 class="centrar"><%= best_in_place @cv , :title, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' } if @cv.title?  %></h4>
+              	<% end %>
 				<br>
 				<br>
 				<h4 class ="title"><%=  I18n.t('cv_titulo_datos_generales')  %></h4>
+				<% if @cv.blank? %>
+				<% else %>
 				<div id="contenedor">
 					<div class="margendgs">
 						<div class="nombre"><strong><%= @nombre.name %></strong></div>
@@ -31,6 +38,7 @@
 						<img class= "img" src="<%= @photo.photo_url(:thumb) %>" width ="130px" >
 					</div>
 				</div>
+				<% end %>
 				<%= educations_margen_botton %>
 				<h4 class="margen"><%= I18n.t('cv_titulo_educacion') %></h4>
 					<% @educations.each do |a| %>

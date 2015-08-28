@@ -1,5 +1,5 @@
 class CvsController < ApplicationController
-   before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_cv, only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :json
@@ -30,7 +30,8 @@ class CvsController < ApplicationController
 
   def update
     @cv.update(cv_params)
-    redirect_to "/cvs"
+    respond_with(@cv)
+    #redirect_to "/cvs"
   end
 
   def destroy
