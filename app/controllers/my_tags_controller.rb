@@ -4,9 +4,11 @@ class MyTagsController < ApplicationController
   respond_to :html
 
   def index
- 
+ if user_signed_in?
       @my_tags = MyTag.where(user_id: current_user.id)
       respond_with(@my_tags)
+  else
+  end
    
   end
 

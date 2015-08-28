@@ -4,6 +4,43 @@ class ActionsController < ApplicationController
   def index
   	@titlecv = Cv.where(user_id: current_user.id).pluck(:title).first
   end
+  def crear_educations
+    @education = Education.create(
+      :school => "Ingresa el nombre de la escuela",
+      :yearInitial => "Ingresa de inicio", 
+      :yearFinal => "Ingresa de conclución",
+      :graduated => "false", 
+      :DocumentReceived => "Ingresa el Documento recibido", 
+      :average => "Ingresa tu promedio", 
+      :comments => "Ingresa algun comentario ", 
+      :level => "Ingresa el nivel educativo", 
+      :user_id => current_user.id,
+      :title => "Ingresa el título recibido, en caso que aplique"
+    )
+    @education.save
+    redirect_to '/dashboard'
+  end
+   def crear_experiences
+    @education = Experience.create(
+      :datei => "Ingresa el año inicial",
+      :datef => "Ingresa de año final", 
+      :business => "Ingresa nombre del empresa",
+      :description => "Ingresa tus actividades desempeñadas", 
+      :user_id => current_user.id, 
+      :Puesto => "Ingresa tu puesto", 
+      :description_short=> "Ingresa alguna descripción "
+      
+    )
+    @education.save
+    redirect_to '/dashboard'
+  end
+  def elimina_education
+    @education = Education.find(params[:id])
+    if @education.present?
+      @education.destroy
+    end
+    redirect_to '/dashboard'
+  end
   def publicar
      @guid = Digest::MD5.hexdigest(current_user.id.to_s)
      @cv   = Cv.where(:user_id => current_user.id).first

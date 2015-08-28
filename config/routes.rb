@@ -57,6 +57,9 @@ end
   post 'updated/:id' => 'jobs#actualiza', as: :updated
   post 'aplicar' => 'applications#aplicar', as: :aplicar
   post 'publicar' => 'actions#publicar', as: :publicar_cv
+  post 'add_educations' => 'actions#crear_educations', as: :add_educations
+  post 'add_experiences' => 'actions#crear_experiences', as: :add_experiences
+  delete 'delete_education/:id' => 'actions#elimina_education', as: :delete_education
 
 
    get 'vacantes_sugeridas' => 'welcome#index', as: :welcome
