@@ -21,7 +21,7 @@
 
                   <div class="field">
                     <%= f.label I18n.t('form_nivel_ed') %><br>
-                    <%= select_tag(:level, options_for_select([["Primaria", "Primaria"], ["Secundaria", "Secundaria"], ["Media superior", "Media superior"], ["Carreta técnica", "Carreta técnica"],["Superior (Profesional)", "Superior (Profesional)"], ["Maestria", "Maestria"], ["Doctorado", "Doctorado"]], selected: :option), name: "education[level]", class:'form-control')%>
+                    <%= select_tag(:level, options_for_select([["Carreta técnica", "Carreta técnica"],["Nivel Superior", "Nivel Superior"], ["Especialidad", "Especialidad"], ["Maestria", "Maestria"], ["Doctorado", "Doctorado"]], selected: :option), name: "education[level]", class:'form-control')%>
                   </div>
                   <div class="field">
                     <%= f.label I18n.t('form_escuela_ed')%><br>
@@ -48,11 +48,11 @@
                     <%= f.text_field :DocumentReceived, class:'form-control' %>
                   </div>
                   <div class="field">
-                    <%= f.label I18n.t('form_promedio_ed') %><br>
+                    <%= f.label I18n.t('form_promedio_ed') %> <br>
                     <%= f.text_field :average, class:'form-control' %>
                   </div>
                   <div class="field">
-                    <%= f.label I18n.t('form_comentarios_ed') %><br>
+                    <%= f.label I18n.t('form_comentarios_ed') %> <br>
                     <%= f.text_field :comments, class:'form-control' %>
                   </div>
                   <div class="field">

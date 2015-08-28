@@ -75,19 +75,20 @@ en:
 
   #formulario de educations
   form_escuela_ed:           "Escuela"
-  form_nivel_ed:             "Nivel"
+  form_nivel_ed:             "Selecciona tu nivel de estudios"
   form_titulo_ed:            "Título"
   form_añoinicial_ed:        "Año inicial"
   form_añofinal_ed:          "Año Final"
   form_concluido_ed:          "Concluido?"
   form_documento_ed:         "Documento recibido"
-  form_promedio_ed:          "Promedio"
-  form_comentarios_ed:       "Comentarios"
+  form_promedio_ed:          "Promedio (Opcional)"
+  form_comentarios_ed:       "Comentarios (Opcional)"
 
   listado_educations_title:  "Mi Educación"
 
   #formulario de experiences
-  form_empresa_ex:           "Empresa"
+  form_empresa_ex:           "Escribe el nombre de la empresa"
+  form_placeholder_ex:       "Eje. Empresa Ltd"
   form_añoinicial_ex:        "Año inicial"
   form_añofinal_ex:          "Año Final"
   form_puesto_ex:            "Puesto"
