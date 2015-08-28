@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   		redirect_to inicio_index_path
   	end
   	if empresa_signed_in?
-  		redirect_to home_empresa_path
+  		redirect_to index_empresas_path
   	end
   end
 end
