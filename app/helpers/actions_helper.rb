@@ -324,7 +324,9 @@ module ActionsHelper
 					.col-sm-offset-1{
 						margin-left:0px!important;
 					}
-					
+					.tag{
+						padding-left: 50px;
+					}
 					
 					</style>"
 		html.html_safe

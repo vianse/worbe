@@ -1,27 +1,70 @@
 <%= estilo_form %>
+<%= estilo_cv %>
 </style>
 
  <div class="container">
     <div class="row">
         <div class="[ col-xs-12 col-sm-offset-1 col-sm-5 ]">
             <div class="[ panel panel-default ] panel-google-plus" id="panel">
+              <% if user_signed_in? %>
               <div class="panel-heading">
                 Que son los tags y para que sirven?
                
               </div>
                 <div class="panel-body">
- <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-                ?
+
+               <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                              ?
               </button>
                   <h3><%= link_to 'Nuevo Tag', new_my_tag_path, :class=>"[ btn btn-default ]" %></h3>
-                  <% @my_tags.each do |my_tag| %>
-                    <p><h3><strong>Nombre del Tag:</strong> <%= my_tag.name %></h3>
-                      <%= link_to 'Editar', edit_my_tag_path(my_tag), :class=>"[ btn btn-default ]" %>
-                    <%= link_to 'Eliminar', my_tag, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"[ btn btn-default ]" %>
-                    </p>
-                    
-                    
+                 
+                    <% @my_tags.each do |my_tag| %>
+                        <p><h3><strong>Nombre del Tag:</strong> <%= my_tag.name %></h3>
+                          <%= link_to 'Editar', edit_my_tag_path(my_tag), :class=>"[ btn btn-default ]" %>
+                        <%= link_to 'Eliminar', my_tag, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"[ btn btn-default ]" %>
+                        </p> 
                     <% end %>
+                    <% else %>
+                    <% if @cv.blank? %>
+                      Recurso no encontrado
+                    <% else %>
+                    <h3>Resultados con la palabra <%= params[:search]%></h3>
+
+
+                      <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @dg.each do |q| %>
+                              <tr>
+                                <td><img class= "img" src="<%= q.photo %>" width ="130px" >
+                                      <% @cv = Cv.where(:guid => q.guid)%>
+                                        <% @cv.each do |c| %>
+                                        <div><%= c.title %></div>
+                                       <% end %>
+                                      <%= q.name %>
+                                      <% @ed = Education.where(:guid => q.guid) %>
+                                      <% @ed.each do |a| %>
+                                        <div><%= a.school %></div>
+                                       <% end %>
+
+                                       <% @ex = Experience.where(:guid => q.guid)%>
+                                        <% @ex.each do |b| %>
+                                        <div><%= b.business %></div>
+                                       <% end %>
+
+                                      <a href="<%= @server %>/worbe?guid=<%= q.guid %>" class="btn btn-default">Ver cv completo</a>
+                                </td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                    <% end %>
+                      <% end %>
+   
                 </div>
             </div>
          </div>

@@ -12,8 +12,6 @@ class WelcomeController < ApplicationController
 	#@jobs = Job.where(:tag_id => @ids )
 	@jobs = Job.where("tag_id IN (?) and status = ?", @ids , "Publicado")
 
-	
-	
 	@list_tags = Tag.where(:id => MyTag.where(:user_id => current_user.id).pluck(:tag_id))
 	respond_with(@jobs) 
   end

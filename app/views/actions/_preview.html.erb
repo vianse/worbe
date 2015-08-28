@@ -87,7 +87,7 @@
 				<% end %>
 				<h3 class="margen"><%= I18n.t('cv_tags') %></h3>
 					<%  @list_tags.each do |a| %>
-							<div class="margen"><%= a.name if a.name? %></div>		
+							<div class="tag"><%= a.name if a.name? %></div>		
    					<% end -%>
 					<div class="panel-footer">
 						<%= link_to I18n.t('cv_boton_descargar') , "/preview.pdf", :class => "[ btn btn-default ]" %>
