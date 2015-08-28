@@ -29,12 +29,16 @@
                 </div>
                 <div class="panel-body">
             <div class="botonera">
+                 <% if @dgs.blank? and @cvs.blank? %>
+                
+                <% else %>
                 <a href="/dashboard" class="btn boton tamaño_boton botons">
-                	<div>
-                		<i class="fa fa-eye fa-4x"></i> 
-                	</div>
-                	<div class="text"> Previsualizar CV</div>
+                    <div>
+                        <i class="fa fa-eye fa-4x"></i> 
+                    </div>
+                    <div class="text"> Previsualizar CV</div>
                 </a>
+                <% end %>
                 <a href="/cvs"   class="btn boton1 tamaño_boton botons">
                 	<div><i class="fa fa-pencil fa-4x"></i></div>
                 	<div class="text"> Mi encabezado </div> 
