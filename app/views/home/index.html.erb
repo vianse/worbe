@@ -3,7 +3,12 @@
 
 <%= form_tag hottags_path, :method => 'get' do %>
   <p>
-   Buscar por Tag de interes <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+   Buscar por cv por palabra clave <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar", :name => nil, :class=> "btn btn-success" %>
   </p>
 <% end %>
+
+<h1>Crea tu cv de manera facil y rapida.</h1>
+<p>Accede, actualiza y comparte tu Curriculum vitae</p>
+<p>Accede desde aquí</p>
+<a href="/users/sign_in" class="btn btn-info">Login</a>
