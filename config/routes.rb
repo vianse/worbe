@@ -69,7 +69,9 @@ end
    get 'alta_empresa' => 'businesses#index', as: :empresas
   
    get 'paises' => 'countries#index', as: :paises
-   get 'home' => 'home_empresa#index', as: :home_empresa
+   get 'home' => 'home_empresa#index', as: :index_empresas
+ 
+   get  'search' => 'my_tags#index', as: :buscar
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -7,6 +7,8 @@ class BusinessesController < ApplicationController
   def index
     @businesses = Business.all
     respond_with(@businesses)
+
+
   end
 
   def show

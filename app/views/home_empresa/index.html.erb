@@ -1,3 +1,10 @@
-
-<h1>HomeEmpresa#index</h1>
-<p>Find me in app/views/home_empresa/index.html.erb</p>
+<%= estilo_form %>
+<%= estilo_cv %>
+</style>
+<%= form_tag buscar_path, :method => 'get' do %>
+  <p>
+     Buscar por cv por palabra clave <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar cv", :name => nil, :class=> "btn btn-success" %>
+  </p>
+<% end %>
+ 

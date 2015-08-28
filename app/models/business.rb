@@ -7,5 +7,7 @@ class Business < ActiveRecord::Base
   has_many :applications
 
   mount_uploader :logo, ImageUploader
+
+
   
 end
