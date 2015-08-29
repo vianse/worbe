@@ -1,7 +1,7 @@
 class MyTagsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_my_tag, only: [:show, :edit, :update, :destroy]
-  respond_to :html
+  respond_to :html, :json
 
   def index
  if user_signed_in?

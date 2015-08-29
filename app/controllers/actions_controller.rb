@@ -20,8 +20,15 @@ class ActionsController < ApplicationController
     @education.save
     redirect_to '/dashboard'
   end
+  def elimina_education
+    @education = Education.find(params[:id])
+    if @education.present?
+      @education.destroy
+    end
+    redirect_to '/dashboard'
+  end
    def crear_experiences
-    @education = Experience.create(
+    @experiences = Experience.create(
       :datei => "Ingresa el año inicial",
       :datef => "Ingresa de año final", 
       :business => "Ingresa nombre del empresa",
@@ -29,15 +36,80 @@ class ActionsController < ApplicationController
       :user_id => current_user.id, 
       :Puesto => "Ingresa tu puesto", 
       :description_short=> "Ingresa alguna descripción "
-      
     )
-    @education.save
+    @experiences.save
     redirect_to '/dashboard'
   end
-  def elimina_education
-    @education = Education.find(params[:id])
-    if @education.present?
-      @education.destroy
+  def elimina_experiences
+    @experiences = Experience.find(params[:id])
+    if @experiences.present?
+      @experiences.destroy
+    end
+    redirect_to '/dashboard'
+  end
+  def crear_courses
+    @courses = Course.create(
+      :name => "Ingresa el nombre del curso",
+      :description => "Ingresa alguna descripción", 
+      :user_id => current_user.id       
+    )
+    @courses.save
+    redirect_to '/dashboard'
+  end
+  def elimina_courses
+    @courses = Course.find(params[:id])
+    if @courses.present?
+      @courses.destroy
+    end
+    redirect_to '/dashboard'
+  end
+
+   def crear_idiomas
+    @idiomas = Language.create(
+      :name => "Ingresa el nombre del idioma que dominas",
+      :read => "Ingresa el porcentaje de lectura que tienes sobre el idioma", 
+      :write => "Ingresa el porcentaje de escritura que tienes sobre el idioma", 
+      :spoken => "Ingresa el porcentaje de habla que tienes sobre el idioma",
+      :user_id => current_user.id       
+    )
+    @idiomas.save
+    redirect_to '/dashboard'
+  end
+  def elimina_idiomas
+    @idiomas = Language.find(params[:id])
+    if @idiomas.present?
+      @idiomas.destroy
+    end
+    redirect_to '/dashboard'
+  end
+  def crear_certificates
+    @certificates = Certificate.create(
+      :name => "Ingresa el nombre del certificado",
+      :user_id => current_user.id       
+    )
+    @certificates.save
+    redirect_to '/dashboard'
+  end
+  def elimina_certificates
+    @certificates = Certificate.find(params[:id])
+    if @certificates.present?
+      @certificates.destroy
+    end
+    redirect_to '/dashboard'
+  end
+  def crear_tags
+
+    @tags = MyTag.create(
+      :name => "Ingresa el nombre de tu tag de interes",
+      :user_id => current_user.id       
+    )
+    @tags.save
+    redirect_to '/dashboard'
+  end
+  def elimina_tags
+    @tags = MyTag.find(params[:id])
+    if @tags.present?
+      @tags.destroy
     end
     redirect_to '/dashboard'
   end

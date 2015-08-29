@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
    before_action :authenticate_user!
    before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @courses = Course.where(:user_id => current_user)

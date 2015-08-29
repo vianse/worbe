@@ -58,8 +58,18 @@ end
   post 'aplicar' => 'applications#aplicar', as: :aplicar
   post 'publicar' => 'actions#publicar', as: :publicar_cv
   post 'add_educations' => 'actions#crear_educations', as: :add_educations
-  post 'add_experiences' => 'actions#crear_experiences', as: :add_experiences
   delete 'delete_education/:id' => 'actions#elimina_education', as: :delete_education
+  post 'add_experiences' => 'actions#crear_experiences', as: :add_experiences
+  delete 'delete_experience/:id' => 'actions#elimina_experiences', as: :delete_experiences
+  post 'add_courses' => 'actions#crear_courses', as: :add_courses
+  delete 'delete_courses/:id' => 'actions#elimina_courses', as: :delete_courses
+   post 'add_idiomas' => 'actions#crear_idiomas', as: :add_idiomas
+  delete 'delete_idiomas/:id' => 'actions#elimina_idiomas', as: :delete_idiomas
+   post 'add_certificates' => 'actions#crear_certificates', as: :add_certificates
+  delete 'delete_certificates/:id' => 'actions#elimina_certificates', as: :delete_certificates
+   post 'add_tags' => 'actions#crear_tags', as: :add_tags
+  delete 'delete_tags/:id' => 'actions#elimina_tags', as: :delete_tags
+  
 
 
    get 'vacantes_sugeridas' => 'welcome#index', as: :welcome

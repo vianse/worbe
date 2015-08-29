@@ -2,7 +2,7 @@ class LanguagesController < ApplicationController
    before_action :authenticate_user!
   before_action :set_language, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @languages = Language.where(:user_id => current_user)

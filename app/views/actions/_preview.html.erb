@@ -18,7 +18,7 @@
               	<h4 class="centrar">Click para agregar un título</h4>
               	<% else %>
               	<h4 class="centrar centrar1">
-              		<%= best_in_place @cv , :title, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' } if @cv.title?  %>
+              		<%= best_in_place @cv , :title, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' } %>
               	</h4>
               	<% end %>
 				<br>
@@ -79,13 +79,17 @@
 	<!-- * Sección de educación * -->
 
 				<%= educations_margen_botton %>
-				<h4 class="margen"><%= I18n.t('cv_titulo_educacion') %><span><%= link_to 'Agregar +', add_educations_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %></span></h4>
+				<h4 class="margen"><%= I18n.t('cv_titulo_educacion') %>
+					<span>
+						<%= link_to 'Agregar +', add_educations_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
+					</span>
+				</h4>
 
 					<% @educations.each do |a| %>
 						<div class="margen">
 							<div>
 								<strong>
-									<%= I18n.t('cv_nivel') if a.level  %>
+									<%= I18n.t('cv_nivel') %>
 								</strong>
 								<span class="editar">
 									<%= best_in_place a, :level, :as => :select, :collection => [["Carreta técnica", "Carreta técnica"],["Nivel Superior", "Nivel Superior"], ["Especialidad", "Especialidad"], ["Maestria", "Maestria"], ["Doctorado", "Doctorado"]], :prompt => true, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' }  %>
@@ -93,7 +97,7 @@
 							</div>
 							<div>
 								<strong>
-									<%= I18n.t('form_titulo_ed') if a.title? %>
+									<%= I18n.t('form_titulo_ed') %>
 								</strong> 
 								<span class="editar">
 									<%= best_in_place a, :title, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
@@ -101,7 +105,7 @@
 							</div>
 							<div>
 								<strong>
-									<%= I18n.t('cv_escuela')if a.school %>
+									<%= I18n.t('cv_escuela')%>
 								</strong>
 								<span class="editar"> 
 									<%= best_in_place a, :school, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
@@ -109,13 +113,13 @@
 							</div>
 							<div>
 							<strong>
-								<%= I18n.t('cv_año_inicial') if a.yearInitial?%>
+								<%= I18n.t('cv_año_inicial')%>
 							</strong> 
 							<span class="editar">
 								<%= best_in_place a, :yearInitial, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
 							</span>
 						    <strong>
-						    	<%= I18n.t('cv_año_final')   if a.yearFinal?  %>
+						    	<%= I18n.t('cv_año_final')%>
 						    </strong>
 						    <span class="editar">
 						    	<%= best_in_place a, :yearFinal, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
@@ -123,7 +127,7 @@
 							</div>
 							<div>
 								<strong>
-									<%= I18n.t('cv_documento_recibido')if a.DocumentReceived? %>
+									<%= I18n.t('cv_documento_recibido')%>
 								</strong> 
 								<span class="editar">
 									<%= best_in_place a, :DocumentReceived, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
@@ -131,7 +135,7 @@
 							</div>
 							<div>
 								<strong>
-									<%= I18n.t('cv_promedio')    if a.average?  %>
+									<%= I18n.t('cv_promedio')%>
 								</strong> 
 								<span class="editar">
 								<%= best_in_place a, :average, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
@@ -139,7 +143,7 @@
 							</div>
 							<div>
 								<strong>
-									<%= I18n.t('cv_comentarios') if a.comments? %>
+									<%= I18n.t('cv_comentarios') %>
 								</strong>
 								<span class="editar">
 								<%= best_in_place a, :comments, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
@@ -173,7 +177,8 @@
 							<strong>
 								Puesto: <span class="editar">
 									<%= best_in_place g, :Puesto, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-								</span>							</strong>
+								</span>
+							</strong>
 						</div>
 						<div>
 							<strong>
@@ -183,43 +188,99 @@
 						<div class="editar_multilinea">
 							<%= best_in_place g, :description,:as => :textarea,:display_with => :simple_format, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' }  %>
 						</div>
+						<%= link_to 'Eliminar', delete_experiences_path(:id => g.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
 					</div>
 				<% end -%>
-				<h4 class="margen"><%= I18n.t('cv_titulo_cursos') %></h4>
+				<h4 class="margen"><%= I18n.t('cv_titulo_cursos') %><span>
+						<%= link_to 'Agregar +', add_courses_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
+					</span></h4>
 				<% @courses.each do |b| %>
 					<div class="margen">
-						<div class="curso_name">* <%= b.name %></div>
-						<div><strong><%= I18n.t('cv_descripcion_curso') if b.description? %></strong><%= b.description %></div>
+						<div class="curso_name">* 
+							<span class="editar">
+								<%= best_in_place b, :name, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' }  %>
+							</span>	
+						</div>
+						<div>
+							<strong>
+								<%= I18n.t('cv_descripcion_curso')  %>
+							</strong>
+							<span class="editar">
+							<%= best_in_place b, :description ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+							</span>
+						</div>
+						<%= link_to 'Eliminar', delete_courses_path(:id => b.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
 					</div>	
 				<% end -%>
 				<hr>
-				<h4 class="margen"><%= I18n.t('cv_titulo_idiomas') %></h4>
+				<h4 class="margen"><%= I18n.t('cv_titulo_idiomas') %>
+					<span>
+						<%= link_to 'Agregar +', add_idiomas_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
+					</span>
+				</h4>
+				
 				<% @languages.each do |d| %>
 					<div class="margen">
-						<div><strong><%= I18n.t('cv_nombre_idioma') if d.name? %></strong> <%= d.name %></div>
-						<div><strong><%= I18n.t('cv_idioma_lectura') if d.read?  %></strong><%= d.read %></div>
-						<div><strong><%= I18n.t('cv_idioma_escritura')if d.write? %></strong><%= d.write %></div>
-						<div><strong><%= I18n.t('cv_idioma_hablado') if d.spoken?%></strong><%= d.spoken %></div>
+						<div>
+							<strong>
+								<%= I18n.t('cv_nombre_idioma') %>
+							</strong>
+							<span class="editar">
+							 	<%= best_in_place d, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+							</span>
+						</div>
+						<div>
+							
+								<strong>
+								<%= I18n.t('cv_idioma_lectura') %>
+							</strong>
+							
+							<span class="editar">
+								<%= best_in_place d, :read ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+							</span>
+							</div>
+							<div>
+								<strong>
+								<%= I18n.t('cv_idioma_escritura') %>
+							</strong>
+								<span class="editar">
+									<%= best_in_place d, :write ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+								</span>
+							</div>
+							<div>
+								<strong>
+									<%= I18n.t('cv_idioma_hablado')%>
+								</strong>
+								<span class="editar">
+									<%= best_in_place d, :spoken ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+								</span>
+							</div>
 						<span>==============================================</span>
+						<%= link_to 'Eliminar', delete_idiomas_path(:id => d.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
 					</div>
 				<% end -%>
-				<% if @certificates.blank? %>
-				<% else %>
-					<h4 class="margen"><%= I18n.t('cv_titulo_certificados') %></h4>
+
+					<h4 class="margen"><%= I18n.t('cv_titulo_certificados') %><span><%= link_to 'Agregar +', add_certificates_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %></span></h4>
 					<% @certificates.each do |f| %>
 						<div class="margen">
-							<div><%= f.name %></div>
+							<span class="editar">
+								<%= best_in_place f, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+							</span>
 						</div>
+						<%= link_to 'Eliminar', delete_certificates_path(:id => f.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
 					<% end -%> 
-				<% end %>
-				<h3 class="margen"><%= I18n.t('cv_tags') %></h3>
+
+				<h3 class="margen"><%= I18n.t('cv_tags') %><span><%= link_to 'Agregar +', add_tags_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %></span></h3>
 					<%  @list_tags.each do |a| %>
-							<div class="tag"><%= a.name if a.name? %></div>		
+							<div class="editar">
+								<%= best_in_place a, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+							</div>
+							<%= link_to 'Eliminar', delete_tags_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>	
    					<% end -%>
 					<div class="panel-footer">
 						<%= link_to I18n.t('cv_boton_descargar') , "/preview.pdf", :class => "[ btn btn-default ]" %>
 						<%= link_to 'Publicar', publicar_cv_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
-						<%= link_to I18n.t('cv_boton_compartir'), "/preview.pdf", :class => "[ btn btn-default ]" %>
+
 					</div>
                 </div>
             </div>

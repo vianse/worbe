@@ -331,8 +331,8 @@ module ActionsHelper
 					.centrar1{
 						background-color:#F9F9F9;
 						border-style: dashed;
-						border-color:#E2E2E2;
-						color:#CCCCCC;
+						border-color:#FFC4BF;
+						color:black;
 						padding: 5px;
 						text-align: center;
 						  margin-bottom: 0px;
@@ -340,29 +340,29 @@ module ActionsHelper
 					}
 					.centrar1:hover{
 						border-style: dashed;
-						border-color:#FFC4BF;
-						color:black;
+						border-color:#E2E2E2;
+						color:#CCCCCC;
 						padding: 5px;
 					}
 					.editar{
 						background-color:#F9F9F9;
 						border-style: dashed;
-						border-color:#E2E2E2;
-						color:#CCCCCC;
+						border-color:#FFC4BF;
+						color:black;
 						padding: 5px;
 						display:inline-block;
 					}
 					.editar:hover{
 						border-style: dashed;
-						border-color:#FFC4BF;
-						color:black;
+						border-color:#E2E2E2;
+						color:#CCCCCC;
 						padding: 5px;
 					}
 					.editar_multilinea{
 						background-color:#F9F9F9;
 						border-style: dashed;
-						border-color:#E2E2E2;
-						color:#CCCCCC;
+						border-color:#FFC4BF;
+						color:black;
 						padding: 5px;
 						display:inline-block;
 						
@@ -370,8 +370,8 @@ module ActionsHelper
 					}
 					.editar_multilinea:hover{
 						border-style: dashed;
-						border-color:#FFC4BF;
-						color:black;
+						border-color:#E2E2E2;
+						color:#CCCCCC;
 						padding: 5px;
 					}
 					
