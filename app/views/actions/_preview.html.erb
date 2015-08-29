@@ -39,7 +39,7 @@
 		      	<% if @guid_publico.guid.blank? %>
                     <% else %>
 			      	<li class="qg b aml collapse" id="collapseExample">
-			      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
+			      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>" class="centrar"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
 			          <div class="input-group">
 			            <input type="text" class="form-control" placeholder="Email">
 			            <div class="fj">
@@ -108,19 +108,19 @@
 				            </div>
 				          </div>
 				          <div class="imagen">
-				            <img class= "img" src="<%= @photo.photo_url(:thumb) %>" width ="130px" >
+				            <img class= "img" src="<%= @photo.photo_url(:thumb) %>">
+				          	
 				          </div>
 				        </div>
 				        <% end %>
 				  <!-- * Sección de educación * -->
 
 				        <%= educations_margen_botton %>
-				        <h4 class="margen"><%= I18n.t('cv_titulo_educacion') %>
-				          <span>
-				            <%= link_to 'Agregar +', add_educations_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
+				        <h4 class="margen"><%= I18n.t('cv_titulo_educacion') %> </h4>
+				          <span class="tamaño">
+				          	<span class="fa fa-plus fa-lg"></span>
+				            <%= link_to 'Agregar', add_educations_path(), :method => :post,  :class =>"[]" %>
 				          </span>
-				        </h4>
-
 				          <% @educations.each do |a| %>
 				            <div class="margen">
 				              <div>
@@ -185,15 +185,20 @@
 				                <%= best_in_place a, :comments, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
 				                </span>
 				              </div>
-				              <%= link_to 'Eliminar', delete_education_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
+				               <span class="tamaño">
+				          		 <span class="fa fa-times-circle fa-lg"></span>
+				             		 <%= link_to 'Eliminar', delete_education_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+				         		 </span>
 				              <hr>
 				            </div>
 				          <% end -%>
-				        <h4 class="margen"><%= I18n.t('cv_titulo_experiencia') %>
-				          <span>
-				            <%= link_to 'Agregar +', add_experiences_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
-				          </span>
-				        </h4>
+				        	<div>
+				        		<h4   class="margen"><%= I18n.t('cv_titulo_experiencia') %></h4>
+					            <span class="tamaño">
+					          	<span class="fa fa-plus fa-lg"></span>
+					            <%= link_to 'Agregar', add_experiences_path(), :method => :post,  :class =>"[]" %>
+					          	</span>
+				      		</div>
 				        <% @experiences.each do |g| %>
 				          <div class="margen">
 				            <div>
@@ -224,12 +229,17 @@
 				            <div class="editar_multilinea">
 				              <%= best_in_place g, :description,:as => :textarea,:display_with => :simple_format, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' }  %>
 				            </div>
-				            <%= link_to 'Eliminar', delete_experiences_path(:id => g.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
+				            <span class="tamaño">
+				          		 <span class="fa fa-times-circle fa-lg"></span>
+				            <%= link_to 'Eliminar', delete_experiences_path(:id => g.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
+				        	</span>
 				          </div>
 				        <% end -%>
-				        <h4 class="margen"><%= I18n.t('cv_titulo_cursos') %><span>
-				            <%= link_to 'Agregar +', add_courses_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
-				          </span></h4>
+				        <h4 class="margen"><%= I18n.t('cv_titulo_cursos') %></h4>
+				        	<span class="tamaño">
+					          	<span class="fa fa-plus fa-lg"></span>
+				            <%= link_to 'Agregar', add_courses_path(), :method => :post,  :class =>"[]" %>
+				          </span>
 				        <% @courses.each do |b| %>
 				          <div class="margen">
 				            <div class="curso_name">* 
@@ -245,16 +255,18 @@
 				              <%= best_in_place b, :description ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
 				              </span>
 				            </div>
-				            <%= link_to 'Eliminar', delete_courses_path(:id => b.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
+				            <span class="tamaño">
+					          	<span class="fa fa-times-circle fa-lg"></span>
+				            	<%= link_to 'Eliminar', delete_courses_path(:id => b.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
+				            	</span>
 				          </div>  
 				        <% end -%>
 				        <hr>
-				        <h4 class="margen"><%= I18n.t('cv_titulo_idiomas') %>
-				          <span>
-				            <%= link_to 'Agregar +', add_idiomas_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
+				        <h4 class="margen"><%= I18n.t('cv_titulo_idiomas') %></h4>
+				          <span class="tamaño">
+					          	<span class="fa fa-plus fa-lg"></span>
+				            <%= link_to 'Agregar', add_idiomas_path(), :method => :post,  :class =>"[]" %>
 				          </span>
-				        </h4>
-				        
 				        <% @languages.each do |d| %>
 				          <div class="margen">
 				            <div>
@@ -266,8 +278,7 @@
 				              </span>
 				            </div>
 				            <div>
-				              
-				                <strong>
+				               <strong>
 				                <%= I18n.t('cv_idioma_lectura') %>
 				              </strong>
 				              
@@ -291,33 +302,47 @@
 				                  <%= best_in_place d, :spoken ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
 				                </span>
 				              </div>
-				            <span>==============================================</span>
-				            <%= link_to 'Eliminar', delete_idiomas_path(:id => d.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
+				                 <span class="tamaño">
+					          	<span class="fa fa-times-circle fa-lg"></span>
+				            	<%= link_to 'Eliminar', delete_idiomas_path(:id => d.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
+				            	</span>
 				          </div>
 				        <% end -%>
 
-				          <h4 class="margen"><%= I18n.t('cv_titulo_certificados') %><span><%= link_to 'Agregar +', add_certificates_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %></span></h4>
+				          <h4 class="margen"><%= I18n.t('cv_titulo_certificados') %></h4>
+				          	 <span class="tamaño">
+					          	<span class="fa fa-plus fa-lg"></span>
+				          		<%= link_to 'Agregar', add_certificates_path(), :method => :post,  :class =>"[]" %>
+				          	</span>
 				          <% @certificates.each do |f| %>
 				            <div class="margen">
 				              <span class="editar">
 				                <%= best_in_place f, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
 				              </span>
+				              <span class="tamaño">
+					          	<span class="fa fa-times-circle fa-lg"></span>
+				            		<%= link_to 'Eliminar', delete_certificates_path(:id => f.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
+				            	</span>
 				            </div>
-				            <%= link_to 'Eliminar', delete_certificates_path(:id => f.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %>
 				          <% end -%> 
 
-				        <h3 class="margen"><%= I18n.t('cv_tags') %><span><%= link_to 'Agregar +', add_tags_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %></span></h3>
+				        <h4 class="margen"><%= I18n.t('cv_tags') %></h4>
+				       		 <span class="tamaño">
+					          	<span class="fa fa-plus fa-lg"></span>
+				        	<%= link_to 'Agregar', add_tags_path(), :method => :post,  :class =>"[]" %>
+				        	</span>
 				          <%  @list_tags.each do |a| %>
+				          <div class="margen">
 				              <div class="editar">
 				                <%= best_in_place a, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
 				              </div>
-				              <%= link_to 'Eliminar', delete_tags_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[ btn btn-info ]" %> 
+				              <span class="tamaño">
+					          	<span class="fa fa-times-circle fa-lg"></span>
+				             	 <%= link_to 'Eliminar', delete_tags_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %> 
+				          		</span>
+				          	</div>
 				            <% end -%>
-				          <div class="panel-footer">
-				            <%= link_to I18n.t('cv_boton_descargar') , "/preview.pdf", :class => "[ btn btn-default ]" %>
-				            <%= link_to 'Publicar', publicar_cv_path(), :method => :post,  :class =>"[ btn btn-default btn_publicar ]" %>
 
-				          </div>
 		         </li>  
 		      </ul>
     	</div>

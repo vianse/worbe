@@ -268,6 +268,13 @@ module ActionsHelper
 						  margin-top: 5px;
 					}
 					.title{padding-left: 50px;}
+
+					@media (max-width: 991px){
+						.imagen{
+							margin-left: 35%!important;
+							margin-right: 35%!important;
+						}
+					}
 					
 					@media (min-width: 992px) {
 						.margen{
@@ -279,22 +286,32 @@ module ActionsHelper
 							  padding-left: 50px;
 							  width: 50%;
 						}
+						.img{
+						  width: 100px;
+						  border-radius: 150px;
+							-webkit-border-radius: 150px;
+							-moz-border-radius: 150px;
+						}
+						.img:hover{
+							opacity:.85;
+						}
 					}
 					.imagen{margin-left: 210px;}
 					#contenedor{  /*padre*/
 						  overflow: hidden;
 						  width: 100%; 
 					}
-					#contenedor .margendgs, #contenedor .imagen{  /*hijos*/float: left;}
 					.img{
-						  width: 130px;
+						  width: 120px;
 						  border-radius: 150px;
 							-webkit-border-radius: 150px;
 							-moz-border-radius: 150px;
-					}
+						}
 					.img:hover{
-						opacity:.85;
+							opacity:.85;
 					}
+					#contenedor .margendgs, #contenedor .imagen{  /*hijos*/float: left;}
+					
 					.nombre{
 						  margin-bottom: 5px;
 						  font-size: 15px;
@@ -316,6 +333,7 @@ module ActionsHelper
 					.tag{
 						padding-left: 50px;
 					}
+
 					/* CSS PARA CV */
 					.centrar1{
 						background-color:#F9F9F9;
@@ -366,6 +384,21 @@ module ActionsHelper
 					.container {
 						margin-right:0px!important;
 					}
+					mark, .dg {
+				    background-color: transparent!important;
+				    padding: .2em;
+				 }
+				 .floatleft{
+				 	float:left;
+				 }
+				 .tamaño{
+				 	width:100%;
+				 	background-color:hsl(195, 29%, 97%);
+				 	padding:5px!important;
+				 	margin-bottom:10px!important;
+				 	float:right;
+				 	text-align:right;
+				 }
 
 					
 					</style>"
