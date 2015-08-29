@@ -4,7 +4,7 @@ module ActionsHelper
 					@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 
 					body {
-					    background-color: rgb(229, 229, 229);
+					    background-color: hsl(204, 33%, 97%);
 					    padding-top: 0px;
 					    padding-bottom: 30px;
 					}
@@ -374,6 +374,10 @@ module ActionsHelper
 						color:#CCCCCC;
 						padding: 5px;
 					}
+					.container {
+						margin-right:0px!important;
+					}
+					
 					
 					</style>"
 		html.html_safe
