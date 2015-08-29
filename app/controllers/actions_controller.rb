@@ -182,7 +182,24 @@ class ActionsController < ApplicationController
   end
 
   def dashboard
-
+    if @cv_create = Cv.where(user_id: current_user.id).first.blank?
+        @cv_create = Cv.create(
+        :title => "Ingresa un título para tu Curriculum",
+        :user_id => current_user.id       
+        )
+        @cv_create.save
+        @dg_create = Dg.create(
+        :name => "Ingresa tu nombre",
+        :datebirthday => "Ingresa tu fecha de nacimiento",
+        :age => "Ingresa tu edad",
+        :address => "Ingresa tu dirección",
+        :phone1 => "Ingresa tu telefono",
+        :phone2 => "Ingresa un telefono secundario",
+        :email => current_user.email,
+        :user_id => current_user.id       
+        )
+        @dg_create.save
+    else
 
     @guid_publico  = Dg.where(:user_id => current_user.id).first
   	@id            = Cv.where(user_id: current_user.id).pluck(:id).first
@@ -220,6 +237,7 @@ class ActionsController < ApplicationController
         else
         @status = "Publicado"
       end
+    end
    end
     
    # respond_with(@courses)

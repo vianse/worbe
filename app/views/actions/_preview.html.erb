@@ -36,6 +36,7 @@
 
     	<div class="ha">
 		      <ul class="ca qp anx">
+		      <% if @guid_publico.blank? %>
 		      	<% if @guid_publico.guid.blank? %>
                     <% else %>
 			      	<li class="qg b aml collapse" id="collapseExample">
@@ -49,6 +50,7 @@
 			            </div>
 			          </div>
 			        </li><% end %>
+			        <% else %><% end %>
 		      	 <li class="qg b aml">
 				        <% if @cv.blank? %>
 				            <h4 class="centrar">Click para agregar un título</h4>
