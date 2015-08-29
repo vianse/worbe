@@ -37,20 +37,22 @@
     	<div class="ha">
 		      <ul class="ca qp anx">
 		      <% if @guid_publico.blank? %>
-		      	<% if @guid_publico.guid.blank? %>
-                    <% else %>
-			      	<li class="qg b aml collapse" id="collapseExample">
-			      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>" class="centrar"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
-			          <div class="input-group">
-			            <input type="text" class="form-control" placeholder="Email">
-			            <div class="fj">
-			              <button type="button" class="cg fm">
-			                <span class="fa fa-paper-plane fa-lg"></span>
-			              </button>
-			            </div>
-			          </div>
-			        </li><% end %>
-			        <% else %><% end %>
+		      	
+			        <% else %>
+						<% if @guid_publico.guid.blank? %>
+	                    <% else %>
+				      	<li class="qg b aml collapse" id="collapseExample">
+				      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>" class="centrar"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
+				          <div class="input-group">
+				            <input type="text" class="form-control" placeholder="Email">
+				            <div class="fj">
+				              <button type="button" class="cg fm">
+				                <span class="fa fa-paper-plane fa-lg"></span>
+				              </button>
+				            </div>
+				          </div>
+				        </li><% end %>
+			        <% end %>
 		      	 <li class="qg b aml">
 				        <% if @cv.blank? %>
 				            <h4 class="centrar">Click para agregar un título</h4>
