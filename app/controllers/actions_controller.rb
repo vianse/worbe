@@ -182,7 +182,9 @@ class ActionsController < ApplicationController
   end
 
   def dashboard
-    Rails.logger.info "Currente User #{current_user.inspect}"
+
+
+    @guid_publico  = Dg.where(:user_id => current_user.id).first
   	@id            = Cv.where(user_id: current_user.id).pluck(:id).first
     @id_dg         = Dg.where(user_id: current_user.id).pluck(:id).first
     @id_tag        = Area.where(user_id: current_user.id).pluck(:id).first
@@ -211,6 +213,14 @@ class ActionsController < ApplicationController
     @guid          = Digest::MD5.hexdigest(current_user.id.to_s)
     @server        = "http://" + request.host_with_port
     logger.debug @server
+    if @guid_publico.nil?
+    else
+      if @guid_publico.guid.blank?
+        @status = "en Borrador"
+        else
+        @status = "Publicado"
+      end
+   end
     
    # respond_with(@courses)
    respond_to do |format|

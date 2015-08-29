@@ -191,25 +191,7 @@ module ActionsHelper
 						  background-color:hsl(200, 3%, 35%);
 					}
 					.panel-google-plus{top:60px;}
-					.subnav ul {
-						  position: fixed!important;
-						  width: 100%;
-						  z-index: 1000;
-						  list-style: none;
-						  background-color: hsl(0, 0%, 96%);
-						  text-align: left;
-						  padding: 0;
-						  margin: 0;
-					}
-					.subnav li {
-						  font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
-						  font-size:1.15em;
-						  line-height: 1.5;
-						  cursor: default;
-						  height: 40px;
-						  white-space: nowrap;
-					 
-					}
+					
 					.subnav a {
 						  text-decoration: none;
 						  color: black;
@@ -286,10 +268,17 @@ module ActionsHelper
 						  margin-top: 5px;
 					}
 					.title{padding-left: 50px;}
-					.margen{padding-left: 50px;text-align:justify;margin-right:70px;}
-					.margendgs{
-						  padding-left: 50px;
-						  width: 50%;
+					
+					@media (min-width: 992px) {
+						.margen{
+							padding-left: 50px;
+							text-align:justify;
+							margin-right:70px;
+						}
+						.margendgs{
+							  padding-left: 50px;
+							  width: 50%;
+						}
 					}
 					.imagen{margin-left: 210px;}
 					#contenedor{  /*padre*/
@@ -377,7 +366,7 @@ module ActionsHelper
 					.container {
 						margin-right:0px!important;
 					}
-					
+
 					
 					</style>"
 		html.html_safe

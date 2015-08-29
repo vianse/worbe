@@ -1,3 +1,4 @@
+
 <%= estilo_cv %>
 <%= render 'style_new' %>
 <script type="text/javascript">
@@ -6,84 +7,56 @@
  	 jQuery(".best_in_place").best_in_place();
 	 });
 </script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <div class="by amt">
 	<div class="dg">
 		<div class="go">
-		      <div class="qw rd aog alu">
-		        <div class="qy" style="background-image: url(/application/assets/img/iceland.jpg);"></div>
-		        <div class="qx dj">
-		          <a href="/application/profile/">
-		            <img class="aoh" src="/application/assets/img/avatar-dhg.png">
-		          </a>
-
-		          <h5 class="qz">
-		            <a class="aku" href="/application/profile/">Dave Gamache</a>
-		          </h5>
-
-		          <p class="alu">I wish i was a little bit taller, wish i was a baller, wish i had a girl…&nbsp;also.</p>
-
-		          <ul class="aoi">
-		            <li class="aoj">
-		              <a href="#userModal" class="aku" data-toggle="modal">
-		                Friends
-		                <h5 class="ali">12M</h5>
-		              </a>
-		            </li>
-
-		            <li class="aoj">
-		              <a href="#userModal" class="aku" data-toggle="modal">
-		                Enemies
-		                <h5 class="ali">1</h5>
-		              </a>
-		            </li>
-		          </ul>
+			      <div class="qw rd aog alu">
+			        <div class="qx">
+			          <h5 class="ald">Opciones <small></small></h5>
+			          <ul class="eb tc">
+			            <li>
+			            	<span class="fa fa-download fa-lg"></span>
+			            	<%= link_to I18n.t('cv_boton_descargar') , "/preview.pdf", :class => "[]" %>
+			            </li>
+			            <li>
+			            	<span class="fa fa-globe fa-lg"></span>
+			            	<%= link_to 'Publicar', publicar_cv_path(), :method => :post,  :class =>"[ btn btn-success ]" %>
+			            </li>
+			            <li>
+			            	<span class="fa fa-star fa-lg"></span>
+			            	Estatus: <%= @status %>
+			            </li>
+			          </ul>
+			        </div>
+			      </div>
 		        </div>
-		      </div>
+				
 
-		      <div class="qw rd sn sq">
-		        <div class="qx">
-		          <h5 class="ald">About <small>· <a href="#">Edit</a></small></h5>
-		          <ul class="eb tc">
-		            <li><span class="dp h xh all"></span>Went to <a href="#">Oh, Canada</a>
-		            </li><li><span class="dp h ajw all"></span>Became friends with <a href="#">Obama</a>
-		            </li><li><span class="dp h abu all"></span>Worked at <a href="#">Github</a>
-		            </li><li><span class="dp h ack all"></span>Lives in <a href="#">San Francisco, CA</a>
-		            </li><li><span class="dp h adt all"></span>From <a href="#">Seattle, WA</a>
-		          </li></ul>
-		        </div>
-		      </div>
-
-		       <div class="qw rd sn sq">
-		        <div class="qx">
-		          <h5 class="ald">Photos <small>· <a href="#">Edit</a></small></h5>
-		          <div data-grid="images" data-target-height="150"><div style="margin-bottom: 10px; margin-right: 10px; display: inline-block; vertical-align: bottom;">
-		              <img data-width="640" data-height="640" data-action="zoom" src="/application/assets/img/instagram_5.jpg" style="width: 117px; height: 118px;">
-		            </div><div style="margin-bottom: 10px; margin-right: 0px; display: inline-block; vertical-align: bottom;">
-		              <img data-width="640" data-height="640" data-action="zoom" src="/application/assets/img/instagram_6.jpg" style="width: 117px; height: 118px;">
-		            </div><div style="margin-bottom: 10px; margin-right: 10px; display: inline-block; vertical-align: bottom;">
-		              <img data-width="640" data-height="640" data-action="zoom" src="/application/assets/img/instagram_7.jpg" style="width: 117px; height: 118px;">
-		            </div><div style="margin-bottom: 10px; margin-right: 0px; display: inline-block; vertical-align: bottom;">
-		              <img data-width="640" data-height="640" data-action="zoom" src="/application/assets/img/instagram_8.jpg" style="width: 117px; height: 118px;">
-		            </div><div style="margin-bottom: 10px; margin-right: 10px; display: inline-block; vertical-align: bottom;">
-		              <img data-width="640" data-height="640" data-action="zoom" src="/application/assets/img/instagram_9.jpg" style="width: 117px; height: 118px;">
-		            </div><div style="margin-bottom: 10px; margin-right: 0px; display: inline-block; vertical-align: bottom;">
-		              <img data-width="640" data-height="640" data-action="zoom" src="/application/assets/img/instagram_10.jpg" style="width: 117px; height: 118px;">
-		            </div></div>
-		        </div>
-      		</div>
-    	</div>
     	<div class="ha">
 		      <ul class="ca qp anx">
+		      	<% if @guid_publico.guid.blank? %>
+                    <% else %>
+			      	<li class="qg b aml collapse" id="collapseExample">
+			      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
+			          <div class="input-group">
+			            <input type="text" class="form-control" placeholder="Email">
+			            <div class="fj">
+			              <button type="button" class="cg fm">
+			                <span class="fa fa-paper-plane fa-lg"></span>
+			              </button>
+			            </div>
+			          </div>
+			        </li><% end %>
 		      	 <li class="qg b aml">
-
-				                <% if @cv.blank? %>
-				                  <h4 class="centrar">Click para agregar un título</h4>
-				                <% else %>
-				                  <h4 class="centrar centrar1">
-				                    <%= best_in_place @cv , :title, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' } %>
-				                  </h4>
-				                <% end %>
+				        <% if @cv.blank? %>
+				            <h4 class="centrar">Click para agregar un título</h4>
+				        <% else %>
+				            <h4 class="centrar centrar1">
+				            <%= best_in_place @cv , :title, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' } %>
+				            </h4>
+				        <% end %>
 				        <br>
 				        <br>
 				        <h4 class ="title">
