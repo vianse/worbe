@@ -4,6 +4,76 @@ class ActionsController < ApplicationController
   def index
   	@titlecv = Cv.where(user_id: current_user.id).pluck(:title).first
   end
+  def dashboard
+    if @cv_create = Cv.where(user_id: current_user.id).first.blank?
+        @cv_create = Cv.create(
+        :title => "Ingresa un título para tu Curriculum",
+        :user_id => current_user.id       
+        )
+        @cv_create.save
+        @dg_create = Dg.create(
+        :name => "Ingresa tu nombre",
+        :datebirthday => "Ingresa tu fecha de nacimiento",
+        :age => "Ingresa tu edad",
+        :address => "Ingresa tu dirección",
+        :phone1 => "Ingresa tu telefono",
+        :phone2 => "Ingresa un telefono secundario",
+        :photo => "images/no-profile-img.gif",
+        :email => current_user.email,
+        :user_id => current_user.id       
+        )
+        @dg_create.save
+    else
+
+    @guid_publico  = Dg.where(:user_id => current_user.id).first
+    @id            = Cv.where(user_id: current_user.id).pluck(:id).first
+    @id_dg         = Dg.where(user_id: current_user.id).pluck(:id).first
+    @id_tag        = Area.where(user_id: current_user.id).pluck(:id).first
+    @id_educations = Education.where(:user_id => current_user)
+    @cv            = Cv.where(user_id: current_user.id).first
+    @nombre        = Dg.where(user_id: current_user.id).first
+    @dgs           = Dg.where(user_id: current_user.id)
+    @titlecv       = Cv.where(user_id: current_user.id).pluck(:title).first
+    @name          = Dg.where(user_id: current_user.id).pluck(:name).first
+    @datebirthday  = Dg.where(user_id: current_user.id).first
+    @age           = Dg.where(user_id: current_user.id).first
+    @address       = Dg.where(user_id: current_user.id).first
+    @phone1        = Dg.where(user_id: current_user.id).first
+    @phone2        = Dg.where(user_id: current_user.id).first
+    @email         = Dg.where(user_id: current_user.id).first
+    @photo         = Dg.where(user_id: current_user.id).first
+    @areaspreview  = MyTag.where(:user_id => current_user)
+    @areas         = Area.where(:user_id => current_user).pluck(:name).first
+    @educations    = Education.where(:user_id => current_user)
+    @courses       = Course.where(:user_id => current_user)
+    @certificates  = Certificate.where(:user_id => current_user)
+    @languages     = Language.where(:user_id => current_user)
+    @experiences   = Experience.where(:user_id => current_user)
+    @list_tags    = MyTag.where(:user_id => current_user.id)
+    #@list_tags     = Tag.where(:id => MyTag.where(:user_id => current_user.id).pluck(:tag_id))
+    @guid          = Digest::MD5.hexdigest(current_user.id.to_s)
+    @server        = "http://" + request.host_with_port
+    logger.debug @server
+    if @guid_publico.nil?
+    else
+      if @guid_publico.guid.blank?
+        @status = "en Borrador"
+        else
+        @status = "Publicado"
+      end
+    end
+   end
+    
+   # respond_with(@courses)
+   respond_to do |format|
+      format.html
+      format.pdf do
+        pdf =  ReportPdf.new(@dgs,@titlecv, @photo,@age, @name, @list_tags,@datebirthday,@address,@phone1,@phone2,@email,@educations,@experiences,@courses,@languages,@certificates,@server)
+        send_data pdf.render, filename: 'worbe-'+"#{@name}-#{@guid}"+'.pdf', type: 'application/pdf'
+      end
+   end
+ end
+ 
   def crear_educations
     @education = Education.create(
       :school => "Ingresa el nombre de la escuela",
@@ -181,73 +251,5 @@ class ActionsController < ApplicationController
     end
   end
 
-  def dashboard
-    if @cv_create = Cv.where(user_id: current_user.id).first.blank?
-        @cv_create = Cv.create(
-        :title => "Ingresa un título para tu Curriculum",
-        :user_id => current_user.id       
-        )
-        @cv_create.save
-        @dg_create = Dg.create(
-        :name => "Ingresa tu nombre",
-        :datebirthday => "Ingresa tu fecha de nacimiento",
-        :age => "Ingresa tu edad",
-        :address => "Ingresa tu dirección",
-        :phone1 => "Ingresa tu telefono",
-        :phone2 => "Ingresa un telefono secundario",
-        :email => current_user.email,
-        :user_id => current_user.id       
-        )
-        @dg_create.save
-    else
 
-    @guid_publico  = Dg.where(:user_id => current_user.id).first
-  	@id            = Cv.where(user_id: current_user.id).pluck(:id).first
-    @id_dg         = Dg.where(user_id: current_user.id).pluck(:id).first
-    @id_tag        = Area.where(user_id: current_user.id).pluck(:id).first
-    @id_educations = Education.where(:user_id => current_user)
-    @cv            = Cv.where(user_id: current_user.id).first
-    @nombre        = Dg.where(user_id: current_user.id).first
-    @dgs           = Dg.where(user_id: current_user.id)
-    @titlecv       = Cv.where(user_id: current_user.id).pluck(:title).first
-    @name          = Dg.where(user_id: current_user.id).pluck(:name).first
-    @datebirthday  = Dg.where(user_id: current_user.id).first
-    @age           = Dg.where(user_id: current_user.id).first
-    @address       = Dg.where(user_id: current_user.id).first
-    @phone1        = Dg.where(user_id: current_user.id).first
-    @phone2        = Dg.where(user_id: current_user.id).first
-    @email         = Dg.where(user_id: current_user.id).first
-    @photo         = Dg.where(user_id: current_user.id).first
-    @areaspreview  = MyTag.where(:user_id => current_user)
-    @areas         = Area.where(:user_id => current_user).pluck(:name).first
-    @educations    = Education.where(:user_id => current_user)
-    @courses       = Course.where(:user_id => current_user)
-    @certificates  = Certificate.where(:user_id => current_user)
-    @languages     = Language.where(:user_id => current_user)
-    @experiences   = Experience.where(:user_id => current_user)
-    @list_tags    = MyTag.where(:user_id => current_user.id)
-    #@list_tags     = Tag.where(:id => MyTag.where(:user_id => current_user.id).pluck(:tag_id))
-    @guid          = Digest::MD5.hexdigest(current_user.id.to_s)
-    @server        = "http://" + request.host_with_port
-    logger.debug @server
-    if @guid_publico.nil?
-    else
-      if @guid_publico.guid.blank?
-        @status = "en Borrador"
-        else
-        @status = "Publicado"
-      end
-    end
-   end
-    
-   # respond_with(@courses)
-   respond_to do |format|
-      format.html
-      format.pdf do
-        pdf =  ReportPdf.new(@dgs,@titlecv, @photo,@age, @name, @list_tags,@datebirthday,@address,@phone1,@phone2,@email,@educations,@experiences,@courses,@languages,@certificates,@server)
-        send_data pdf.render, filename: 'worbe-'+"#{@name}-#{@guid}"+'.pdf', type: 'application/pdf'
-      end
-   end
- end
- 
 end
