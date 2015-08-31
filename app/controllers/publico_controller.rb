@@ -1,8 +1,14 @@
 class PublicoController < ApplicationController
+
   def index
     if params[:guid].blank?
       redirect_to "/"
     else
+    @conteo = Cv.find_by_guid(params[:guid])
+    @count=(Float(@conteo.countclick)+Float(1)).round(0)
+    logger.debug "conteo #{@count}"
+    @conteo.countclick = @count
+    @conteo.save
   	#@guid   = Digest::MD5.hexdigest(params[:guid])
     @guid   = params[:guid]
     @id     = Cv.where(guid: @guid).pluck(:id).first

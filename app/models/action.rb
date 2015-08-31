@@ -3,4 +3,6 @@ class Action < ActiveRecord::Base
 	has_many :courses
 	before_save :default_values
   
+
+  
 end

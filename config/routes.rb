@@ -85,6 +85,7 @@ end
    get 'home' => 'home_empresa#index', as: :index_empresas
  
    get  'search' => 'my_tags#index', as: :buscar
+   get 'visitas' => 'actions#countview', as: :count_views
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

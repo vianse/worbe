@@ -4,11 +4,18 @@ class ActionsController < ApplicationController
   def index
   	@titlecv = Cv.where(user_id: current_user.id).pluck(:title).first
   end
+  def countview
+    @conteo = Cv.where(user_id: current_user.id).where.not(:guid => "0").pluck(:countclick)
+    render json: {
+      count: @conteo
+      } 
+  end
   def dashboard
     if @cv_create = Cv.where(user_id: current_user.id).first.blank?
         @cv_create = Cv.create(
         :title => "Ingresa un título para tu Curriculum",
-        :user_id => current_user.id       
+        :user_id => current_user.id,
+        :countclick => 0       
         )
         @cv_create.save
         @dg_create = Dg.create(

@@ -5,10 +5,17 @@
 	 $(document).ready(function() {
   /* Activating Best In Place */
  	 jQuery(".best_in_place").best_in_place();
+
 	 });
 </script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+
+<br>
+
 <div class="by amt">
 	<div class="dg">
 		<div class="go">
@@ -27,6 +34,9 @@
 			            <li>
 			            	<span class="fa fa-star fa-lg"></span>
 			            	Estatus: <%= @status %>
+			            </li>
+			            <li>
+			            	<div id="countview"></div>
 			            </li>
 			          </ul>
 			        </div>
@@ -336,7 +346,7 @@
 				          <h4 class="margen"><%= I18n.t('cv_titulo_certificados') %></h4>
 				          	 <span class="tamaño">
 					          	<span class="fa fa-plus fa-lg"></span>
-				          		<%= link_to 'Agregar', add_certificates_path(), :method => :post,  :class =>"[]" %>
+				          		<%= link_to 'Agregar', add_certificates_path(),:remote => true ,:method => :post,  :class =>"[]" %>
 				          	</span>
 				         <% if @cv.blank? %>
 				          <% else %>
@@ -347,7 +357,7 @@
 					              </span>
 					              <span class="tamaño">
 						          	<span class="fa fa-times-circle fa-lg"></span>
-					            		<%= link_to 'Eliminar', delete_certificates_path(:id => f.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
+					            		<%= link_to 'Eliminar', delete_certificates_path(:id => f.id),:remote => true, method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
 					            	</span>
 					            </div>
 				          <% end -%> 
@@ -381,6 +391,41 @@
 </div>
 
 
+<script type="text/jsx">
+var ImageCollect = React.createClass({
+        getInitialState: function() {
+          return {
+            counter: ""
+          };
+        },
+         tick: function() {
+   			var self = this;
+          $.get(this.props.source, function(result) {
+            var collection = result;
+            if (this.isMounted()) {
+              this.setState({
+                counter: collection
+              });
+            }
+          }.bind(this));
+  		},
+        componentDidMount: function() {
+          this.interval = setInterval(this.tick, 1000);
+        },
 
+        render: function() {   
+          return (
+            <div>
+              Numero de visitas: {this.state.counter}     
+            </div>
+          );
+        }
+      });
+
+     React.render(
+    <ImageCollect source="http://localhost:3000/visitas.json" />,
+      document.getElementById('countview')
+    );
+</script>
 
 
