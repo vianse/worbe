@@ -274,6 +274,9 @@ module ActionsHelper
 							margin-left: 35%!important;
 							margin-right: 35%!important;
 						}
+						#url{
+						 font-size:12px;
+						}
 					}
 					
 					@media (min-width: 992px) {
@@ -294,6 +297,9 @@ module ActionsHelper
 						}
 						.img:hover{
 							opacity:.85;
+						}
+						#url{
+						 font-size:12px;
 						}
 					}
 					.imagen{margin-left: 210px;}
@@ -417,7 +423,9 @@ module ActionsHelper
 						float:left;
 					}
 
-
+					#url{
+						 font-size:11px;
+						}
 					
 					</style>"
 		html.html_safe

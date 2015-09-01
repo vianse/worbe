@@ -55,7 +55,7 @@
 						<% if @guid_publico.guid.blank? %>
 	                    <% else %>
 				      	<li class="qg b aml collapse" id="collapseExample">
-				      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>" class="centrar"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
+				      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>" class="centrar" id="url"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
 
 				      	<%= form_tag(enviar_email_path(:email => :email) ,:method => 'get') do %>
 				      	<div class="input-group">
