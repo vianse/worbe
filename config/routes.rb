@@ -86,6 +86,8 @@ end
  
    get  'search' => 'my_tags#index', as: :buscar
    get 'visitas' => 'actions#countview', as: :count_views
+   get 'lasttag' => 'actions#lasttag', as: :last_tag
+   get 'share' => 'actions#send_mail', as: :enviar_email
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

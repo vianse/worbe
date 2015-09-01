@@ -7,6 +7,9 @@ gem 'rails', '4.1.1'
 group :development do 
 	gem 'sqlite3'
 	gem 'pg'
+	gem 'letter_opener'
+	gem 'mailgun-ruby'
+	gem 'rest-client'
 end
 group :production do 
 	gem 'pg'

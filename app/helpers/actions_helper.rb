@@ -399,6 +399,24 @@ module ActionsHelper
 				 	float:right;
 				 	text-align:right;
 				 }
+				  .tamaño_tag{
+				 	width:100%;
+				 	background-color:hsl(195, 29%, 97%);
+				 	padding:5px!important;
+				 	margin-bottom:10px!important;
+				 	float:right;
+				 	
+				 }
+				 .editar_tag{
+						background-color:#F9F9F9;
+						border-style: dashed;
+						border-color:#FFC4BF;
+						color:black;
+						padding: 5px;
+						display:inline-block;
+						float:left;
+					}
+
 
 					
 					</style>"

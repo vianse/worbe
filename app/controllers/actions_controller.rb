@@ -10,6 +10,28 @@ class ActionsController < ApplicationController
       count: @conteo
       } 
   end
+  def send_mail
+    @to = params[:email]
+    @guid_publico  = Dg.where(:user_id => current_user.id).first
+    @server        = "http://" + request.host_with_port
+    # AccionesMailer.accion_mailer(@server + "/worbe?guid="+ @guid_publico.guid,@guid_publico.name,@to).deliver
+    # redirect_to "/dashboard"
+
+  RestClient.post "https://api:key-e7d79c66e74391fdf48b657624f23ddc"\
+  "@api.mailgun.net/v3/sandboxb9c2dadab0ea49f6b7130d1091646c59.mailgun.org/messages",
+  :from => "Worbe <mailgun@sandboxb9c2dadab0ea49f6b7130d1091646c59.mailgun.org>",
+  :to => params[:email],
+  :subject => "Curriculum Compartido",
+  :html => "Hola #{@to}!!, #{@guid_publico.name} te compartio su curriculum, para acceder a el da click en la liga"\
+           "<a href='#{@server}+ '/worbe?guid='+ #{@guid_publico.guid}'> Acceder al Curriculum</a>"
+  redirect_to "/dashboard"
+  end
+  def lasttag
+    @lasttag = MyTag.select(:name).where(user_id: current_user.id).last
+    render json: {
+        tag:  @lasttag
+      } 
+  end
   def dashboard
     if @cv_create = Cv.where(user_id: current_user.id).first.blank?
         @cv_create = Cv.create(

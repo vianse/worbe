@@ -13,6 +13,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+<script src="https://rawgit.com/arqex/react-json/master/build/Json.js"></script>
+<script src="//cdn.jsdelivr.net/refluxjs/0.2.11/reflux.min.js"></script>
 
 <br>
 
@@ -36,7 +38,8 @@
 			            	Estatus: <%= @status %>
 			            </li>
 			            <li>
-			            	<div id="countview"></div>
+			            	<span class="fa fa-eye fa-lg"></span>
+			            		Número de visitas: <span id="countview"></span> 	
 			            </li>
 			          </ul>
 			        </div>
@@ -53,15 +56,19 @@
 	                    <% else %>
 				      	<li class="qg b aml collapse" id="collapseExample">
 				      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>" class="centrar"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
-				          <div class="input-group">
-				            <input type="text" class="form-control" placeholder="Email">
-				            <div class="fj">
-				              <button type="button" class="cg fm">
-				                <span class="fa fa-paper-plane fa-lg"></span>
-				              </button>
-				            </div>
-				          </div>
+
+				      	<%= form_tag(enviar_email_path(:email => :email) ,:method => 'get') do %>
+				      	<div class="input-group">
+						  <%= email_field_tag 'email', nil, :class => "form-control",:placeholder=>"Ingresa el email al que le quieres compartir tu CV" %>
+						   <div class="fj" id="fj">
+						  	<%= submit_tag "Compartir", :class=>"cg fm" do %>
+						  		<span class="fa fa-paper-plane fa-lg"></span>
+						  	<% end %>
+						  </div>
+						</div>
+						<% end %>      
 				        </li><% end %>
+				        <div id ="mensaje"></div>
 			        <% end %>
 		      	 <li class="qg b aml">
 				        <% if @cv.blank? %>
@@ -131,82 +138,82 @@
 
 				        <%= educations_margen_botton %>
 				        <h4 class="margen"><%= I18n.t('cv_titulo_educacion') %> </h4>
-				          <span class="tamaño">
+				          <span class="tamaño" id="add_estudios">
 				          	<span class="fa fa-plus fa-lg"></span>
-				            <%= link_to 'Agregar', add_educations_path(), :method => :post,  :class =>"[]" %>
+				          	<%= link_to 'Agregar', add_educations_path(), :method => :post,  :class =>"[]" %>
 				          </span>
 				          <% if @cv.blank? %>
 				          <% else %>
 				          <!-- Empieza sección educations -->
 					          <% @educations.each do |a| %>
-					            <div class="margen">
+					            <div class="margen" id="estudios">
 					              <div>
-					                <strong>
-					                  <%= I18n.t('cv_nivel') %>
-					                </strong>
-					                <span class="editar">
-					                  <%= best_in_place a, :level, :as => :select, :collection => [["Carreta técnica", "Carreta técnica"],["Nivel Superior", "Nivel Superior"], ["Especialidad", "Especialidad"], ["Maestria", "Maestria"], ["Doctorado", "Doctorado"]], :prompt => true, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' }  %>
-					                </span>
-					              </div>
-					              <div>
-					                <strong>
-					                  <%= I18n.t('form_titulo_ed') %>
-					                </strong> 
-					                <span class="editar">
-					                  <%= best_in_place a, :title, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-					                </span>
-					              </div>
-					              <div>
-					                <strong>
-					                  <%= I18n.t('cv_escuela')%>
-					                </strong>
-					                <span class="editar"> 
-					                  <%= best_in_place a, :school, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-					                </span>
-					              </div>
-					              <div>
-					              <strong>
-					                <%= I18n.t('cv_año_inicial')%>
-					              </strong> 
-					              <span class="editar">
-					                <%= best_in_place a, :yearInitial, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-					              </span>
-					                <strong>
-					                  <%= I18n.t('cv_año_final')%>
-					                </strong>
-					                <span class="editar">
-					                  <%= best_in_place a, :yearFinal, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-					              </span>
-					              </div>
-					              <div>
-					                <strong>
-					                  <%= I18n.t('cv_documento_recibido')%>
-					                </strong> 
-					                <span class="editar">
-					                  <%= best_in_place a, :DocumentReceived, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-					                </span>
-					              </div>
-					              <div>
-					                <strong>
-					                  <%= I18n.t('cv_promedio')%>
-					                </strong> 
-					                <span class="editar">
-					                <%= best_in_place a, :average, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-					                </span>
-					              </div>
-					              <div>
-					                <strong>
-					                  <%= I18n.t('cv_comentarios') %>
-					                </strong>
-					                <span class="editar">
-					                <%= best_in_place a, :comments, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-					                </span>
-					              </div>
-					               <span class="tamaño">
-					          		 <span class="fa fa-times-circle fa-lg"></span>
-					             		 <%= link_to 'Eliminar', delete_education_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-					         		 </span>
-					              <hr>
+                          <strong>
+                            <%= I18n.t('cv_nivel') %>
+                          </strong>
+                          <span class="editar">
+                            <%= best_in_place a, :level, :as => :select, :collection => [["Carreta técnica", "Carreta técnica"],["Nivel Superior", "Nivel Superior"], ["Especialidad", "Especialidad"], ["Maestria", "Maestria"], ["Doctorado", "Doctorado"]], :prompt => true, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' }  %>
+                          </span>
+                        </div>
+                        <div>
+                          <strong>
+                            <%= I18n.t('form_titulo_ed') %>
+                          </strong> 
+                          <span class="editar">
+                            <%= best_in_place a, :title, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
+                          </span>
+                        </div>
+                        <div>
+                          <strong>
+                            <%= I18n.t('cv_escuela')%>
+                          </strong>
+                          <span class="editar"> 
+                            <%= best_in_place a, :school, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
+                          </span>
+                        </div>
+                        <div>
+                        <strong>
+                          <%= I18n.t('cv_año_inicial')%>
+                        </strong> 
+                        <span class="editar">
+                          <%= best_in_place a, :yearInitial, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
+                        </span>
+                          <strong>
+                            <%= I18n.t('cv_año_final')%>
+                          </strong>
+                          <span class="editar">
+                            <%= best_in_place a, :yearFinal, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
+                        </span>
+                        </div>
+                        <div>
+                          <strong>
+                            <%= I18n.t('cv_documento_recibido')%>
+                          </strong> 
+                          <span class="editar">
+                            <%= best_in_place a, :DocumentReceived, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
+                          </span>
+                        </div>
+                      <!--  <div>
+                          <strong>
+                            <%= I18n.t('cv_promedio')%>
+                          </strong> 
+                          <span class="editar">
+                          <%= best_in_place a, :average, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
+                          </span>
+                        </div>
+                        <div>
+                          <strong>
+                            <%= I18n.t('cv_comentarios') %>
+                          </strong>
+                          <span class="editar">
+                          <%= best_in_place a, :comments, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
+                          </span>
+                        </div>-->
+                         <span class="tamaño">
+                         <span class="fa fa-times-circle fa-lg"></span>
+                           <%= link_to 'Eliminar', delete_education_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+                       </span>
+                        <hr>
 					            </div>
 					            <% end -%>
 					            <!-- Fin de la sección de edications -->
@@ -290,7 +297,6 @@
 					        <% end -%>
 					        <!-- finaliza sección courses -->
 					        <% end %>
-				        <hr>
 				        <!-- Empieza sección idiomas -->
 				        <h4 class="margen"><%= I18n.t('cv_titulo_idiomas') %></h4>
 				          <span class="tamaño">
@@ -367,21 +373,23 @@
 				        <h4 class="margen"><%= I18n.t('cv_tags') %></h4>
 				       		 <span class="tamaño">
 					          	<span class="fa fa-plus fa-lg"></span>
-				        	<%= link_to 'Agregar', add_tags_path(), :method => :post,  :class =>"[]" %>
+				        		<%= link_to 'Agregar', add_tags_path(), :method => :post,  :class =>"[]" %>
 				        	</span>
 				         <% if @cv.blank? %>
 				         <% else %>
 					          <%  @list_tags.each do |a| %>
-					          <div class="margen">
-					              <div class="editar">
-					                <%= best_in_place a, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
-					              </div>
-					              <span class="tamaño">
-						          	<span class="fa fa-times-circle fa-lg"></span>
-					             	 <%= link_to 'Eliminar', delete_tags_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %> 
-					          		</span>
-					          	</div>
-					            <% end -%>
+					       
+						          <div class="margen">
+									<span class="editar">
+									   <%= best_in_place a, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+								   </span>
+								   <span class="tamaño">
+								   <span class="fa fa-times-circle fa-lg"></span>
+									 <%= link_to 'Eliminar', delete_tags_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %> 
+								   </span>
+						          </div>
+					     	  <% end -%>
+					     	  
 					       <!--Finaliza sección tags-->
 					     <% end -%>
 		         </li>  
@@ -392,14 +400,16 @@
 
 
 <script type="text/jsx">
-var ImageCollect = React.createClass({
-        getInitialState: function() {
+
+var CountView = React.createClass({
+       getInitialState: function() {
           return {
             counter: ""
           };
         },
-         tick: function() {
-   			var self = this;
+      
+        componentDidMount: function() {
+          var self = this;
           $.get(this.props.source, function(result) {
             var collection = result;
             if (this.isMounted()) {
@@ -408,24 +418,24 @@ var ImageCollect = React.createClass({
               });
             }
           }.bind(this));
-  		},
-        componentDidMount: function() {
-          this.interval = setInterval(this.tick, 1000);
         },
-
+        
         render: function() {   
           return (
-            <div>
-              Numero de visitas: {this.state.counter}     
-            </div>
+            <span>
+             {this.state.counter}     
+            </span>
           );
         }
       });
 
      React.render(
-    <ImageCollect source="/visitas.json" />,
+    <CountView source="/visitas.json" />,
       document.getElementById('countview')
     );
+
+
+     
 </script>
 
 

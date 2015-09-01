@@ -27,6 +27,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.9)
     best_in_place (3.0.3)
@@ -53,12 +54,16 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.5.2)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     hashie (3.3.2)
     hike (1.2.3)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jbuilder (2.3.0)
       activesupport (>= 3.0.0, < 5)
@@ -68,14 +73,22 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.2.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailgun-ruby (1.0.3)
+      json (~> 1.8)
+      rest-client (~> 1.6)
     mime-types (1.25.1)
     minitest (5.7.0)
     multi_json (1.11.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    netrc (0.10.3)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -127,6 +140,10 @@ GEM
       json (~> 1.4)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rmagick (2.15.3)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -162,6 +179,9 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -176,12 +196,15 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  letter_opener
+  mailgun-ruby
   omniauth
   omniauth-facebook
   pg
   prawn
   rails (= 4.1.1)
   rails_12factor
+  rest-client
   rmagick
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
