@@ -23,7 +23,7 @@ class ActionsController < ApplicationController
   :to => params[:email],
   :subject => "Curriculum Compartido",
   :html => "Hola #{@to}!!, #{@guid_publico.name} te compartio su curriculum, para acceder a el da click en la liga"\
-           "<a href='#{@server}+ '/worbe?guid='+ #{@guid_publico.guid}'> Acceder al Curriculum</a>"
+           "<a href="+ "#{@server}" + "/worbe?guid=" + "#{@guid_publico.guid}" + "> Acceder al Curriculum</a>"
   redirect_to "/dashboard"
   end
   def lasttag
