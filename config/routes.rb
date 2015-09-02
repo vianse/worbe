@@ -84,10 +84,12 @@ end
    get 'paises' => 'countries#index', as: :paises
    get 'home' => 'home_empresa#index', as: :index_empresas
  
-   get  'search' => 'my_tags#index', as: :buscar
+  
    get 'visitas' => 'actions#countview', as: :count_views
    get 'lasttag' => 'actions#lasttag', as: :last_tag
    get 'share' => 'actions#send_mail', as: :enviar_email
+   get 'busqueda_cv' => 'home_empresa#busqueda_cv', as: :buscar_cv
+   get 'busqueda_dg' => 'home_empresa#busqueda_dg', as: :buscar_dg
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

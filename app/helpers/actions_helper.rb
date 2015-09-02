@@ -424,7 +424,8 @@ module ActionsHelper
 					}
 
 					#url{
-						 font-size:11px;
+						 font-size:12px;
+						 width:auto;
 						}
 					
 					</style>"

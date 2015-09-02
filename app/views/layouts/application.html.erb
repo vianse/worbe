@@ -14,16 +14,49 @@
 <body>
   
 <% if empresa_signed_in? %>
-<header id="header">
-    <div class="wrap">
-        <a href="/" class="logo"><span class="header">Workers</span></a>
-        <nav>     
-            <a href="/empresas/edit" class="mobile-hide "><%= I18n.t('Nav_security') %></a>
-            <%= link_to I18n.t('Nav_session'), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-        </nav>
+<nav class="ck pd ot app-navbar">
+  <div class="by">
+    <div class="os">
+      <button type="button" class="ov collapsed" data-toggle="collapse" data-target="#navbar-collapse-main">
+        <span class="cv">Toggle navigation</span>
+        <span class="ow"></span>
+        <span class="ow"></span>
+        <span class="ow"></span>
+      </button>
+      <a class="e" href="/application/">
+        worbe
+      </a>
     </div>
-</header>
-<%= render 'style/style' %>
+    <div class="f collapse" id="navbar-collapse-main">
+
+        <ul class="nav navbar-nav st">
+
+        </ul>
+
+        <ul class="nav navbar-nav oh ale st">
+          <li>
+            <%= link_to I18n.t('Nav_session'), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          </li>
+          <li>
+            <button class="cg fm oy anl" data-toggle="popover" data-original-title="" title="">
+              <% if @photo.blank? %>
+              <% else %>
+              <img class= "cu" src="<%= @photo.photo_url(:thumb) %>">
+              <% end %>
+            </button>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav su sv sw">
+          <li><%= link_to I18n.t('Nav_session'), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+        </ul>
+
+        <ul class="nav navbar-nav hidden">
+          <li><%= link_to I18n.t('Nav_session'), destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+        </ul>
+      </div>
+  </div>
+</nav>
 <% end %>
     <% if user_signed_in? %>
     <nav class="ck pd ot app-navbar">

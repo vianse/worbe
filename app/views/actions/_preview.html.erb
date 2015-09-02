@@ -401,38 +401,38 @@
 
 <script type="text/jsx">
 
-var CountView = React.createClass({
-       getInitialState: function() {
-          return {
-            counter: ""
-          };
-        },
-      
-        componentDidMount: function() {
-          var self = this;
-          $.get(this.props.source, function(result) {
-            var collection = result;
-            if (this.isMounted()) {
-              this.setState({
-                counter: collection
-              });
-            }
-          }.bind(this));
-        },
-        
-        render: function() {   
-          return (
-            <span>
-             {this.state.counter}     
-            </span>
-          );
-        }
-      });
+	var CountView = React.createClass({
+	       getInitialState: function() {
+	          return {
+	            counter: ""
+	          };
+	        },
+	      
+	        componentDidMount: function() {
+	          var self = this;
+	          $.get(this.props.source, function(result) {
+	            var collection = result;
+	            if (this.isMounted()) {
+	              this.setState({
+	                counter: collection
+	              });
+	            }
+	          }.bind(this));
+	        },
+	        
+	        render: function() {   
+	          return (
+	            <span>
+	             {this.state.counter}     
+	            </span>
+	          );
+	        }
+	      });
 
-     React.render(
-    <CountView source="/visitas.json" />,
-      document.getElementById('countview')
-    );
+	     React.render(
+	    <CountView source="/visitas.json" />,
+	      document.getElementById('countview')
+	 );
 
 
      

@@ -213,7 +213,54 @@ class ActionsController < ApplicationController
     redirect_to '/dashboard'
   end
   def publicar
-     @guid = Digest::MD5.hexdigest(current_user.id.to_s)
+    @guid = Digest::MD5.hexdigest(current_user.id.to_s)
+     
+     @validador = Busqueda.where(:guid => @guid)
+     if @validador.blank?
+        @title      = Cv.where(:user_id => current_user.id).pluck(:title).first
+        @dgs_name   = Dg.select(:name, :age, :phone1, :phone2, :email, :guid).where(:user_id => current_user.id).first
+        @busqueda    = Busqueda.create(
+          titulo:     @title,
+          nombre:     @dgs_name.name,
+          edad:       @dgs_name.age,
+          telefono:   @dgs_name.phone1,
+          telefono1:  @dgs_name.phone2,
+          email:      @dgs_name.email,
+          guid:       @dgs_name.guid
+        )
+        #@busqueda.save
+
+         @cv   = Cv.where(:user_id => current_user.id).first
+         @cv.update(:guid => @guid)
+         @dg   = Dg.find_by_user_id(current_user.id)
+         @dg.update(:guid => @guid)
+         @ed   = Education.where(user_id: current_user.id)
+         @ed.each do |a|
+           a.update(:guid => @guid)
+         end
+         @co   = Course.where(user_id: current_user.id)
+         @co.each do |b|
+          b.update(:guid => @guid)
+         end
+         @ce   = Certificate.where(user_id: current_user.id)
+         @ce.each do |c|
+          c.update(:guid => @guid)
+         end
+         @la   = Language.where(user_id: current_user.id)
+         @la.each do |d|
+          d.update(:guid => @guid)
+         end
+         @ex   = Experience.where(user_id: current_user.id)
+         @ex.each do |e|
+          e.update(:guid => @guid)
+         end
+         @mt   = MyTag.where(user_id: current_user.id)
+         @mt.each do |f|
+           f.update(:guid => @guid)
+         end
+         redirect_to '/dashboard'
+else
+ 
      @cv   = Cv.where(:user_id => current_user.id).first
      @cv.update(:guid => @guid)
      @dg   = Dg.find_by_user_id(current_user.id)
@@ -242,8 +289,17 @@ class ActionsController < ApplicationController
      @mt.each do |f|
        f.update(:guid => @guid)
      end
+     @title      = Cv.where(:user_id => current_user.id).pluck(:title).first
+        @dgs_name   = Dg.select(:name, :age, :phone1, :phone2, :email, :guid).where(:user_id => current_user.id).first
+     @bq   = Busqueda.where(:guid => @guid)
+     @bq.each do |f|
+       f.update({titulo:  @title, nombre:  @dgs_name.name,edad:  @dgs_name.age,telefono:  @dgs_name.phone1,telefono1:  @dgs_name.phone2,email:  @dgs_name.email })
+     end
+
      redirect_to '/dashboard'
+    end
    end
+
    def preview
     @cv      = Cv.where(user_id: current_user.id).first
     @nombre  = Dg.where(user_id: current_user.id).first

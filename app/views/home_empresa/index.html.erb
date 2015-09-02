@@ -1,10 +1,177 @@
-<%= estilo_form %>
-<%= estilo_cv %>
-</style>
-<%= form_tag buscar_path, :method => 'get' do %>
-  <p>
-     Buscar por cv por palabra clave <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Buscar cv", :name => nil, :class=> "btn btn-success" %>
-  </p>
-<% end %>
- 
+
+<%= render 'actions/style_new' %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+<script src="https://rawgit.com/arqex/react-json/master/build/Json.js"></script>
+<script src="//cdn.jsdelivr.net/refluxjs/0.2.11/reflux.min.js"></script>
+<br><br><br>
+<div class="go">
+      <div class="qw rd aog alu">
+        <div class="qy" style="background-image: url(/application/assets/img/iceland.jpg);"></div>
+        <div class="qx dj">
+          <a href="/application/profile/">
+            <img class="aoh" src="/application/assets/img/avatar-dhg.png">
+          </a>
+
+          <h5 class="qz">
+            <a class="aku" href="/application/profile/">Dave Gamache</a>
+          </h5>
+
+          <p class="alu">I wish i was a little bit taller, wish i was a baller, wish i had a girl…&nbsp;also.</p>
+
+          <ul class="aoi">
+            <li class="aoj">
+              <a href="#userModal" class="aku" data-toggle="modal">
+                Friends
+                <h5 class="ali">12M</h5>
+              </a>
+            </li>
+
+            <li class="aoj">
+              <a href="#userModal" class="aku" data-toggle="modal">
+                Enemies
+                <h5 class="ali">1</h5>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qw rd sn sq">
+        <div class="qx">
+          <h5 class="ald">About <small>· <a href="#">Edit</a></small></h5>
+          <ul class="eb tc">
+            <li><span class="dp h xh all"></span>Went to <a href="#">Oh, Canada</a>
+            </li><li><span class="dp h ajw all"></span>Became friends with <a href="#">Obama</a>
+            </li><li><span class="dp h abu all"></span>Worked at <a href="#">Github</a>
+            </li><li><span class="dp h ack all"></span>Lives in <a href="#">San Francisco, CA</a>
+            </li><li><span class="dp h adt all"></span>From <a href="#">Seattle, WA</a>
+          </li></ul>
+        </div>
+      </div>
+
+     
+      </div>
+    </div>
+<div id="dg"></div>
+
+
+ <script type="text/jsx">
+ var Busquedalist = React.createClass({
+	datosgenerales: function() {
+	    $.ajax({
+	        url: this.props.urldg + this.state.text ,
+	        dataType: 'json',
+	        success: function(data) {
+	            this.setState({data: data});
+
+	        }.bind(this)
+	    });
+	  
+	},
+
+	getInitialState: function() {
+	    return {
+	    	data: [],
+	    	label: "Buscar por cv por palabra clave",
+	        placeholder: "Ejem. Desarrollo web",
+	        text: ""
+	    };
+	},
+	  onChange: function(e) {
+   		 this.setState({text: e.target.value});
+  	},
+
+	render: function() {
+			
+		    return (
+		    		<div className="ha">
+				      <ul className="ca qp anx">
+				        <li className="qg b aml">
+				          <div className="input-group">
+				            <input type="text" onChange={this.onChange} value={this.state.text} className="form-control" placeholder="Eje. desarrollo web" />
+				            <div className="fj">
+				              <button type="button" className="cg fm" onClick={this.datosgenerales}>Buscar
+				              </button>
+				            </div>
+				          </div>
+				        </li>
+				        {this.state.data.map(function(object, i){
+               		     var url_publica = "/worbe?guid="
+					      return  <li className="qg b aml">
+					          <a className="qk" href="#">
+					            <img className="qi cu" src="/application/assets/img/avatar-dhg.png" />
+					          </a>
+					          <div className="qh">
+					            <div className="qo">
+					              <small className="eg dp"><a href={url_publica + object.guid}  target="_blank" className="btn btn-default">ver completo</a></small>
+					              <h5>{object.titulo}</h5>
+					            </div>
+					            <div>{object.nombre}</div>
+					            <span>Telefono principal: {object.telefono} | Telefono secundario: {object.telefono1} </span>
+					            <div>
+					            	Correo electronico: {object.email}
+					            </div>
+					          </div>
+					        </li>
+				         })}
+				      </ul>
+				    </div>
+
+		        );
+
+	}
+});
+
+
+React.render (
+<Busquedalist  urldg="/busqueda_dg?key="/>,
+document.getElementById('dg')
+
+);
+
+
+// var CountView = React.createClass({
+//        getInitialState: function() {
+//           return {
+//             label: "Buscar por cv por palabra clave",
+//             placeholder: "Ejem. Desarrollo web"
+//           };
+//         },
+//          change: function() {
+//           var self = this;
+//           $.get(this.props.source, function(result) {
+//             var collection = result;
+//             if (this.isMounted()) {
+//               this.setState({
+//                 counter: collection
+//               });
+//             }
+//           }.bind(this));
+//         },
+//         render: function() {  
+ 	
+//           return ( 
+//           			<div>
+// 	           			<span className="centrar">
+// 							<label>{this.state.label}</label>
+// 							<input type="text" placeholder={this.state.placeholder} />
+// 							<button id="buscar" onClick={this.change}>Buscar</button>
+// 							<ul className="PlayerList">
+// 					          {
+					              
+// 					          <li key={this.state.counter}>{this.state.counter}</li>
+					             
+// 					          }  
+// 					      </ul>
+// 						</span>
+// 					</div>
+
+//           );
+//         }
+//       });
+
+//      React.render(<CountView source="/busqueda"/>,document.getElementById('busqueda'));
+
+</script>
