@@ -43,6 +43,6 @@ class BusquedasController < ApplicationController
     end
 
     def busqueda_params
-      params.require(:busqueda).permit(titulo: , nombre: , edad: , telefono: , telefono1: , photo: , email: , guid:)
+      params.require(:busqueda).permit(:titulo , :nombre , :edad , :telefono , :telefono1 , :photo , :email , :guid)
     end
 end
