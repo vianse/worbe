@@ -78,8 +78,6 @@
 	handleClick: function(event) {
 		    $.post("/add_tags",
 		        {
-		          name: "",
-		          city: ""
 		        },
 		        function(data,status){
 		            
@@ -101,11 +99,10 @@
 						var ida = "_name"
 						return(
 							<div key= {i} className="margen">
-							<span className="editar">
+							<span key= {object.id} className="editar">
 								<span key= {object.id} className="best_in_place" data-bip-attribute="name" data-bip-object="my_tag" data-bip-original-content={object.name} data-bip-type="input" data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}</span>
+								
 							</span>
-								   
-
 								   <button onClick={boundClick} value={object.id} className="btn btn-default">Eliminar</button>
 							</div>
 

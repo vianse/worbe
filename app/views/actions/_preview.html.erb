@@ -1,7 +1,7 @@
 
 <%= estilo_cv %>
 <%= render 'style_new' %>
-<%= render 'javascript' %>
+
 <script type="text/javascript">
 	 $(document).ready(function() {
   /* Activating Best In Place */
@@ -365,6 +365,132 @@
     	</div>
 	</div>
 </div>
+<script type="text/jsx">
+
+	var CountView = React.createClass({
+	       getInitialState: function() {
+	          return {
+	            counter: ""
+	          };
+	        },
+	      
+	        componentDidMount: function() {
+	          var self = this;
+	          $.get(this.props.source, function(result) {
+	            var collection = result;
+	            if (this.isMounted()) {
+	              this.setState({
+	                counter: collection
+	              });
+	            }
+	          }.bind(this));
+	        },
+	        
+	        render: function() {   
+	          return (
+	            <span>
+	             {this.state.counter}     
+	            </span>
+	          );
+	        }
+	      });
+
+	     React.render(
+	    <CountView source="/visitas.json" />,
+	      document.getElementById('countview')
+	 );
+
+/*
+ *  Moduler Tags
+ */
+
+
+ var PanelTags = React.createClass({
+	componentDidMount: function() {
+	    $.ajax({
+	        url: "/get_tags" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+	    }); 
+	},
+	datosgenerales: function() {
+	    $.ajax({
+	        url: "/get_tags" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+	    }); 
+	},
+	chanstate: function(event){
+		this.setState({id: event.target.value});
+		$.ajax({
+    		url: this.props.deletetag + event.target.value,
+    		type: 'DELETE',
+    		success: function(result) {
+            
+    	}
+	 });
+		this.datosgenerales();
+	},
+	getInitialState: function() {
+	          return {
+	          	btn: <button className="btn btn-default">Agregar</button>,
+	            data: [],
+	            id:""
+	            };	       
+	        },
+	handleClick: function(event) {
+		    $.post("/add_tags",
+		        {
+		        },
+		        function(data,status){
+		            
+		        });
+		    	this.datosgenerales();
+		  	},
+	render: function() {   
+		var boundClick = this.chanstate;
+	    return (
+	    		<div >
+	    			<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
+	          		<span className="tamaño">
+						<div onClick={this.handleClick}>{this.state.btn}</div>
+					</span>	
+					{this.state.data.map(function(object, i){
+						var url= "/delete_tags/"
+						var url_bip = "/my_tags/"
+						var id = "best_in_place_my_tag_"
+						var ida = "_name"
+						return(
+							<div key= {i} className="margen">
+							<span key= {object.id} className="editar">
+								<span key= {object.id} className="best_in_place" data-bip-attribute="name" data-bip-object="my_tag" data-bip-original-content={object.name} data-bip-type="input" data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}</span>
+								
+							</span>
+								   <button onClick={boundClick} value={object.id} className="btn btn-default">Eliminar</button>
+							</div>
+
+
+							)
+ 					})}
+				</div>
+	          );
+		}
+	});
+
+	React.render(
+	     	<PanelTags deletetag="/delete_tags/" />,
+	 document.getElementById('palabras_claves')
+	 );
+	 	
+     
+</script>
+
+
+
 
 
 
