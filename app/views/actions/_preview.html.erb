@@ -454,27 +454,26 @@
 		  	},
 	render: function() {   
 		var boundClick = this.chanstate;
-		$(document).ready(function() {
-	  /* Activating Best In Place */
-	 	 jQuery(".best_in_place").best_in_place();
-
-		 });
+		var classe = "best_in_place"
+		var type= "input"
+		var objeto ="my_tag"
+		var atributo = "name"
 	    return (
 	    		<span>
 	    			<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
 	          		<span className="tamaño">
 						<div onClick={this.handleClick}>{this.state.btn}</div>
 					</span>	
-					<span className="editar" data-reactid=".1.2:$0.$78"><span className="best_in_place" data-bip-attribute="name" data-bip-object="my_tag" data-bip-original-content="Ingresa el nombre de tu tag de interes" data-bip-type="input" data-bip-url="/my_tags/78" data-bip-value="Ingresa el nombre de tu tag de interes" id="best_in_place_my_tag_78_name" data-reactid=".1.2:$0.$78.$78">Ingresa el nombre de tu tag de interes</span></span>
-					{this.state.data.map(function(object, i){
+
+					{this.state.data.map(function(object){
 						var url= "/delete_tags/"
 						var url_bip = "/my_tags/"
 						var id = "best_in_place_my_tag_"
 						var ida = "_name"
 						return(
-							<div key= {i} className="margen">
+							<div key={object.id} className="margen">
 							<span key= {object.id} className="editar">
-								<span key= {object.id} className="best_in_place" data-bip-attribute="name" data-bip-object="my_tag" data-bip-original-content={object.name} data-bip-type="input" data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}</span>
+								<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}</span>
 								
 							</span>
 								   <button onClick={boundClick} value={object.id} className="btn btn-default">Eliminar</button>
