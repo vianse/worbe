@@ -440,6 +440,7 @@
 	          	btn: <button className="btn btn-default">Agregar</button>,
 	            data: [],
 	            id:""
+
 	            };	       
 	        },
 	handleClick: function(event) {
@@ -453,6 +454,11 @@
 		  	},
 	render: function() {   
 		var boundClick = this.chanstate;
+		$(document).ready(function() {
+	  /* Activating Best In Place */
+	 	 jQuery(".best_in_place").best_in_place();
+
+		 });
 	    return (
 	    		<span>
 	    			<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
