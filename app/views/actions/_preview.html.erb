@@ -454,7 +454,7 @@
 	render: function() {   
 		var boundClick = this.chanstate;
 	    return (
-	    		<div >
+	    		<span>
 	    			<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
 	          		<span className="tamaño">
 						<div onClick={this.handleClick}>{this.state.btn}</div>
@@ -476,7 +476,7 @@
 
 							)
  					})}
-				</div>
+				</span>
 	          );
 		}
 	});
