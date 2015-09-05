@@ -1,7 +1,7 @@
 
 en:
   #Etiquetas para CV
-  cv_tags:                   "Tags de interes"
+  cv_tags:                   "Palabras clave"
   cv_titulo_datos_generales: "Datos Generales"
   cv_nombre:                 "Nombre :"
   cv_fecha_nacimiento:       "Fecha nacimiento :"
@@ -38,8 +38,6 @@ en:
   cv_boton_descargar:        "Descargar PDF"
   cv_boton_publicar:         "Publicar"
   cv_boton_compartir:        "Compartir por Email"
-
-
 
   title: "Bienvenidos a Cloud CV"
   mycloud: "My CloudCV"

@@ -59,6 +59,7 @@ end
   post 'publicar' => 'actions#publicar', as: :publicar_cv
   post 'add_educations' => 'actions#crear_educations', as: :add_educations
   delete 'delete_education/:id' => 'actions#elimina_education', as: :delete_education
+  get  'get_educations' => 'actions#get_education', as: :get_educations
   post 'add_experiences' => 'actions#crear_experiences', as: :add_experiences
   delete 'delete_experience/:id' => 'actions#elimina_experiences', as: :delete_experiences
   post 'add_courses' => 'actions#crear_courses', as: :add_courses
@@ -69,7 +70,8 @@ end
   delete 'delete_certificates/:id' => 'actions#elimina_certificates', as: :delete_certificates
    post 'add_tags' => 'actions#crear_tags', as: :add_tags
   delete 'delete_tags/:id' => 'actions#elimina_tags', as: :delete_tags
-  
+  post 'add_favorito' => 'home_empresa#add_favoritos', as: :add_favoritos
+   get  'get_tags' => 'actions#get_tags', as: :get_tag
 
 
    get 'vacantes_sugeridas' => 'welcome#index', as: :welcome
@@ -90,6 +92,7 @@ end
    get 'share' => 'actions#send_mail', as: :enviar_email
    get 'busqueda_cv' => 'home_empresa#busqueda_cv', as: :buscar_cv
    get 'busqueda_dg' => 'home_empresa#busqueda_dg', as: :buscar_dg
+   get 'portafolio' => 'actions#portafolio', as: :portfolio
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

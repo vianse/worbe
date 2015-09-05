@@ -40,9 +40,9 @@
 
       <div class="qw rd sn sq">
         <div class="qx">
-          <h5 class="ald">About <small>· <a href="#">Edit</a></small></h5>
+          <h5 class="ald">Mis favoritos</h5>
           <ul class="eb tc">
-            <li><span class="dp h xh all"></span>Went to <a href="#">Oh, Canada</a>
+            <li><span class="dp h xh all"></span>Lic en sistemas<a href="#">Oh, Canada</a>
             </li><li><span class="dp h ajw all"></span>Became friends with <a href="#">Obama</a>
             </li><li><span class="dp h abu all"></span>Worked at <a href="#">Github</a>
             </li><li><span class="dp h ack all"></span>Lives in <a href="#">San Francisco, CA</a>
@@ -79,12 +79,23 @@
 	        text: ""
 	    };
 	},
-	  onChange: function(e) {
+	onChange: function(e) {
    		 this.setState({text: e.target.value});
   	},
 
+    handleClick: function(event) {
+ 	 this.setState({text: this.state.data.guid});
+    $.post(this.props.urlfa + this.state.data.guid,
+        {
+          name: "Donald Duck",
+          city: "Duckburg"
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+  	},
 	render: function() {
-			
+			var boundClick = this.handleClick;
 		    return (
 		    		<div className="ha">
 				      <ul className="ca qp anx">
@@ -94,42 +105,59 @@
 				            <div className="fj">
 				              <button type="button" className="cg fm" onClick={this.datosgenerales}>Buscar
 				              </button>
+				              <button className="btn btn-default" onClick={this.favoritos}><span className="glyphicon glyphicon-star"></span>
+					              	Agregar a favoritos</button>
 				            </div>
 				          </div>
 				        </li>
 				        {this.state.data.map(function(object, i){
                		     var url_publica = "/worbe?guid="
-					      return  <li className="qg b aml">
+               		     var url_addfavoritos ="/add_favorito?guid="
+					      return  (
+					 		<li key={object.id} className="qg b aml">
 					          <a className="qk" href="#">
 					            <img className="qi cu" src="/application/assets/img/avatar-dhg.png" />
 					          </a>
 					          <div className="qh">
 					            <div className="qo">
-					              <small className="eg dp"><a href={url_publica + object.guid}  target="_blank" className="btn btn-default">ver completo</a></small>
+					              <small className="eg dp">
+				
+					              </small>
 					              <h5>{object.titulo}</h5>
 					            </div>
 					            <div>{object.nombre}</div>
 					            <span>Telefono principal: {object.telefono} | Telefono secundario: {object.telefono1} </span>
 					            <div>
 					            	Correo electronico: {object.email}
+					            	
+
 					            </div>
+					            <div>{object.guid}</div>
+					            <div>
+					            <a href={url_publica + object.guid}  target="_blank" className="btn btn-default">ver curriculum completo</a>
+					            <button className="btn btn-default" onClick={boundClick}><span className="glyphicon glyphicon-star" ></span>
+					              	Agregar a favoritos</button>
+					              </div>
 					          </div>
-					        </li>
+					        </li>)
+							
 				         })}
 				      </ul>
 				    </div>
 
 		        );
+ 		
 
 	}
 });
 
 
 React.render (
-<Busquedalist  urldg="/busqueda_dg?key="/>,
+<Busquedalist  urldg="/busqueda_dg?key=" urlfa="/add_favorito?guid="/>,
 document.getElementById('dg')
 
 );
+
 
 
 // var CountView = React.createClass({

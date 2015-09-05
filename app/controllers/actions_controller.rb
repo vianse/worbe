@@ -4,6 +4,9 @@ class ActionsController < ApplicationController
   def index
   	@titlecv = Cv.where(user_id: current_user.id).pluck(:title).first
   end
+  def portafolio
+    
+  end
   def countview
     @conteo = Cv.where(user_id: current_user.id).where.not(:guid => "0").pluck(:countclick)
     render json: {
@@ -126,6 +129,14 @@ class ActionsController < ApplicationController
     end
     redirect_to '/dashboard'
   end
+  def get_education
+    @education = Education.where(:user_id => current_user.id)
+    render json: @education
+  end
+  def get_tags
+    @tags = MyTag.where(:user_id => current_user.id)
+    render json: @tags
+  end
    def crear_experiences
     @experiences = Experience.create(
       :datei => "Ingresa el año inicial",
@@ -210,7 +221,7 @@ class ActionsController < ApplicationController
     if @tags.present?
       @tags.destroy
     end
-    redirect_to '/dashboard'
+    
   end
   def publicar
     @guid = Digest::MD5.hexdigest(current_user.id.to_s)
