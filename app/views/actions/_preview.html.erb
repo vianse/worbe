@@ -403,8 +403,9 @@
 /*
  *  Moduler Tags
  */
- var MixingTag = {
- 	datosgenerales: function() {
+
+ var PanelTags = React.createClass({
+	datosgenerales: function() {
 	    $.ajax({
 	        url: "/get_tags" ,
 	        dataType: 'json',
@@ -419,19 +420,20 @@
     		url: "/delete_tags/" + event.target.value,
     		type: 'DELETE',
     		success: function(result) {
-            
-    	}
+            this.setState({data: []});
+    	}.bind(this)
 	 });
-		this.datosgenerales();
+	 this.datosgenerales();	
 	},
-	handleClick: function(event) {
-		    $.post("/add_tags",
+	addClick: function(event) {
+		  $.post("/add_tags",
 		        {
 		        },
 		        function(data,status){
+
 		        });
 		  this.datosgenerales();
-		  	},
+	},
 	componentDidMount: function() {
 	    $.ajax({
 	        url: "/get_tags" ,
@@ -439,63 +441,47 @@
 	        success: function(data) {
 	          this.setState({data: data});
 	        }.bind(this)
-	    }); 
+		});
 	},
 	getInitialState: function() {
+		
 	          return {
-	          	btn: <button className="btn btn-default">Agregar</button>,
-	            data: [],
-	            id:""
+	          	btn:<div>
+	          		<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
+	          		<span className="tamaño"> 
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar</button>
+	          		</span>	
+	          		</div>,
+	          	data: [],
+	          	panel: ""
 	            };	       
-	        }
- };
-
- var ListadoTag = React.createClass({
- 	mixins: [MixingTag],
- 	render: function(){
- 		var classe = "best_in_place"
-		var type= "input"
-		var objeto ="my_tag"
-		var atributo = "name"
- 		var boundClick = this.chanstate;
- 		return (
- 			<span>
- 			{this.state.data.map(function(object){
-						var url= "/delete_tags/"; 
-						var url_bip = "/my_tags/";
-						var id = "best_in_place_my_tag_";
-						var ida = "_name";
-						return(
-							<div key={object.id} className="margen">
+	        },
+			render: function() {   
+				var classe = "best_in_place"
+				var type= "input"
+				var objeto ="my_tag"
+				var atributo = "name"
+				var url= "/delete_tags/"; 
+				var url_bip = "/my_tags/";
+				var id = "best_in_place_my_tag_";
+				var ida = "_name";
+				var eliminar = this.chanstate;
+				var items = this.state.data.map(function(object){
+					return <div key={object.id} className="margen">
 								<span key= {object.id} className="editar">
 									<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 									</span>
 								</span>
-								<button onClick={boundClick} value={object.id} className="btn btn-default">Eliminar
-								</button>
-							</div>
-							);
- 					})}
- 			</span>
+								<button onClick={eliminar} value={object.id} className="btn btn-default">Eliminar
+							  	</button>
+							</div>;
+					});
+		 			return <div>
+		 					{this.state.btn}{items}
 
- 			)
- 	}
- });
- var PanelTags = React.createClass({
-
-    mixins: [MixingTag],
-	render: function() {   
-		var boundClick = this.handleClick;
-	    return (
-	    		<span>
-	    			<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
-	          		<span className="tamaño">
-						<div onClick={boundClick}>{this.state.btn}</div>
-					</span>	
-					<ListadoTag />
-				</span>
-	          );
-		}
+		 				   </div>
+		 		}
+		
 	});
 
 	React.render(
