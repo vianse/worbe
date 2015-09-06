@@ -347,7 +347,7 @@
 					          <% @certificates.each do |f| %>
 					            <div class="margen">
 					              <span class="editar">
-					                <%= best_in_place f, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+					                <%= best_in_place f, :name ,:activator => false,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
 					              </span>
 					              <span class="tamaño">
 						          	<span class="fa fa-times-circle fa-lg"></span>
@@ -467,7 +467,7 @@
 				var items = this.state.data.map(function(object){
 					return <div key={object.id} className="margen">
 								<span key= {object.id} className="editar">
-									<span key= {object.id} class="best_in_place" className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}
+									<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-activator = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 									</span>
 								</span>
 								<button onClick={eliminar} value={object.id} className="btn btn-default">Eliminar
@@ -476,8 +476,7 @@
 					});
 		 			return <div>
 		 					{this.state.btn}{items}
-
-		 				   </div>
+		 				   </div>;
 		 		}
 		
 	});
