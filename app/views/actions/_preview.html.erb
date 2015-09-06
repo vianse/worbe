@@ -430,7 +430,6 @@
 		        {
 		        },
 		        function(data,status){
-
 		        });
 		  this.datosgenerales();
 	},
@@ -444,7 +443,6 @@
 		});
 	},
 	getInitialState: function() {
-		
 	          return {
 	          	btn:<div>
 	          		<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
@@ -469,7 +467,7 @@
 				var items = this.state.data.map(function(object){
 					return <div key={object.id} className="margen">
 								<span key= {object.id} className="editar">
-									<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}
+									<span key= {object.id} class="best_in_place" className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 									</span>
 								</span>
 								<button onClick={eliminar} value={object.id} className="btn btn-default">Eliminar
