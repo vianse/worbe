@@ -1,7 +1,6 @@
 
 <%= estilo_cv %>
 <%= render 'style_new' %>
-
 <script type="text/javascript">
 	 $(document).ready(function() {
   /* Activating Best In Place */
@@ -44,7 +43,7 @@
 			            </li>
 			            <li>
 			            	<span class="fa fa-suitcase fa-lg"></span>
-			            		Mi portafolio <span id="countview"></span> 	
+			            		Mi portafolio <span></span> 	
 			            </li>
 			          </ul>
 			        </div>
@@ -140,8 +139,9 @@
 				        </div>
 				        <% end %>
 				  <!-- * Sección de educación * -->
+
 				        <%= educations_margen_botton %>
-				        	        <h4 class="margen"><%= I18n.t('cv_titulo_educacion') %> </h4>
+						        <h4 class="margen"><%= I18n.t('cv_titulo_educacion') %> </h4>
 						          <span class="tamaño" id="add_estudios">
 						          	<span class="fa fa-plus fa-lg"></span>
 						          	<%= link_to 'Agregar', add_educations_path(), :method => :post,  :class =>"[]" %>
@@ -206,6 +206,9 @@
 					            <% end -%>
 					            <!-- Fin de la sección de edications -->
 				      		<% end %>
+
+
+
 				      			<!-- Empieza sección experiences -->
 				        	<div>
 				        		<h4   class="margen"><%= I18n.t('cv_titulo_experiencia') %></h4>
@@ -347,7 +350,7 @@
 					          <% @certificates.each do |f| %>
 					            <div class="margen">
 					              <span class="editar">
-					                <%= best_in_place f, :name ,:activator => false,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+					                <%= best_in_place f, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
 					              </span>
 					              <span class="tamaño">
 						          	<span class="fa fa-times-circle fa-lg"></span>
@@ -358,13 +361,39 @@
 				          <!-- Finaliza sección certificates -->
 				          <% end %>
 				          <!-- Empieza sección tags -->
-				          <span id="palabras_claves"></span>
-				        
+				        <h4 class="margen"><%= I18n.t('cv_tags') %></h4>
+				       		 <span class="tamaño">
+					          	<span class="fa fa-plus fa-lg"></span>
+				        		<%= link_to 'Agregar', add_tags_path(), :method => :post,  :class =>"[]" %>
+				        	</span>
+				         <% if @cv.blank? %>
+				         <% else %>
+					          <%  @list_tags.each do |a| %>
+					       
+						          <div class="margen">
+									<span class="editar">
+									   <%= best_in_place a, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
+								   </span>
+								   <span class="tamaño">
+								   <span class="fa fa-times-circle fa-lg"></span>
+									 <%= link_to 'Eliminar', delete_tags_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %> 
+								   </span>
+						          </div>
+					     	  <% end -%>
+					     	  
+					       <!--Finaliza sección tags-->
+					     <% end -%>
 		         </li>  
 		      </ul>
     	</div>
 	</div>
 </div>
+
+
+
+
+
+
 <script type="text/jsx">
 
 	var CountView = React.createClass({
@@ -404,88 +433,7 @@
  *  Moduler Tags
  */
 
- var PanelTags = React.createClass({
-	datosgenerales: function() {
-	    $.ajax({
-	        url: "/get_tags" ,
-	        dataType: 'json',
-	        success: function(data) {
-	          this.setState({data: data});
-	        }.bind(this)
-	    }); 
-	},
-	chanstate: function(event){
-		this.setState({id: event.target.value});
-		$.ajax({
-    		url: "/delete_tags/" + event.target.value,
-    		type: 'DELETE',
-    		success: function(result) {
-            this.setState({data: []});
-    	}.bind(this)
-	 });
-	 this.datosgenerales();	
-	},
-	addClick: function(event) {
-		  $.post("/add_tags",
-		        {
-		        },
-		        function(data,status){
-		        });
-		  this.datosgenerales();
-	},
-	componentDidMount: function() {
-	    $.ajax({
-	        url: "/get_tags" ,
-	        dataType: 'json',
-	        success: function(data) {
-	          this.setState({data: data});
-	        }.bind(this)
-		});
-	},
-	getInitialState: function() {
-	          return {
-	          	btn:<div>
-	          		<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
-	          		<span className="tamaño"> 
-	          		<button className="btn btn-default" onClick={this.addClick}>Agregar</button>
-	          		</span>	
-	          		</div>,
-	          	data: [],
-	          	panel: ""
-	            };	       
-	        },
-			render: function() {   
-				var classe = "best_in_place"
-				var type= "input"
-				var objeto ="my_tag"
-				var atributo = "name"
-				var url= "/delete_tags/"; 
-				var url_bip = "/my_tags/";
-				var id = "best_in_place_my_tag_";
-				var ida = "_name";
-				var eliminar = this.chanstate;
-				var items = this.state.data.map(function(object){
-					return <div key={object.id} className="margen">
-								<span key= {object.id} className="editar">
-									<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-activator = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
-									</span>
-								</span>
-								<button onClick={eliminar} value={object.id} className="btn btn-default">Eliminar
-							  	</button>
-							</div>;
-					});
-		 			return <div>
-		 					{this.state.btn}{items}
-		 				   </div>;
-		 		}
-		
-	});
-
-	React.render(
-	     	<PanelTags deletetag="/delete_tags/" />,
-	 document.getElementById('palabras_claves')
-	 );
-	 	
+ 
      
 </script>
 
