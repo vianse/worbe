@@ -362,6 +362,7 @@
 				          <% end %>
 				          <!-- Empieza sección tags -->
 						<span id="palabras_claves"></span>
+						<span class='best_in_place' data-bip-attribute='name' data-bip-object='my_tag' data-bip-original-content='Prueba de Tag' data-bip-type='input' data-bip-url='/my_tags/121' data-bip-value='Prueba de Tag' id='best_in_place_my_tag_121_name'>Prueba de Tag</span>
 		         </li>  
 		      </ul>
     	</div>
@@ -477,8 +478,7 @@
 				var ida = "_name";
 				var eliminar = this.chanstate;
 				var etiqueta = this.state.etiqueta
-				var prueba = <span className='best_in_place' data-bip-attribute='name' data-bip-object='my_tag' data-bip-original-content='Prueba de Tag' data-bip-type='input' data-bip-url='/my_tags/121' data-bip-value='Prueba de Tag' id='best_in_place_my_tag_121_name'>Prueba de Tag</span>
-				return <div className="editar">{prueba}</div>
+
 				var items = this.state.data.map(function(object){
 					return <div key={object.id} className="margen">
 								<div>{etiqueta}</div>
