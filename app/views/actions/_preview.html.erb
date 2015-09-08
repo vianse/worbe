@@ -5,6 +5,7 @@
 	 $(document).ready(function() {
   /* Activating Best In Place */
  	 jQuery(".best_in_place").best_in_place();
+ 	 $(document).on('click','input[type=text]',function(){ this.select(); });
 
 
 	 });
@@ -408,18 +409,8 @@
 /*
  *  Moduler Tags
  */
-
-
- var PanelTags = React.createClass({
-	componentDidMount: function() {
-	    $.ajax({
-	        url: "/get_tags" ,
-	        dataType: 'json',
-	        success: function(data) {
-	          this.setState({data: data});
-	        }.bind(this)
-	    }); 
-	},
+    
+	var PanelTags = React.createClass({
 	datosgenerales: function() {
 	    $.ajax({
 	        url: "/get_tags" ,
@@ -432,66 +423,87 @@
 	chanstate: function(event){
 		this.setState({id: event.target.value});
 		$.ajax({
-    		url: this.props.deletetag + event.target.value,
+    		url: "/delete_tags/" + event.target.value,
     		type: 'DELETE',
     		success: function(result) {
-            
-    	}
+            this.setState({data: []});
+    	}.bind(this)
 	 });
-		this.datosgenerales();
+	 this.datosgenerales();	
 	},
-	getInitialState: function() {
-	          return {
-	          	btn: <button className="btn btn-default">Agregar</button>,
-	            data: [],
-	            id:""
-	            };	       
-	        },
-	handleClick: function(event) {
-		    $.post("/add_tags",
+	addClick: function(event) {
+		  $.post("/add_tags",
 		        {
 		        },
 		        function(data,status){
-		            
 		        });
-		    	this.datosgenerales();
-		  	},
+		  this.datosgenerales();
+	},
+	componentDidMount: function() {
+	    $.ajax({
+	        url: "/get_tags" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+		});
+	},
+	alert: function(event) {
+		this.setState({etiqueta: "hola"});
+		$( ".best_in_place" ).attr({
+  			className: "best_in_place"
+		});
+	},
+	getInitialState: function() {
+	          return {
+	          	etiqueta: "prueba",
+	          	btn:<div>
+	          		<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
+	          		<span className="tamaño"> 
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar</button>
+	          		</span>	
+	          		</div>,
+	          	data: [],
+	          	panel: ""
+	            };	       
+	        },
 	render: function() {   
-		var boundClick = this.chanstate;
-	    return (
-	    		<div >
-	    			<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
-	          		<span className="tamaño">
-						<div onClick={this.handleClick}>{this.state.btn}</div>
-					</span>	
-					{this.state.data.map(function(object, i){
-						var url= "/delete_tags/"
-						var url_bip = "/my_tags/"
-						var id = "best_in_place_my_tag_"
-						var ida = "_name"
-						return(
-							<div key= {i} className="margen">
-							<span key= {object.id} className="editar">
-								<span key= {object.id} className="best_in_place" data-bip-attribute="name" data-bip-object="my_tag" data-bip-original-content={object.name} data-bip-type="input" data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}</span>
-								
+				var classe = "best_in_place"
+				var type= "input"
+				var objeto ="my_tag"
+				var atributo = "name"
+				var url= "/delete_tags/"; 
+				var url_bip = "/my_tags/";
+				var id = "best_in_place_my_tag_";
+				var ida = "_name";
+				var eliminar = this.chanstate;
+				var etiqueta = this.state.etiqueta
+				var boton_agregar = this.state.btn
+
+				var items = this.state.data.map(function(object){
+
+					return <div className="margen">
+					<span key= {object.id} className="best_in_place editar" data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 							</span>
-								   <button onClick={boundClick} value={object.id} className="btn btn-default">Eliminar</button>
+							<button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
+							</button>
 							</div>
 
+					});
 
-							)
- 					})}
-				</div>
-	          );
-		}
+		 			return <span>{boton_agregar}{items}</span>
+		 			
+		 					
+		 		}
+		 		
+		
 	});
-
+	
 	React.render(
 	     	<PanelTags deletetag="/delete_tags/" />,
 	 document.getElementById('palabras_claves')
 	 );
-	 	
-     
+
 </script>
 
 
