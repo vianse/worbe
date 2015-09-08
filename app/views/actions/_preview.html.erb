@@ -364,6 +364,8 @@
 				          <!-- Empieza sección tags -->
 						<span id="palabras_claves">
 						</span>
+						<span id="content">
+						</span>
 
 						<span class="best_in_place" data-bip-attribute="name" data-bip-object="my_tag" data-bip-original-content="Ingresa el nombre de tu tag de interes" data-bip-type="input" data-bip-url="/my_tags/96" data-bip-ok-button="false" data-bip-value="Ingresa el nombre de tu tag de interes" id="best_in_place_my_tag_96_name" data-reactid=".1.1:$96.$96.$96">s</span>
 		         </li>  
@@ -411,7 +413,26 @@
  *  Moduler Tags
  */
     
-		var PanelTags = React.createClass({
+// tutorial1-raw.js
+var CommentBox = React.createClass({displayName: 'CommentBox',
+  render: function() {
+    return (
+      React.createElement('div', {className: "editar best_in_place"},
+        "Hello, world! I am a CommentBox."
+      )
+    );
+  }
+});
+React.render(
+  React.createElement(CommentBox, null),
+  document.getElementById('content')
+);
+
+/*
+ * TAGS
+ */	
+
+	var PanelTags = React.createClass({
 	datosgenerales: function() {
 	    $.ajax({
 	        url: "/get_tags" ,
@@ -468,7 +489,7 @@
 	          	panel: ""
 	            };	       
 	        },
-			render: function() {   
+	render: function() {   
 				var classe = "best_in_place"
 				var type= "input"
 				var objeto ="my_tag"
@@ -491,16 +512,20 @@
 							</button>;
 
 					});
+					
 		 			return <span>{boton_agregar}{items}{boton}</span>
+		 			
 		 					
 		 		}
+		 		
 		
 	});
-
+	
 	React.render(
 	     	<PanelTags deletetag="/delete_tags/" />,
 	 document.getElementById('palabras_claves')
 	 );
+
 </script>
 
 
