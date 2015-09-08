@@ -477,9 +477,12 @@
 				var ida = "_name";
 				var eliminar = this.chanstate;
 				var etiqueta = this.state.etiqueta
+				var prueba = <span data-reactid='.1.1:$121.$121'><span className='best_in_place' data-bip-attribute='name' data-bip-object='my_tag' data-bip-original-content='Prueba de Tag' data-bip-type='input' data-bip-url='/my_tags/121' data-bip-ok-button='false' data-bip-value='Prueba de Tag' id='best_in_place_my_tag_121_name' data-reactid='.1.1:$121.$121.$121'>Prueba de Tag</span></span>
+				return <div className="editar">{prueba}</div>
 				var items = this.state.data.map(function(object){
 					return <div key={object.id} className="margen">
 								<div>{etiqueta}</div>
+
 								<span key= {object.id}>
 									<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-ok-button = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 									</span>
@@ -488,7 +491,7 @@
 							  	</button>
 							</div>;
 					});
-		 			return <div className="editar" onClick={this.alert}>
+		 			return <div key={items.id} className="editar" onClick={this.alert}>
 		 					{this.state.btn}{items}
 		 				   </div>;
 		 		}
