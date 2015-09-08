@@ -5,9 +5,7 @@
 	 $(document).ready(function() {
   /* Activating Best In Place */
  	 jQuery(".best_in_place").best_in_place();
- 	 $( ".best_in_place" ).attr({
-  			class: "best_in_place"
-		});
+
 
 	 });
 </script>
@@ -459,7 +457,7 @@
 	alert: function(event) {
 		this.setState({etiqueta: "hola"});
 		$( ".best_in_place" ).attr({
-  			class: "best_in_place"
+  			className: "best_in_place"
 		});
 	},
 	getInitialState: function() {
@@ -488,8 +486,8 @@
 				var etiqueta = this.state.etiqueta
 
 				var items = this.state.data.map(function(object){
-					return <span key= {object.id} className="best_in_place" data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-ok-button = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
-									</span>
+					return <span key= {object.id} className="best_in_place editar" data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-ok-button = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
+							</span>
 					return <button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
 							</button>;		
 							
