@@ -413,25 +413,6 @@
  *  Moduler Tags
  */
     
-// tutorial1-raw.js
-var CommentBox = React.createClass({displayName: 'CommentBox',
-  render: function() {
-    return (
-      React.createElement('div', {className: "editar best_in_place"},
-        "Hello, world! I am a CommentBox."
-      )
-    );
-  }
-});
-React.render(
-  React.createElement(CommentBox, null),
-  document.getElementById('content')
-);
-
-/*
- * TAGS
- */	
-
 	var PanelTags = React.createClass({
 	datosgenerales: function() {
 	    $.ajax({
@@ -501,6 +482,7 @@ React.render(
 				var eliminar = this.chanstate;
 				var etiqueta = this.state.etiqueta
 				var boton_agregar = this.state.btn
+
 				var items = this.state.data.map(function(object){
 
 					return <span key= {object.id} className="best_in_place editar" data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}

@@ -364,6 +364,7 @@ module ActionsHelper
 						color:black;
 						padding: 5px;
 						display:inline-block;
+						cursor: pointer;
 					}
 					.editar:hover{
 						border-style: dashed;
