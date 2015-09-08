@@ -450,6 +450,9 @@
 	        }.bind(this)
 		});
 	},
+	alert: function(event) {
+		alert("hola");
+	},
 	getInitialState: function() {
 	          return {
 	          	btn:<div>
@@ -474,7 +477,7 @@
 				var eliminar = this.chanstate;
 				var items = this.state.data.map(function(object){
 					return <div key={object.id} className="margen">
-								<span key= {object.id} className="editar">
+								<span key= {object.id} className="editar" onClick={this.alert}>
 									<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-ok-button = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 									</span>
 								</span>
