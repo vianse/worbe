@@ -361,7 +361,7 @@
 				          <!-- Finaliza sección certificates -->
 				          <% end %>
 				          <!-- Empieza sección tags -->
-						<div id="palabras_claves"></div>
+						<span id="palabras_claves"></span>
 		         </li>  
 		      </ul>
     	</div>
@@ -476,8 +476,8 @@
 				var ida = "_name";
 				var eliminar = this.chanstate;
 				var items = this.state.data.map(function(object){
-					return <div key={object.id} className="margen" onClick={this.alert}>
-								<span key= {object.id} className="editar">
+					return <div key={object.id} className="margen">
+								<span key= {object.id}>
 									<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-ok-button = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 									</span>
 								</span>
@@ -485,7 +485,7 @@
 							  	</button>
 							</div>;
 					});
-		 			return <div>
+		 			return <div className="editar" onClick={this.alert}>
 		 					{this.state.btn}{items}
 		 				   </div>;
 		 		}
