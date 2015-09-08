@@ -361,7 +361,9 @@
 				          <!-- Finaliza sección certificates -->
 				          <% end %>
 				          <!-- Empieza sección tags -->
-						<span id="palabras_claves"></span>
+						<span id="palabras_claves">
+
+						</span>
 						<span class="best_in_place" data-bip-attribute="name" data-bip-object="my_tag" data-bip-original-content="Ingresa el nombre de tu tag de interes" data-bip-type="input" data-bip-url="/my_tags/96" data-bip-ok-button="false" data-bip-value="Ingresa el nombre de tu tag de interes" id="best_in_place_my_tag_96_name" data-reactid=".1.1:$96.$96.$96">Ingresa el nombre de tu tag de interes</span>
 		         </li>  
 		      </ul>
@@ -480,12 +482,11 @@
 				var etiqueta = this.state.etiqueta
 
 				var items = this.state.data.map(function(object){
-					return <div key={object.id}>
-									<span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-ok-button = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
+					return <span key= {object.id} className={classe} data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-ok-button = "false" data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 									</span>
-								<button onClick={eliminar} value={object.id} className="btn btn-default">Eliminar
-							  	</button>
-							</div>;
+					return <button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
+							</button>;		
+							
 					});
 		 			return <div key={items.id} onClick={this.alert}>
 		 					{this.state.btn}{items}
