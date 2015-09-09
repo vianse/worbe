@@ -71,7 +71,9 @@ end
    post 'add_tags' => 'actions#crear_tags', as: :add_tags
   delete 'delete_tags/:id' => 'actions#elimina_tags', as: :delete_tags
   post 'add_favorito' => 'home_empresa#add_favoritos', as: :add_favoritos
-   get  'get_tags' => 'actions#get_tags', as: :get_tag
+  get  'get_tags' => 'actions#get_tags', as: :get_tag
+  get  'get_certificates' => 'actions#get_certificaciones', as: :get_certificate
+  get  'get_idiomas' => 'actions#get_idiomas', as: :get_idioma
 
 
    get 'vacantes_sugeridas' => 'welcome#index', as: :welcome

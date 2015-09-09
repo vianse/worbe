@@ -14,9 +14,9 @@ class ActionsController < ApplicationController
       } 
   end
   def send_mail
-    @to = params[:email]
-    @guid_publico  = Dg.where(:user_id => current_user.id).first
-    @server        = "http://" + request.host_with_port
+  @to = params[:email]
+  @guid_publico  = Dg.where(:user_id => current_user.id).first
+  @server        = "http://" + request.host_with_port
     # AccionesMailer.accion_mailer(@server + "/worbe?guid="+ @guid_publico.guid,@guid_publico.name,@to).deliver
     # redirect_to "/dashboard"
 
@@ -137,6 +137,14 @@ class ActionsController < ApplicationController
     @tags = MyTag.where(:user_id => current_user.id)
     render json: @tags
   end
+  def get_certificaciones
+    @certificate= Certificate.where(:user_id => current_user.id)
+    render json: @certificate
+  end
+  def get_idiomas
+    @idiomas= Language.where(:user_id => current_user.id)
+    render json: @idiomas
+  end
    def crear_experiences
     @experiences = Experience.create(
       :datei => "Ingresa el año inicial",
@@ -205,10 +213,9 @@ class ActionsController < ApplicationController
     if @certificates.present?
       @certificates.destroy
     end
-    redirect_to '/dashboard'
+    #redirect_to '/dashboard'
   end
   def crear_tags
-
     @tags = MyTag.create(
       :name => "Ingresa el nombre de tu tag de interes",
       :user_id => current_user.id       

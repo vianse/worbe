@@ -291,78 +291,11 @@
 					        <!-- finaliza sección courses -->
 					        <% end %>
 				        <!-- Empieza sección idiomas -->
-				        <h4 class="margen"><%= I18n.t('cv_titulo_idiomas') %></h4>
-				          <span class="tamaño">
-					          	<span class="fa fa-plus fa-lg"></span>
-				            <%= link_to 'Agregar', add_idiomas_path(), :method => :post,  :class =>"[]" %>
-				          </span>
-				         <% if @cv.blank? %>
-				          <% else %>
-						        <% @languages.each do |d| %>
-						          <div class="margen">
-						            <div>
-						              <strong>
-						                <%= I18n.t('cv_nombre_idioma') %>
-						              </strong>
-						              <span class="editar">
-						                <%= best_in_place d, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
-						              </span>
-						            </div>
-						            <div>
-						               <strong>
-						                <%= I18n.t('cv_idioma_lectura') %>
-						              </strong>
-						              
-						              <span class="editar">
-						                <%= best_in_place d, :read ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
-						              </span>
-						              </div>
-						              <div>
-						                <strong>
-						                <%= I18n.t('cv_idioma_escritura') %>
-						              </strong>
-						                <span class="editar">
-						                  <%= best_in_place d, :write ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
-						                </span>
-						              </div>
-						              <div>
-						                <strong>
-						                  <%= I18n.t('cv_idioma_hablado')%>
-						                </strong>
-						                <span class="editar">
-						                  <%= best_in_place d, :spoken ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
-						                </span>
-						              </div>
-						                 <span class="tamaño">
-							          	<span class="fa fa-times-circle fa-lg"></span>
-						            	<%= link_to 'Eliminar', delete_idiomas_path(:id => d.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
-						            	</span>
-						          </div>
-						        <% end -%>
-				        <!-- Finaliza sección idiomas -->
-				        	<% end %>
-				        <!-- Empieza sección certificates-->
-				          <h4 class="margen"><%= I18n.t('cv_titulo_certificados') %></h4>
-				          	 <span class="tamaño">
-					          	<span class="fa fa-plus fa-lg"></span>
-				          		<%= link_to 'Agregar', add_certificates_path(),:remote => true ,:method => :post,  :class =>"[]" %>
-				          	</span>
-				         <% if @cv.blank? %>
-				          <% else %>
-					          <% @certificates.each do |f| %>
-					            <div class="margen">
-					              <span class="editar">
-					                <%= best_in_place f, :name ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
-					              </span>
-					              <span class="tamaño">
-						          	<span class="fa fa-times-circle fa-lg"></span>
-					            		<%= link_to 'Eliminar', delete_certificates_path(:id => f.id),:remote => true, method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
-					            	</span>
-					            </div>
-				          <% end -%> 
-				          <!-- Finaliza sección certificates -->
-				          <% end %>
-				          <!-- Empieza sección tags -->
+				        <span id="idiomas">
+						</span>
+						<!-- Finaliza sección idiomas -->
+				         <span id="certificates">
+						</span>
 						<span id="palabras_claves">
 						</span>
 		         </li>  
@@ -504,6 +437,216 @@
 	 document.getElementById('palabras_claves')
 	 );
 
+/*
+ *   Modulo de Certificaciones
+ */
+
+  var PanelCertificaciones = React.createClass({
+	datos: function() {
+	    $.ajax({
+	        url: "/get_certificates" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+	    }); 
+	},
+	chanstate: function(event){
+		this.setState({id: event.target.value});
+		$.ajax({
+    		url: "/delete_certificates/" + event.target.value,
+    		type: 'DELETE',
+    		success: function(result) {
+            this.setState({data: []});
+    	}.bind(this)
+	 });
+	 this.datos();	
+	},
+	addClick: function(event) {
+		  $.post("/add_certificates",
+		        {
+		        },
+		        function(data,status){
+		        });
+		  this.datos();
+	},
+	componentDidMount: function() {
+	    $.ajax({
+	        url: "/get_certificates" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+		});
+	},
+	getInitialState: function() {
+	          return {
+	          	btn:<div>
+	          		<h4 className="margen"><%= I18n.t('cv_titulo_certificados') %></h4>
+	          		<span className="tamaño"> 
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar</button>
+	          		</span>	
+	          		</div>,
+	          	data: [],
+	          	panel: ""
+	            };	       
+	        },
+	render: function() {   
+				var classe = "best_in_place"
+				var type= "input"
+				var objeto ="certificate"
+				var atributo = "name"
+				var url= "/delete_tags/"; 
+				var url_bip = "/certificates/";
+				var id = "best_in_place_certificate_";
+				var ida = "_name"; 
+				var eliminar = this.chanstate;
+				var etiqueta = this.state.etiqueta
+				var boton_agregar = this.state.btn
+
+				var items = this.state.data.map(function(object){
+
+					return <div className="margen">
+								<span className="editar">
+					                <span className="best_in_place" data-bip-attribute="name" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.name} id={id + object.id + ida}>{object.name}</span>
+					              </span>
+					              <button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
+								 </button>
+							</div>
+
+					});
+
+		 			return <span>{boton_agregar}{items}</span>
+		 					
+		 		}
+		 		
+		
+	});
+	
+	React.render(
+	     	<PanelCertificaciones />,
+	document.getElementById('certificates')
+	 );
+/*
+ *   Modulo de Idiomas
+ */
+
+  var PanelIdiomas = React.createClass({
+	datos: function() {
+	    $.ajax({
+	        url: "/get_idiomas" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+	    }); 
+	},
+	chanstate: function(event){
+		this.setState({id: event.target.value});
+		$.ajax({
+    		url: "/delete_idiomas/" + event.target.value,
+    		type: 'DELETE',
+    		success: function(result) {
+            this.setState({data: []});
+    	}.bind(this)
+	 });
+	 this.datos();	
+	},
+	addClick: function(event) {
+		  $.post("/add_idiomas",
+		        {
+		        },
+		        function(data,status){
+		        });
+		  this.datos();
+	},
+	componentDidMount: function() {
+	    $.ajax({
+	        url: "/get_idiomas" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+		});
+	},
+	getInitialState: function() {
+	          return {
+	          	btn:<div>
+	          		<h4 className="margen"><%= I18n.t('cv_titulo_idiomas') %></h4>
+	          		<span className="tamaño"> 
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar</button>
+	          		</span>	
+	          		</div>,
+	          	data: [],
+	          	panel: ""
+	            };	       
+	        },
+	render: function() {   
+				var classe = "best_in_place"
+				var type= "input"
+				var objeto ="language"
+				var atributo = "name"
+				var url= "/delete_idiomas/"; 
+				var url_bip = "/languages/";
+				var id = "best_in_place_language_";
+				var ida = "_name"; 
+				var eliminar = this.chanstate;
+				var etiqueta = this.state.etiqueta
+				var boton_agregar = this.state.btn
+
+				var items = this.state.data.map(function(object){
+
+					return <div className="margen">
+								<div>
+									<strong>
+							            <%= I18n.t('cv_nombre_idioma') %>
+							        </strong>
+									<span className="editar">
+						                <span className="best_in_place" data-bip-attribute="name" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.name} id={id + object.id + ida}>{object.name}</span>
+						            </span>
+						             <button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
+								 	</button>
+					             </div>
+					             <div>
+					              <strong>
+						            <%= I18n.t('cv_idioma_lectura') %>
+						          </strong>
+					              <span className="editar">
+					                <span className="best_in_place" data-bip-attribute="read" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.read} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.read} id={id + object.id + ida}>{object.read}</span>
+					              </span>
+					              </div>
+					              <div>
+						             <strong>
+							            <%= I18n.t('cv_idioma_escritura') %>
+							         </strong>
+						              <span className="editar">
+						                <span className="best_in_place" data-bip-attribute="write" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.write} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.write} id={id + object.id + ida}>{object.write}</span>
+						              </span>
+						            </div>
+						           <div>
+						              <strong>
+							            <%= I18n.t('cv_idioma_hablado') %>
+							          </strong>
+						              <span className="editar">
+						                <span className="best_in_place" data-bip-attribute="spoken" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.spoken} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.spoken} id={id + object.id + ida}>{object.spoken}</span>
+						              </span>
+					              	</div>
+					             
+							</div>
+
+					});
+
+		 			return <span>{boton_agregar}{items}</span>
+		 					
+		 		}
+		 		
+		
+	});
+	
+	React.render(
+	     	<PanelIdiomas />,
+	document.getElementById('idiomas')
+	 );
 </script>
 
 
