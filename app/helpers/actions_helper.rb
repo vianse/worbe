@@ -379,7 +379,7 @@ module ActionsHelper
 						color:black;
 						padding: 5px;
 						display:inline-block;
-						
+						cursor: pointer;
 					    white-space: pre-wrap;
 					}
 					.editar_multilinea:hover{

@@ -74,7 +74,8 @@ end
   get  'get_tags' => 'actions#get_tags', as: :get_tag
   get  'get_certificates' => 'actions#get_certificaciones', as: :get_certificate
   get  'get_idiomas' => 'actions#get_idiomas', as: :get_idioma
-
+  get  'get_cursos' => 'actions#get_cursos', as: :get_curso
+  get  'get_experiencias' => 'actions#get_experiencias', as: :get_experiencia
 
    get 'vacantes_sugeridas' => 'welcome#index', as: :welcome
    

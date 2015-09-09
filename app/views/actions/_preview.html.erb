@@ -62,6 +62,8 @@
 	                    <% else %>
 				      	<li class="qg b aml collapse" id="collapseExample">
 				      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>" class="centrar" id="url"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
+				      	<span id="send" >
+						</span>
 
 				      	<%= form_tag(enviar_email_path(:email => :email) ,:method => 'get') do %>
 				      	<div class="input-group">
@@ -141,155 +143,19 @@
 				        </div>
 				        <% end %>
 				  <!-- * Sección de educación * -->
-
+				  		
 				        <%= educations_margen_botton %>
-						        <h4 class="margen"><%= I18n.t('cv_titulo_educacion') %> </h4>
-						          <span class="tamaño" id="add_estudios">
-						          	<span class="fa fa-plus fa-lg"></span>
-						          	<%= link_to 'Agregar', add_educations_path(), :method => :post,  :class =>"[]" %>
-						          </span>
-						          <% if @cv.blank? %>
-						          <% else %>
-						          <!-- Empieza sección educations -->
-							      <% @educations.each do |a| %>
-							            <div class="margen" id="estudios">
-							              <div>
-					                          <strong>
-					                            <labe id="lbl-nivel" /><%= I18n.t('cv_nivel') %>
-					                          </strong>
-					                          <span class="editar">
-					                            <%= best_in_place a, :level, :as => :select, :collection => [["Carreta técnica", "Carreta técnica"],["Nivel Superior", "Nivel Superior"], ["Especialidad", "Especialidad"], ["Maestria", "Maestria"], ["Doctorado", "Doctorado"]], :prompt => true, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' }  %>
-					                          </span>
-		                        		  </div>
-				                        <div>
-					                          <strong>
-					                            <%= I18n.t('form_titulo_ed') %>
-					                          </strong> 
-					                          <span class="editar">
-					                            <%= best_in_place a, :title, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-					                          </span>
-				                        </div>
-		                        <div>
-		                          <strong>
-		                            <%= I18n.t('cv_escuela')%>
-		                          </strong>
-		                          <span class="editar"> 
-		                            <%= best_in_place a, :school, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-		                          </span>
-		                        </div>
-		                        <div>
-		                        <strong>
-		                          <%= I18n.t('cv_año_inicial')%>
-		                        </strong> 
-		                        <span class="editar">
-		                          <%= best_in_place a, :yearInitial, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-		                        </span>
-		                          <strong>
-		                            <%= I18n.t('cv_año_final')%>
-		                          </strong>
-		                          <span class="editar">
-		                            <%= best_in_place a, :yearFinal, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-		                        </span>
-		                        </div>
-		                        <div>
-		                          <strong>
-		                            <%= I18n.t('cv_documento_recibido')%>
-		                          </strong> 
-		                          <span class="editar">
-		                            <%= best_in_place a, :DocumentReceived, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-		                          </span>
-		                        </div>
-		                         <span class="tamaño">
-		                         <span class="fa fa-times-circle fa-lg"></span>
-		                           <%= link_to 'Eliminar', delete_education_path(:id => a.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-		                       </span>
-		                        <hr>
-					            </div>
-					            <% end -%>
-					            <!-- Fin de la sección de edications -->
-				      		<% end %>
-
-
 
 				      			<!-- Empieza sección experiences -->
-				        	<div>
-				        		<h4   class="margen"><%= I18n.t('cv_titulo_experiencia') %></h4>
-					            <span class="tamaño">
-					          	<span class="fa fa-plus fa-lg"></span>
-					            <%= link_to 'Agregar', add_experiences_path(), :method => :post,  :class =>"[]" %>
-					          	</span>
-				      		</div>
-				      	 <% if @cv.blank? %>
-				          <% else %>
-						        <% @experiences.each do |g| %>
-						          <div class="margen">
-						            <div>
-						              <strong>
-						                <span class="editar"> <%= best_in_place g, :datei, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %></span> -- <span class="editar"><%= best_in_place g, :datef, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %></span>
-						              </strong>
-						            </div>
-						            <div>
-						              <strong>
-						                <%= I18n.t('cv_empresa') %>
-						                <span class="editar">
-						                  <%= best_in_place g, :business, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-						                </span>
-						              </strong>
-						            </div>
-						            <div>
-						              <strong>
-						                Puesto: <span class="editar">
-						                  <%= best_in_place g, :Puesto, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-						                </span>
-						              </strong>
-						            </div>
-						            <div>
-						              <strong>
-						                Actividades desempeñadas:
-						              </strong>
-						            </div>
-						            <div class="editar_multilinea">
-						              <%= best_in_place g, :description,:as => :textarea,:display_with => :simple_format, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' }  %>
-						            </div>
-						            <span class="tamaño">
-						          		 <span class="fa fa-times-circle fa-lg"></span>
-						            <%= link_to 'Eliminar', delete_experiences_path(:id => g.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
-						        	</span>
-						          </div>
-						        <% end -%>
-						        <!-- finaliza sección de experiences-->
-						      <% end %>
-						    <!-- Empieza sección courses-->
-				        	<h4 class="margen"><%= I18n.t('cv_titulo_cursos') %></h4>
-				        	<span class="tamaño">
-					          	<span class="fa fa-plus fa-lg"></span>
-				            <%= link_to 'Agregar', add_courses_path(), :method => :post,  :class =>"[]" %>
-				          </span>
-				         <% if @cv.blank? %>
-				         <% else %>
-					        <% @courses.each do |b| %>
-					          <div class="margen">
-					            <div class="curso_name">* 
-					              <span class="editar">
-					                <%= best_in_place b, :name, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' }  %>
-					              </span> 
-					            </div>
-					            <div>
-					              <strong>
-					                <%= I18n.t('cv_descripcion_curso')  %>
-					              </strong>
-					              <span class="editar">
-					              <%= best_in_place b, :description ,:html_attrs => { :style => 'width:500px; height:auto; border-style:none;'} %>
-					              </span>
-					            </div>
-					            <span class="tamaño">
-						          	<span class="fa fa-times-circle fa-lg"></span>
-					            	<%= link_to 'Eliminar', delete_courses_path(:id => b.id), method: :delete, data: { confirm: 'Are you sure?' },  :class =>"[]" %>
-					            	</span>
-					          </div>  
-					        <% end -%>
-					        <!-- finaliza sección courses -->
-					        <% end %>
+
+				      	<span id="estudios">
+						</span>
+						 <span id="experiencia">
+						</span>
+						<!-- Empieza sección coursos-->
+				        <span id="cursos">
+						</span>
+						<!-- Finaliza sección cursos -->
 				        <!-- Empieza sección idiomas -->
 				        <span id="idiomas">
 						</span>
@@ -393,7 +259,7 @@
 	          	btn:<div>
 	          		<h4 className="margen"><%= I18n.t('cv_tags') %></h4>
 	          		<span className="tamaño"> 
-	          		<button className="btn btn-default" onClick={this.addClick}>Agregar</button>
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar +</button>
 	          		</span>	
 	          		</div>,
 	          	data: [],
@@ -436,7 +302,6 @@
 	     	<PanelTags deletetag="/delete_tags/" />,
 	 document.getElementById('palabras_claves')
 	 );
-
 /*
  *   Modulo de Certificaciones
  */
@@ -484,7 +349,7 @@
 	          	btn:<div>
 	          		<h4 className="margen"><%= I18n.t('cv_titulo_certificados') %></h4>
 	          		<span className="tamaño"> 
-	          		<button className="btn btn-default" onClick={this.addClick}>Agregar</button>
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar +</button>
 	          		</span>	
 	          		</div>,
 	          	data: [],
@@ -574,7 +439,7 @@
 	          	btn:<div>
 	          		<h4 className="margen"><%= I18n.t('cv_titulo_idiomas') %></h4>
 	          		<span className="tamaño"> 
-	          		<button className="btn btn-default" onClick={this.addClick}>Agregar</button>
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar +</button>
 	          		</span>	
 	          		</div>,
 	          	data: [],
@@ -646,6 +511,418 @@
 	React.render(
 	     	<PanelIdiomas />,
 	document.getElementById('idiomas')
+	 );
+/*
+ *   Modulo de Idiomas
+ */
+
+  var PanelCursos = React.createClass({
+	datos: function() {
+	    $.ajax({
+	        url: "/get_cursos" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+	    }); 
+	},
+	chanstate: function(event){
+		this.setState({id: event.target.value});
+		$.ajax({
+    		url: "/delete_courses/" + event.target.value,
+    		type: 'DELETE',
+    		success: function(result) {
+            this.setState({data: []});
+    	}.bind(this)
+	 });
+	 this.datos();	
+	},
+	addClick: function(event) {
+		  $.post("/add_courses",
+		        {
+		        },
+		        function(data,status){
+		        });
+		  this.datos();
+	},
+	componentDidMount: function() {
+	    $.ajax({
+	        url: "/get_cursos" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+		});
+	},
+	getInitialState: function() {
+	          return {
+	          	btn:<div>
+	          		<h4 className="margen"><%= I18n.t('cv_titulo_cursos') %></h4>
+	          		<span className="tamaño"> 
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar +</button>
+	          		</span>	
+	          		</div>,
+	          	data: [],
+	          	panel: ""
+	            };	       
+	        },
+	render: function() {   
+				var classe = "best_in_place"
+				var type= "input"
+				var objeto ="course"
+				var atributo = "name"
+				var url= "/delete_courses/"; 
+				var url_bip = "/courses/";
+				var id = "best_in_place_course_";
+				var ida = "_name"; 
+				var eliminar = this.chanstate;
+				var etiqueta = this.state.etiqueta
+				var boton_agregar = this.state.btn
+
+				var items = this.state.data.map(function(object){
+
+					return <div className="margen">
+								<div>
+								 <strong>
+						           Nombre del Curso: 
+						          </strong>
+									<span className="editar">
+						                <span className="best_in_place" data-bip-attribute="name" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.name} id={id + object.id + ida}>{object.name}</span>
+						            </span>
+						             <button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
+								 	</button>
+					             </div>
+					             <div>
+					              <strong>
+						           <%= I18n.t('cv_descripcion_curso')  %>
+						          </strong>
+					              <span className="editar">
+					                <span className="best_in_place" data-bip-attribute="description" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.description} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.description} id={id + object.id + ida}>{object.description}</span>
+					              </span>
+					              </div>
+							</div>
+
+					});
+
+		 			return <span>{boton_agregar}{items}</span>
+		 					
+		 		}
+		 		
+		
+	});
+	
+	React.render(
+	     	<PanelCursos />,
+	document.getElementById('cursos')
+	 );
+/*
+ *   Modulo de Experiencias
+ */
+
+  var PanelExperiencia = React.createClass({
+	datos: function() {
+	    $.ajax({
+	        url: "/get_experiencias" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+	    }); 
+	},
+	chanstate: function(event){
+		this.setState({id: event.target.value});
+		$.ajax({
+    		url: "/delete_experience/" + event.target.value,
+    		type: 'DELETE',
+    		success: function(result) {
+            this.setState({data: []});
+    	}.bind(this)
+	 });
+	 this.datos();	
+	},
+	addClick: function(event) {
+		  $.post("/add_experiences",
+		        {
+		        },
+		        function(data,status){
+		        });
+		  this.datos();
+	},
+	componentDidMount: function() {
+	    $.ajax({
+	        url: "/get_experiencias" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+		});
+	},
+	getInitialState: function() {
+	          return {
+	          	btn:<div>
+	          		<h4 className="margen"><%= I18n.t('cv_titulo_experiencia') %></h4>
+	          		<span className="tamaño"> 
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar +</button>
+	          		</span>	
+	          		</div>,
+	          	data: [],
+	          	panel: ""
+	            };	       
+	        },
+	render: function() {   
+				var classe = "best_in_place"
+				var type= "input"
+				var objeto ="experience"
+				var atributo = "name"
+				var url= "/delete_experience/"; 
+				var url_bip = "/experiences/";
+				var id = "best_in_place_experience_";
+				var ida1 = "_datei"; 
+				var ida2 = "_datef";
+				var ida3 = "_business";
+				var ida4 = "_description";
+				var ida5 = "_Puesto";
+				var eliminar = this.chanstate;
+				var etiqueta = this.state.etiqueta
+				var boton_agregar = this.state.btn
+
+				var items = this.state.data.map(function(object){
+
+					return <div className="margen">
+								<div>
+						
+									<span className="editar">
+						                <span className="best_in_place" data-bip-attribute="datei" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.datei} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.datei} id={id + object.id + ida1}>{object.datei}</span>
+						            </span><span> -- </span> 
+						            <span className="editar">
+						                <span className="best_in_place" data-bip-attribute="datef" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.datef} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.datef} id={id + object.id + ida2}>{object.datef}</span>
+						            </span>
+						             <button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
+								 	</button>
+					             </div>
+					             <div>
+					              <strong>
+						            <%= I18n.t('cv_empresa') %>
+						          
+					              <span className="editar">
+					                <span className="best_in_place" data-bip-attribute="business" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.business} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.business} id={id + object.id + ida3}>{object.business}</span>
+					              </span>
+					              </strong>
+					              </div>
+					              <div>
+						             <strong>
+							            Puesto: 
+						              <span className="editar">
+						                <span className="best_in_place" data-bip-attribute="Puesto" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.Puesto} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.Puesto} id={id + object.id + ida5}>{object.Puesto}</span>
+						              </span>
+						              </strong>
+						            </div>
+						           <div>
+						              <strong>
+							            Actividades desempeñadas: <br />
+							          </strong>
+						              <span className="editar_multilinea">
+						                <span className="best_in_place" data-bip-attribute="description" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.description} data-bip-type="textarea" data-bip-url={url_bip + object.id} data-bip-value={object.description} id={id + object.id + ida4}>{object.description}</span>
+						              </span>
+					              	</div>
+					             	<hr />
+							</div>
+
+					});
+
+		 			return <span>{boton_agregar}{items}</span>
+		 					
+		 		}
+		 		
+		
+	});
+	
+	React.render(
+	     	<PanelExperiencia />,
+	document.getElementById('experiencia')
+	 );
+/*
+ *   Modulo de Estudios
+ */
+
+  var PanelEstudios = React.createClass({
+	datos: function() {
+	    $.ajax({
+	        url: "/get_educations" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+	    }); 
+	},
+	chanstate: function(event){
+		this.setState({id: event.target.value});
+		$.ajax({
+    		url: "/delete_education/" + event.target.value,
+    		type: 'DELETE',
+    		success: function(result) {
+            this.setState({data: []});
+    	}.bind(this)
+	 });
+	 this.datos();	
+	},
+	addClick: function(event) {
+		  $.post("/add_educations",
+		        {
+		        },
+		        function(data,status){
+		        });
+		  this.datos();
+	},
+	componentDidMount: function() {
+	    $.ajax({
+	        url: "/get_educations" ,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+		});
+	},
+	getInitialState: function() {
+	          return {
+	          	btn:<div>
+	          		<h4 className="margen"><%= I18n.t('cv_titulo_educacion') %></h4>
+	          		<span className="tamaño"> 
+	          		<button className="btn btn-default" onClick={this.addClick}>Agregar +</button>
+	          		</span>	
+	          		</div>,
+	          	data: [],
+	          	panel: ""
+	            };	       
+	        },
+	render: function() {   
+				var classe = "best_in_place"
+				var type= "input"
+				var objeto ="education"
+				var atributo = "name"
+				var url= "/delete_education/"; 
+				var url_bip = "/educations/";
+				var id = "best_in_place_education_";
+				var ida = "_level"; 
+				var ida1 = "_title"; 
+				var ida2 = "_school"; 
+				var ida3 = "_yearInitial"; 
+				var ida4 = "_yearFinal"; 
+				var ida5 = "_DocumentReceived";
+				var eliminar = this.chanstate;
+				var etiqueta = this.state.etiqueta
+				var boton_agregar = this.state.btn
+
+				var items = this.state.data.map(function(object){
+
+					return <div className="margen">
+
+								<div>
+									
+									<strong>
+							            <%= I18n.t('cv_nivel') %>
+							        </strong>
+									<span className="editar">
+						                <span className="best_in_place" data-bip-attribute="level"  data-bip-collection="[[&quot;Carreta técnica&quot;,&quot;Carreta técnica&quot;],[&quot;Nivel Superior&quot;,&quot;Nivel Superior&quot;],[&quot;Especialidad&quot;,&quot;Especialidad&quot;],[&quot;Maestria&quot;,&quot;Maestria&quot;],[&quot;Doctorado&quot;,&quot;Doctorado&quot;]]" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.level} data-bip-type="select" data-bip-url={url_bip + object.id} data-bip-value={object.level} id={id + object.id + ida} prompt="true">{object.level}</span>
+						            </span>
+						             <button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
+								 	</button>
+					             </div>
+					             <div>
+					              <strong>
+						            <%= I18n.t('form_titulo_ed') %>
+						          </strong>
+					              <span className="editar">
+					                <span className="best_in_place" data-bip-attribute="title" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.title} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.title} id={id + object.id + ida1}>{object.title}</span>
+					              </span>
+					              </div>
+					              <div>
+						             <strong>
+							            <%= I18n.t('cv_escuela')%>
+							         </strong>
+						              <span className="editar">
+						                <span className="best_in_place" data-bip-attribute="school" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.school} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.school} id={id + object.id + ida2}>{object.school}</span>
+						              </span>
+						            </div>
+						           <div>
+						              <strong>
+							            <%= I18n.t('cv_año_inicial')%>
+							          </strong>
+						              <span className="editar">
+						                <span className="best_in_place" data-bip-attribute="yearInitial" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.yearInitial} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.yearInitial} id={id + object.id + ida3}>{object.yearInitial}</span>
+						              </span><span> -- </span>
+
+						              <strong>
+							            <%= I18n.t('cv_año_final')%>
+							          </strong>
+						              <span className="editar">
+						                <span className="best_in_place" data-bip-attribute="yearFinal" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.yearFinal} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.yearFinal} id={id + object.id + ida4}>{object.yearFinal}</span>
+						              </span>
+					              	</div>
+					              	<div>
+						              <strong>
+							            <%= I18n.t('cv_documento_recibido')%>
+							          </strong>
+						              <span className="editar">
+						                <span className="best_in_place" data-bip-attribute="DocumentReceived" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.DocumentReceived} data-bip-type={type} data-bip-url={url_bip + object.id} data-bip-value={object.DocumentReceived} id={id + object.id + ida5}>{object.DocumentReceived}</span>
+						              </span>
+					              	</div>
+					              	<hr/>
+							</div>
+
+					});
+
+		 			return <span>{boton_agregar}{items}</span>
+		 					
+		 		}
+		 		
+		
+	});
+	
+	React.render(
+	     	<PanelEstudios />,
+	document.getElementById('estudios')
+	 );
+/*
+ * Compartir
+ */
+ 	var EnviarEmail = React.createClass({
+ 	getInitialState: function() {
+    return {text: ''};
+  	},
+	enviar: function(e) {
+	    $.ajax({
+	        url: "/share?email=" + e.target.value,
+	        dataType: 'json',
+	        success: function(data) {
+	          this.setState({data: data});
+	        }.bind(this)
+	    }); 
+	    this.limpia();
+	},
+
+	onChange: function(e) {
+    	this.setState({text: e.target.value});
+  	},
+  	limpia: function(){
+		this.setState({text: ""});
+		
+  	},
+	        
+	render: function() {   
+	     return ( <div className="input-group">
+	           		<input className="form-control" id="email" name="email" placeholder="Ingresa el email al que le quieres compartir tu CV" type="email" onChange={this.onChange} value={this.state.text} />
+	           			<div className ="fj">
+	          		 <button className="cg fm" onClick={this.enviar} value={this.state.text} > Compartir </button>
+	          		 </div>
+	           </div>
+	          );
+	        }
+	      });
+
+	     React.render(
+	    <EnviarEmail />,
+	      document.getElementById('send')
 	 );
 </script>
 

@@ -145,6 +145,14 @@ class ActionsController < ApplicationController
     @idiomas= Language.where(:user_id => current_user.id)
     render json: @idiomas
   end
+  def get_cursos
+    @cursos= Course.where(:user_id => current_user.id)
+    render json: @cursos
+  end
+  def get_experiencias
+    @experiencias= Experience.where(:user_id => current_user.id)
+    render json: @experiencias
+  end
    def crear_experiences
     @experiences = Experience.create(
       :datei => "Ingresa el año inicial",
