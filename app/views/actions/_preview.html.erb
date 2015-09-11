@@ -66,7 +66,9 @@
 						</span>     
 				        </li>
 				      	<% end %>
-				        <div id ="mensaje"></div>
+				        <div id ="mensaje">
+
+				        </div>
 			        <% end %>
 		      	 <li class="qg b aml">
 				        <% if @cv.blank? %>
@@ -274,7 +276,7 @@
 					return <div className="margen">
 					<span key= {object.id} className="best_in_place editar" data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}
 							</span>
-							<button onClick={eliminar} value={object.id} className="btn btn-default">		Eliminar
+							<button onClick={eliminar} value={object.id} className="btn btn-default boton_eliminar">		Eliminar
 							</button>
 							</div>
 
@@ -878,9 +880,13 @@
  */
  	var EnviarEmail = React.createClass({
  	getInitialState: function() {
-    return {text: ''};
+    return {
+    		text: "",
+    		mensaje: ""
+    		};
   	},
 	enviar: function(e) {
+		if (e.target.value){
 	    $.ajax({
 	        url: "/share?email=" + e.target.value,
 	        dataType: 'json',
@@ -888,24 +894,49 @@
 	          this.setState({data: data});
 	        }.bind(this)
 	    }); 
-	    this.limpia();
+	    
+	    this.limpia();}
+		else
+		{
+			
+			this.setState({mensaje: "Ingresa un correo valido"});
+			this.setState({clase: "mensaje_novalido"});
+			this.borrar();
+		}
 	},
 
 	onChange: function(e) {
     	this.setState({text: e.target.value});
   	},
+  	borrar: function(){
+  	var self = this;
+  	setTimeout(function() {
+      self.setState({mensaje: ""})
+      self.setState({clase: ""})
+    }, 3000);
+  	},
   	limpia: function(){
 		this.setState({text: ""});
+		this.setState({mensaje: "Correo enviado satisfactoriamente!!"});
+		this.setState({clase: "mensaje_valido"});
+		this.borrar();
   	},
+
 	        
 	render: function() {   
-	     return ( <div className="input-group">
+
+	     return ( <div>
+	     		<p className={this.state.clase}>{this.state.mensaje}</p>
+	     		<div className="input-group">
 	           		<input className="form-control" id="email" name="email" placeholder="Ingresa el email al que le quieres compartir tu CV" type="email" onChange={this.onChange} value={this.state.text} />
 	           			<div className ="fj">
 	          		 <button className="cg fm" onClick={this.enviar} value={this.state.text} > Compartir </button>
+	          		 
 	          		 </div>
 	           </div>
+	           </div>
 	          );
+
 	        }
 	      });
 

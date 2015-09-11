@@ -428,7 +428,24 @@ module ActionsHelper
 						 font-size:12px;
 						 width:auto;
 						}
-					
+					.mensaje_novalido{
+						background-color:#F45B69;
+						color:white;
+						padding:5px;
+
+					}
+					.mensaje_valido{
+						background-color:#70C1B3;
+						color:white;
+						padding:5px;
+
+					}
+					.boton_eliminar{
+						background-color:#F45B69;
+						color:white;
+						margin-left:10px!important;
+
+					}
 					</style>"
 		html.html_safe
 	end
