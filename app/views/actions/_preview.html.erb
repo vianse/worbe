@@ -63,19 +63,9 @@
 				      	<li class="qg b aml collapse" id="collapseExample">
 				      	<h5 class="ald">Compartir <a href="<%= @server %>/worbe?guid=<%= @guid_publico.guid %>" class="centrar" id="url"><%= @server %>/worbe?guid=<%= @guid_publico.guid %></a></h5>
 				      	<span id="send" >
-						</span>
-
-				      	<%= form_tag(enviar_email_path(:email => :email) ,:method => 'get') do %>
-				      	<div class="input-group">
-						  <%= email_field_tag 'email', nil, :class => "form-control",:placeholder=>"Ingresa el email al que le quieres compartir tu CV" %>
-						   <div class="fj" id="fj">
-						  	<%= submit_tag "Compartir", :class=>"cg fm" do %>
-						  		<span class="fa fa-paper-plane fa-lg"></span>
-						  	<% end %>
-						  </div>
-						</div>
-						<% end %>      
-				        </li><% end %>
+						</span>     
+				        </li>
+				      	<% end %>
 				        <div id ="mensaje"></div>
 			        <% end %>
 		      	 <li class="qg b aml">
@@ -906,7 +896,6 @@
   	},
   	limpia: function(){
 		this.setState({text: ""});
-		
   	},
 	        
 	render: function() {   

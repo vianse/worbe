@@ -27,7 +27,8 @@ class ActionsController < ApplicationController
   :subject => "Curriculum Compartido",
   :html => "Hola #{@to}!!, #{@guid_publico.name} te compartio su curriculum, para acceder a el da click en la liga"\
            "<a href="+ "#{@server}" + "/worbe?guid=" + "#{@guid_publico.guid}" + "> Acceder al Curriculum</a>"
-  redirect_to "/dashboard"
+  @mensaje = "Correo enviado satisfactoriamente"
+  
   end
   def lasttag
     @lasttag = MyTag.select(:name).where(user_id: current_user.id).last
