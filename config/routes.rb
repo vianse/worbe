@@ -96,6 +96,8 @@ end
    get 'busqueda_cv' => 'home_empresa#busqueda_cv', as: :buscar_cv
    get 'busqueda_dg' => 'home_empresa#busqueda_dg', as: :buscar_dg
    get 'portafolio' => 'actions#portafolio', as: :portfolio
+   get 'get_cv' => 'actions#get_cv', as: :get_cvs
+   get 'get_dg' => 'actions#get_dg', as: :get_dgs
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

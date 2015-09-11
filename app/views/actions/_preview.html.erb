@@ -5,7 +5,7 @@
 	 $(document).ready(function() {
   /* Activating Best In Place */
  	 jQuery(".best_in_place").best_in_place();
- 	 $(document).on('click','input[type=text]',function(){ this.select(); });
+ 	
 
 
 	 });
@@ -33,7 +33,7 @@
 			            </li>
 			            <li>
 			            	<span class="fa fa-globe fa-lg"></span>
-			            	<%= link_to 'Publicar', publicar_cv_path(), :method => :post %>
+			            	<%= link_to 'Publicar', publicar_cv_path(), :method => :post , :class=> "Publicar" %>
 			            </li>
 			            <li>
 			            	<span class="fa fa-star fa-lg"></span>
@@ -67,79 +67,24 @@
 				        </li>
 				      	<% end %>
 				        <div id ="mensaje">
-
 				        </div>
 			        <% end %>
-		      	 <li class="qg b aml">
-				        <% if @cv.blank? %>
-				            <h4 class="centrar">Click para agregar un título</h4>
-				        <% else %>
-				            <h4 class="centrar centrar1">
-				            <%= best_in_place @cv , :title, :html_attrs => { :style => 'width:500px; height:auto; border-style:none;' } %>
+		      			<li class="qg b aml">
+				            <h4>
+				            <div id="cv"></div>
 				            </h4>
-				        <% end %>
 				        <br>
 				        <br>
 				        <h4 class ="title">
 				          <%=  I18n.t('cv_titulo_datos_generales')  %>
 				        </h4>
-				        <% if @cv.blank? %>
-				        <% else %>
 				        <div id="contenedor">
-				          <div class="margendgs">
-				            <div class="nombre editar">
-				              <strong><%= best_in_place @nombre, :name,{ :style => 'width:auto; height:auto; border-style:none;' } %>
-				              </strong>
-				            </div>
-				            <div>
-				              <%= I18n.t('cv_fecha_nacimiento')%>
-				              <span class="editar">
-				                <%= best_in_place @datebirthday, :datebirthday ,:html_attrs => { :style => 'width:auto; height:auto; border-style:none;' } %>
-				              </span>
-				            </div>
-				            <div>
-				              <%= I18n.t('cv_edad')     %>
-				              <span class="editar">
-				                <%= best_in_place @age, :age ,:html_attrs => { :style => 'width:auto; height:auto; border-style:none;' }  %>
-				              </span>
-				            </div>
-				            <div>
-				              <%= I18n.t('cv_direccion')%> 
-				              <span class="editar">
-				              <%= best_in_place @address, :address ,:html_attrs => { :style => 'width:300px; height:auto; border-style:none;' } %>
-				              </span>
-				            </div>
-				            <div>
-				              <%= I18n.t('cv_telefono1')%>
-				              <span class="editar">
-				               <%= best_in_place @phone1, :phone1,:html_attrs => { :style => 'width:auto; height:auto; border-style:none;' }   %>
-				              </span>
-				            </div>
-				            <div>
-				              <%= I18n.t('cv_telefono2')%>
-				              <span class="editar">
-				               <%= best_in_place @phone2, :phone2,:html_attrs => { :style => 'width:auto; height:auto; border-style:none;' }   %>
-				              </span> 
-				            </div>
-				            <div>
-				              <%= I18n.t('cv_email')    %>
-				              <span class="editar">
-				               <%= best_in_place @email, :email, :html_attrs => { :style => 'width:auto; height:auto; border-style:none;' }    %>
-				              </span>
-				            </div>
-				          </div>
-				          <div class="imagen">
-				            <img class= "img" src="<%= @photo.photo_url(:thumb) %>">
-				          	
-				          </div>
-				        </div>
-				        <% end %>
-				  <!-- * Sección de educación * -->
-				  		
+				     	   	<div id="dg"></div>
+				    	</div>
+
+				  		<!-- * Sección de educación * -->	
 				        <%= educations_margen_botton %>
-
-				      			<!-- Empieza sección experiences -->
-
+				      	<!-- Empieza sección experiences -->
 				      	<span id="estudios">
 						</span>
 						 <span id="experiencia">
@@ -163,7 +108,173 @@
 </div>
 
 <script type="text/jsx">
+/*
+ * Modulo CV
+ */
+	var PanelCv = React.createClass({
+		componentDidMount: function(){
+			$.ajax({
+		        url: "/get_cv" ,
+		        dataType: 'json',
+		        success: function(data) {
+		        	if (data){
+		        		 this.setState({data: data});
+		        	}
+		        	else
+		        	{
+		        		setTimeout(function() {
+			     		 self.getData();
+			   			 }, 3000);
+		        	}
+		          this.setState({data: data});
+		        }.bind(this)
+			});
+		},
+		getData: function() {
+		    $.ajax({
+		        url: "/get_cv" ,
+		        dataType: 'json',
+		        success: function(data) {    	
+		          this.setState({data: data});
+		        }.bind(this)
+			});
+		},
+		getInitialState: function() {
+		          return {
+		          	data: [],
+		          	panel: ""
+		            };	       
+		        },
+		render: function() {   
+					var classe = "best_in_place"
+					var type= "input"
+					var objeto ="cv"
+					var atributo = "title"
+					var url_bip = "/cvs/";
+					var id = "best_in_place_cv_";
+					var ida = "_title";
+					var items = this.state.data.map(function(object){
+						return <div className="centrar centrar1">
+								<span key= {object.id} className="best_in_place" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.title} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.title} id={id + object.id + ida}>{object.title}
+								</span>
+								</div>
 
+						});
+			 			return <span>{items}</span>			
+			 		}
+		});
+		React.render(
+		     	<PanelCv />,
+		 document.getElementById('cv')
+		 );
+/*
+ * Modulo Datos Generales
+ */
+	var PanelDg = React.createClass({
+		componentDidMount: function(){
+			$.ajax({
+		        url: "/get_dg" ,
+		        dataType: 'json',
+		        success: function(data) {
+		        	if (data){
+		        		 this.setState({data: data});
+		        	}
+		        	else
+		        	{
+		        		setTimeout(function() {
+			     		 self.getData();
+			   			 }, 3000);
+		        	}
+
+		          this.setState({data: data});
+		        }.bind(this)
+			});
+		},
+
+		getData: function() {
+		    $.ajax({
+		        url: "/get_dg" ,
+		        dataType: 'json',
+		        success: function(data) {    	
+		          this.setState({data: data});
+		        }.bind(this)
+			});
+		},
+
+		getInitialState: function() {
+		          return {
+		          	data: [],
+		          	panel: ""
+		            };	       
+		        },
+		render: function() {   
+					var classe = "best_in_place"
+					var type= "input"
+					var objeto ="dg"
+					var atributo = "title"
+					var url_bip = "/dgs/";
+					var id = "best_in_place_dg_";
+					var ida = "_name";
+					var ida1 = "_datebirthday";
+					var ida2 = "_age";
+					var ida3 = "_address";
+					var ida4 = "_phone1";
+					var ida5 = "_phone2";
+					var ida6 = "_email";
+					var ida7 = "_photo";
+					var items = this.state.data.map(function(object){
+						return <div className="margendgs">
+								<div className="nombre editar">
+									<strong>
+									<span key= {object.id} className="best_in_place"  data-bip-attribute="name" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.name} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.name} id={id + object.id + ida}>{object.name}
+									</span>
+									</strong>
+								 </div>
+								 <div>
+					              <%= I18n.t('cv_fecha_nacimiento')%>
+									<span key= {object.id} className="best_in_place editar" data-bip-attribute="datebirthday" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.datebirthday} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.datebirthday} id={id + object.id + ida}>{object.datebirthday}
+									</span>
+								 </div>
+								<div>
+								<%= I18n.t('cv_edad')     %>
+								<span key= {object.id} className="best_in_place editar" data-bip-attribute="age" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.age} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.age} id={id + object.id + ida}>{object.age}
+								</span>
+								</div>
+								<div>
+								<%= I18n.t('cv_direccion')%> 
+								<span key= {object.id} className="best_in_place editar" data-bip-attribute="address" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.address} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.address} id={id + object.id + ida}>{object.address}
+								</span>
+								</div>
+								<div>
+								<%= I18n.t('cv_telefono1')%> 
+									<span key= {object.id} className="best_in_place editar" data-bip-attribute="phone1" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.phone1} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.phone1} id={id + object.id + ida}>{object.phone1}
+									</span>
+								</div>
+								<div>
+								<%= I18n.t('cv_telefono2')%> 
+									<span key= {object.id} className="best_in_place editar" data-bip-attribute="phone2" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.phone2} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.phone2} id={id + object.id + ida}>{object.phone2}
+									</span>
+								</div>
+								<div>
+									<%= I18n.t('cv_email')%> 
+									<span key= {object.id} className="best_in_place editar" data-bip-attribute="email" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.email} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.email} id={id + object.id + ida}>{object.email}
+									</span>
+								</div>
+
+								</div>
+
+						});
+			 			return <span>{items}</span>			
+			 		}
+		});
+		
+		React.render(
+		     	<PanelDg />,
+		 document.getElementById('dg')
+		 );
+/*
+ *  Contador de visitas
+ */
 	var CountView = React.createClass({
 	       getInitialState: function() {
 	          return {
@@ -196,7 +307,6 @@
 	    <CountView source="/visitas.json" />,
 	      document.getElementById('countview')
 	 );
-
 /*
  *  Moduler Tags
  */

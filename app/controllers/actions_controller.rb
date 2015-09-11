@@ -150,6 +150,14 @@ class ActionsController < ApplicationController
     @cursos= Course.where(:user_id => current_user.id)
     render json: @cursos
   end
+  def get_cv
+    @cvs= Cv.where(:user_id => current_user.id)
+    render json: @cvs
+  end
+  def get_dg
+    @dgs= Dg.where(:user_id => current_user.id)
+    render json: @dgs
+  end
   def get_experiencias
     @experiencias= Experience.where(:user_id => current_user.id)
     render json: @experiencias

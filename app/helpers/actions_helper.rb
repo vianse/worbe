@@ -447,6 +447,13 @@ module ActionsHelper
 						border-style:none!important;
 
 					}
+					.Publicar{
+						background-color:#70C1B3;
+						color:white!important;
+						padding:5px;
+						font-style: none;
+						border-radius:5px;
+					}
 					</style>"
 		html.html_safe
 	end
