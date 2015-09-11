@@ -505,7 +505,7 @@
 	document.getElementById('idiomas')
 	 );
 /*
- *   Modulo de Idiomas
+ *   Modulo de Cursos
  */
 
   var PanelCursos = React.createClass({
@@ -674,6 +674,7 @@
 				var ida3 = "_business";
 				var ida4 = "_description";
 				var ida5 = "_Puesto";
+				var ida6 = "_logros";
 				var eliminar = this.chanstate;
 				var etiqueta = this.state.etiqueta
 				var boton_agregar = this.state.btn
@@ -714,7 +715,15 @@
 							            Actividades desempeñadas: <br />
 							          </strong>
 						              <span className="editar_multilinea">
-						                <span className="best_in_place" data-bip-attribute="description" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.description} data-bip-type="textarea" data-bip-url={url_bip + object.id} data-bip-value={object.description} id={id + object.id + ida4}>{object.description}</span>
+						                <span className="best_in_place" data-bip-attribute="description" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.description} data-bip-type="textarea" data-bip-url={url_bip + object.id} data-bip-value={object.description} id={id + object.id + ida4} display_with= "simple_format">{object.description}</span>
+						              </span>
+					              	</div>
+					              	 <div>
+						              <strong>
+							            Principales Logros: <br />
+							          </strong>
+						              <span className="editar_multilinea">
+						                <span className="best_in_place" data-bip-attribute="logros" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-object={objeto} data-bip-original-content={object.logros} data-bip-type="textarea" data-bip-url={url_bip + object.id} data-bip-value={object.logros} id={id + object.id + ida6} display_with= "simple_format">{object.logros}</span>
 						              </span>
 					              	</div>
 					             	<hr />

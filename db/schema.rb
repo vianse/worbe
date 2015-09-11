@@ -216,12 +216,12 @@ ActiveRecord::Schema.define(version: 20150903002822) do
     t.string   "datei"
     t.string   "datef"
     t.string   "business"
-    t.string   "description"
+    t.text     "description"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "Puesto"
-    t.string   "description_short"
+    t.text     "logros"
     t.string   "guid"
   end
 

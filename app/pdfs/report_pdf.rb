@@ -87,7 +87,8 @@ class ReportPdf < Prawn::Document
         move_down 10
         text "#{b.description}", size: 10, :align => :justify
         move_down 10
-
+        text "#{b.logros}", size: 10, :align => :justify
+        move_down 10
     end
     
     move_down 10

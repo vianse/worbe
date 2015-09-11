@@ -154,7 +154,7 @@ class ActionsController < ApplicationController
     @experiencias= Experience.where(:user_id => current_user.id)
     render json: @experiencias
   end
-   def crear_experiences
+  def crear_experiences
     @experiences = Experience.create(
       :datei => "Ingresa el año inicial",
       :datef => "Ingresa de año final", 
@@ -162,7 +162,7 @@ class ActionsController < ApplicationController
       :description => "Ingresa tus actividades desempeñadas", 
       :user_id => current_user.id, 
       :Puesto => "Ingresa tu puesto", 
-      :description_short=> "Ingresa alguna descripción "
+      :logros => "Ingresa tus principales logros "
     )
     @experiences.save
     redirect_to '/dashboard'

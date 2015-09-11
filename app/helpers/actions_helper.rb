@@ -444,6 +444,7 @@ module ActionsHelper
 						background-color:#F45B69;
 						color:white;
 						margin-left:10px!important;
+						border-style:none!important;
 
 					}
 					</style>"
