@@ -38,6 +38,7 @@
   <strong>Photo:</strong>
   <%= @dg.photo %>
 </p>
+<% unless @dg.photo_url.nil? %><%= image_tag @dg.photo_url %><br /><% end %>
 
 <%= link_to 'Edit', edit_dg_path(@dg) %> |
 <%= link_to 'Back', dgs_path %>

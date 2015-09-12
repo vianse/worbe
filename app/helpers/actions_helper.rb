@@ -447,12 +447,20 @@ module ActionsHelper
 						border-style:none!important;
 
 					}
-					.Publicar{
+					.publicar{
 						background-color:#70C1B3;
 						color:white!important;
 						padding:5px;
 						font-style: none;
 						border-radius:5px;
+					}
+					.portafolio{
+						background-color:#007EA7;
+						color:white!important;
+						padding:5px;
+						font-style: none;
+						border-radius:5px;
+						
 					}
 					</style>"
 		html.html_safe

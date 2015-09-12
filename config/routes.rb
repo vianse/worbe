@@ -95,7 +95,7 @@ end
    get 'share' => 'actions#send_mail', as: :enviar_email
    get 'busqueda_cv' => 'home_empresa#busqueda_cv', as: :buscar_cv
    get 'busqueda_dg' => 'home_empresa#busqueda_dg', as: :buscar_dg
-   get 'portafolio' => 'actions#portafolio', as: :portfolio
+   get 'portafolio' => 'actions#portafolio', as: :profile
    get 'get_cv' => 'actions#get_cv', as: :get_cvs
    get 'get_dg' => 'actions#get_dg', as: :get_dgs
 

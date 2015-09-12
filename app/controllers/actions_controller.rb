@@ -14,6 +14,7 @@ class ActionsController < ApplicationController
       } 
   end
   def send_mail
+
   @to = params[:email]
   @guid_publico  = Dg.where(:user_id => current_user.id).first
   @server        = "http://" + request.host_with_port
@@ -37,6 +38,9 @@ class ActionsController < ApplicationController
       } 
   end
   def dashboard
+
+
+
     if @cv_create = Cv.where(user_id: current_user.id).first.blank?
         @cv_create = Cv.create(
         :title => "Ingresa un título para tu Curriculum",
@@ -51,7 +55,7 @@ class ActionsController < ApplicationController
         :address => "Ingresa tu dirección",
         :phone1 => "Ingresa tu telefono",
         :phone2 => "Ingresa un telefono secundario",
-        :photo => "images/no-profile-img.gif",
+        :photo => "http://res.cloudinary.com/vianse/image/upload/v1442026963/no-profile-img.gif",
         :email => current_user.email,
         :user_id => current_user.id       
         )
@@ -347,7 +351,7 @@ else
   	@phone1  = Dg.where(user_id: current_user.id).first
   	@phone2  = Dg.where(user_id: current_user.id).first
   	@email   = Dg.where(user_id: current_user.id).first
-  	@photo   = Dg.where(user_id: current_user.id).first
+  	@photo   = Dg.select(:photo).where(user_id: current_user.id).first
     @areaspreview = Area.where(:user_id => current_user)
   	@areas        = Area.where(:user_id => current_user).pluck(:name).first
   	@educations   = Education.where(:user_id => current_user)

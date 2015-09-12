@@ -58,9 +58,15 @@ class ReportPdf < Prawn::Document
     end
     
     bounding_box([380, 650], :width => 100, :height => 100) do
-      #image "#{@photo}", width: 90, height: 90
+      if @photo.photo.nil?
+        image open("#{@photo.photo}"), width: 90, height: 90
+      else
+        image open("http://res.cloudinary.com/vianse/image/upload/v1442030039/default_whsjfu.png"), width: 90, height: 90
+      end
+      #image open ("#{@photo}")
+
       #image open("http://res.cloudinary.com/vianse/image/upload/c_scale,h_90,w_80/v1438193767/sample.jpg")
-      image  "#{Rails.root}/public/#{@photo.photo}", width: 90, height: 90
+      #image  "#{Rails.root}/public/#{@photo.photo}", width: 90, height: 90
 
     end
     move_down 10
