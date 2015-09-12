@@ -70,6 +70,7 @@
 				            <h4>
 				            <div id="cv"></div>
 				            </h4>
+
 				        <br>
 				        <br>
 				        <h4 class ="title">
@@ -205,6 +206,22 @@
 		        }.bind(this)
 			});
 		},
+		upload: function(e){
+			this.setState({file:<div> 
+								<span className="btn btn-primary btn-file">
+                       				 Browse&hellip;<input id="dg_photo" name="dg[photo]" type="file" />
+                       				 
+                    			</span>
+                    			<button className="btn btn-danger btn-send">Enviar</button></div>});
+
+
+		},
+		close: function(e){
+			this.setState({file: ""});
+			this.setState({enviar: ""});
+
+		},
+
 
 		getInitialState: function() {
 		          return {
@@ -229,6 +246,10 @@
 					var ida6 = "_email";
 					var ida7 = "_photo";
 					var url  = this.state.url
+					var file = this.state.file
+					var boton = this.state.enviar
+					var upload = this.upload
+
 					var items = this.state.data.map(function(object){
 						return <div id="contenedor">
 							<div className="margendgs">
@@ -270,8 +291,11 @@
 									
 								</div>
 							</div>
-							 	<div className="imagen">
+							 	<div className="imagen" onClick={upload}>
 										<img className="img" alt="C0mg1c3bkwrzstf74xkr" src={url} />
+								 </div>
+								 <div>
+								 	{file}
 								 </div>
 
 						</div>

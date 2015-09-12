@@ -315,6 +315,7 @@ module ActionsHelper
 						}
 					.img:hover{
 							opacity:.85;
+							cursor: pointer;
 					}
 					#contenedor .margendgs, #contenedor .imagen{  /*hijos*/float: left;}
 					
@@ -461,6 +462,34 @@ module ActionsHelper
 						font-style: none;
 						border-radius:5px;
 						
+					}
+					.btn-file {
+					  position: relative;
+					  overflow: hidden;
+					  left:27%!important;
+					}
+					.btn-file input[type=file] {
+					  position: absolute;
+					  top: 0;
+					  right: 0;
+					  min-width: 100%;
+					  min-height: 100%;
+					  font-size: 100px;
+					  text-align: right;
+					  filter: alpha(opacity=0);
+					  opacity: 0;
+					  background: red;
+					  cursor: inherit;
+					  display: block;
+					}
+					input[readonly] {
+					  background-color: white !important;
+					  cursor: text !important;
+					}
+					.btn-send {
+					  position: relative;
+					  overflow: hidden;
+					  left:30%!important;
 					}
 					</style>"
 		html.html_safe
