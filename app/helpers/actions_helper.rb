@@ -466,7 +466,8 @@ module ActionsHelper
 					.btn-file {
 					  position: relative;
 					  overflow: hidden;
-					  left:15%!important;
+					  left:17%!important;
+					  top: 10px;
 					}
 					.btn-file input[type=file] {
 					  position: absolute;
@@ -489,7 +490,8 @@ module ActionsHelper
 					.btn-send {
 					  position: relative;
 					  overflow: hidden;
-					  left:19%!important;
+					  left:20%!important;
+					  top: 10px;
 					}
 					</style>"
 		html.html_safe

@@ -32,12 +32,12 @@ class DgsController < ApplicationController
 
   def update
     @dg.update(dg_params)
-    respond_with(@dg)
+    redirect_to "/dashboard"
   end
 
   def destroy
     @dg.destroy
-    respond_with(@dg)
+    redirect_to "/dashboard"
   end
 
   private

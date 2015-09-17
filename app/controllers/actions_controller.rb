@@ -38,9 +38,6 @@ class ActionsController < ApplicationController
       } 
   end
   def dashboard
-
-
-
     if @cv_create = Cv.where(user_id: current_user.id).first.blank?
         @cv_create = Cv.create(
         :title => "Ingresa un título para tu Curriculum",
@@ -126,6 +123,13 @@ class ActionsController < ApplicationController
     )
     @education.save
     redirect_to '/dashboard'
+  end
+  def actualiza_dg_photo
+
+    @id_photo = Dg.find(params[:id])
+    @id_photo.update(:photo => params[:dg_photo])
+    redirect_to '/dashboard'
+
   end
   def elimina_education
     @education = Education.find(params[:id])

@@ -76,6 +76,7 @@ end
   get  'get_idiomas' => 'actions#get_idiomas', as: :get_idioma
   get  'get_cursos' => 'actions#get_cursos', as: :get_curso
   get  'get_experiencias' => 'actions#get_experiencias', as: :get_experiencia
+  patch 'upload/:id' => 'actions#actualiza_dg_photo', as: :upload_image
 
    get 'vacantes_sugeridas' => 'welcome#index', as: :welcome
    

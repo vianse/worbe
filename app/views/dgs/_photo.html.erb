@@ -1,0 +1,40 @@
+
+<div class="container">
+    <div class="row">
+        <div class="[ col-xs-12 col-sm-offset-1 col-sm-5 ]">
+            <div class="[ panel panel-default ] panel-google-plus" id="tags">
+                <div class="panel-heading">
+              
+                </div>
+                <div class="panel-body">
+                 <%= form_for(@dg) do |f| %>
+                    <% if @dg.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(@dg.errors.count, "error") %> prohibited this dg from being saved:</h2>
+
+                        <ul>
+                        <% @dg.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+                  
+                    <div class="field">
+                      <%= f.label I18n.t('form_foto_dg') %><br>
+                      <%= f.hidden_field :photo %>
+                      <%= f.file_field :photo,:class => 'form-control ' %>
+                      <%= f.hidden_field :remote_photo_url %>         
+                    </div>
+                    <div class="actions">
+                      <%= f.submit I18n.t('form_boton_dg'), :class=> "btn"%>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

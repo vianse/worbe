@@ -1,12 +1,7 @@
 
 <%= estilo_cv %>
 <%= render 'style_new' %>
-<script type="text/javascript">
-	 $(document).ready(function() {
-  /* Activating Best In Place */
- 	 jQuery(".best_in_place").best_in_place();
-	 });
-</script>
+
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -14,6 +9,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
 <script src="https://rawgit.com/arqex/react-json/master/build/Json.js"></script>
 <script src="//cdn.jsdelivr.net/refluxjs/0.2.11/reflux.min.js"></script>
+<script src="http://edgedemo.cloudinary.com/js/jquery.ui.widget.js"></script>
+<script src="http://edgedemo.cloudinary.com/js/jquery.cloudinary.js"></script>
+<script src="http://edgedemo.cloudinary.com/js/jquery.fileupload.js"></script>
+<script src="http://edgedemo.cloudinary.com/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript">
+	 $(document).ready(function() {
+  /* Activating Best In Place */
+ 	 jQuery(".best_in_place").best_in_place();
+
+ 	 
+	 });
+</script>
+
 
 <br>
 <!-- Ménu izquierdo-->
@@ -63,6 +71,14 @@
 						</span>     
 				        </li>
 				      	<% end %>
+				      	
+
+
+
+ 
+
+
+						
 				        <div id ="mensaje">
 				        </div>
 			        <% end %>
@@ -207,12 +223,29 @@
 			});
 		},
 		upload: function(e){
+			var a = "/upload/" + <%= @dgs[0].id %>
+			var iden = "upload_image_" + <%= @dgs[0].id %>
+		
 			this.setState({file:<div> 
-								<span className="btn btn-primary btn-file">
-                       				 Cambiar Imagen&hellip;<input id="dg_photo" name="dg[photo]" type="file" />
-                       				 
-                    			</span>
-                    			<button className="btn btn-danger btn-send" onClick={this.close}>Guardar</button></div>});
+								
+     							<form acceptCharset="UTF-8" action={a} className="edit_dg" encType="multipart/form-data" id={iden} method="post"><div style={{display:"none"}}>
+     								<input name="utf8" type="hidden" value="✓"/><input name="_method" type="hidden" value="patch"/>
+     								<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+     								
+
+     								</div>
+
+				                    <div className="btn btn-primary btn-file"> Cambiar Imagen
+				                      <input className="form-control " id="dg_photo" name="dg_photo" type="file"/>
+				                      <input id="dg_remote_photo_url" name="dg[remote_photo_url]" type="hidden"/>         
+				                    </div>
+				                    <div className="actions">
+				                      <input className="btn btn-danger btn-send" name="commit" type="submit" value="Guardar"/>
+				                    </div>
+								</form>
+
+                    			
+                    			</div>});
 
 
 		},
@@ -220,8 +253,38 @@
 			this.setState({file: ""});
 			this.setState({enviar: ""});
 
-		},
 
+		},
+				// prevent form from submitting; we are going to capture the file contents
+		  handleSubmit: function(e) {
+		    e.preventDefault();
+		  },
+
+		  // when a file is passed to the input field, retrieve the contents as a
+		  // base64-encoded data URI and save it to the component's state
+		  handleFile: function(e) {
+		    var self = this;
+		    var reader = new FileReader();
+		    var file = e.target.files[0];
+
+		    reader.onload = function(upload) {
+		      self.setState({
+		        url: upload.target.result
+
+		      });
+
+		      $.get("/upload_image?photo=" + self.state.url,
+		        {
+		        },
+		        function(data,status){
+		        });
+
+		    }
+
+			reader.readAsDataURL(file);
+
+
+		  },
 
 		getInitialState: function() {
 		          return {
