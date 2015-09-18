@@ -349,8 +349,9 @@ module ActionsHelper
 						color:black;
 						padding: 5px;
 						text-align: center;
-						  margin-bottom: 0px;
-						  margin-top: 5px;
+						margin-bottom: 0px;
+						margin-top: 5px;
+						cursor: pointer;
 					}
 					.centrar1:hover{
 						border-style: dashed;
