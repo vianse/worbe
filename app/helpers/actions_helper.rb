@@ -269,15 +269,6 @@ module ActionsHelper
 					}
 					.title{padding-left: 50px;}
 
-					@media (max-width: 991px){
-						.imagen{
-							margin-left: 35%!important;
-							margin-right: 35%!important;
-						}
-						#url{
-						 font-size:12px;
-						}
-					}
 					
 					@media (min-width: 992px) {
 						.margen{
@@ -302,7 +293,7 @@ module ActionsHelper
 						 font-size:12px;
 						}
 					}
-					.imagen{margin-left: 210px;}
+					.imagen{margin-left: 100px;}
 					#contenedor{  /*padre*/
 						  overflow: hidden;
 						  width: 100%; 
@@ -494,6 +485,27 @@ module ActionsHelper
 					  left:20%!important;
 					  top: 10px;
 					}
+
+					@media (max-width: 991px) {
+						.imagen{
+							margin-left: 35%!important;
+							
+						}
+					
+						.img{
+						  width: 90px;
+						  border-radius: 150px;
+							-webkit-border-radius: 150px;
+							-moz-border-radius: 150px;
+						}
+						.img:hover{
+							opacity:.85;
+						}
+						#url{
+						 font-size:12px;
+						}
+					}
+
 					</style>"
 		html.html_safe
 	end
