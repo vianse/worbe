@@ -486,7 +486,7 @@ module ActionsHelper
 					  top: 10px;
 					}
 
-					@media (max-width: 991px) {
+					@media (min-width: 768px) {
 						.imagen{
 							margin-left: 35%!important;
 							
