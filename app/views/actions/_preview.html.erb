@@ -147,7 +147,7 @@
 		          	panel: ""
 		            };	       
 		        },
-		focus:function(e){
+		handleClick:function(){
  			React.findDOMNode(this.refs.myTextInput).focus();
 		},
 		render: function() {   
@@ -159,8 +159,8 @@
 					var id = "best_in_place_cv_";
 					var ida = "_title";
 					var items = this.state.data.map(function(object){
-						return <div className="centrar centrar1">
-								<span key= {object.id} onClick={focus} className="best_in_place" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.title} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.title} id={id + object.id + ida} ref="myTextInput">{object.title}
+						return <div className="centrar centrar1" onClick={this.handleClick}>
+								<span key= {object.id} className="best_in_place" data-bip-html-attrs="{&quot;style&quot;:&quot;width:500px; height:auto; border-style:none;&quot;}" data-bip-attribute={atributo} data-bip-object={objeto} data-bip-original-content={object.title} data-bip-type={type} data-bip-url={url_bip + object.id } data-bip-value={object.title} id={id + object.id + ida} ref="myTextInput">{object.title}
 								</span>
 								</div>
 
