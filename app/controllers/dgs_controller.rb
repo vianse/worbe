@@ -1,5 +1,5 @@
 class DgsController < ApplicationController
-   before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_dg, only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :json
@@ -32,7 +32,7 @@ class DgsController < ApplicationController
 
   def update
     @dg.update(dg_params)
-    redirect_to "/dashboard"
+    respond_with(@dg)
   end
 
   def destroy

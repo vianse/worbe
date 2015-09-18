@@ -26,7 +26,7 @@ class PublicoController < ApplicationController
     @phone1  = Dg.where(guid: @guid).first
     @phone2  = Dg.where(guid: @guid).first
     @email   = Dg.where(guid: @guid).first
-    @photo   = Dg.where(guid: @guid).first
+    @photo   = Dg.where(guid: @guid)
     @areaspreview = MyTag.where(guid: @guid)
     # @areas = Area.where(:user_id => current_user).pluck(:name).first
     @educations   = Education.where(guid: @guid)

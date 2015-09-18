@@ -355,7 +355,7 @@ else
   	@phone1  = Dg.where(user_id: current_user.id).first
   	@phone2  = Dg.where(user_id: current_user.id).first
   	@email   = Dg.where(user_id: current_user.id).first
-  	@photo   = Dg.select(:photo).where(user_id: current_user.id).first
+  	@photo   = Dg.where(user_id: current_user.id)
     @areaspreview = Area.where(:user_id => current_user)
   	@areas        = Area.where(:user_id => current_user).pluck(:name).first
   	@educations   = Education.where(:user_id => current_user)

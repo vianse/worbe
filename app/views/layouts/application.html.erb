@@ -41,7 +41,7 @@
             <button class="cg fm oy anl" data-toggle="popover" data-original-title="" title="">
               <% if @photo.blank? %>
               <% else %>
-              <img class= "cu" src="<%= @photo.photo_url(:thumbnail) %>">
+              <img class= "cu" src="<%= @photo[0].photo %>">
               <% end %>
             </button>
           </li>

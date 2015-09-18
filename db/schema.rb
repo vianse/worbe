@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(version: 20150903002822) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "photo"
+    t.text     "photo"
     t.string   "guid"
   end
 
