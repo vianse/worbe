@@ -293,7 +293,7 @@ module ActionsHelper
 						 font-size:12px;
 						}
 					}
-					.imagen{margin-left: 100px;}
+					.imagen{margin-left: 150px;}
 					#contenedor{  /*padre*/
 						  overflow: hidden;
 						  width: 100%; 
@@ -488,7 +488,9 @@ module ActionsHelper
 
 					@media (min-width: 768px) {
 
-					
+					 .imagen{
+					 	margin-left: 150px;
+					 }
 						.img{
 						  width: 90px;
 						  border-radius: 150px;
@@ -502,6 +504,49 @@ module ActionsHelper
 						 font-size:12px;
 						}
 					}
+				@media (max-width: 627px) {
+				.imagen{
+					margin-left: 80px!important;
+				    margin-top: 10px!important;
+					}
+				}
+				@media (max-width: 480px) {
+				.imagen{
+					margin-left: 40px!important;
+				    margin-top: 10px!important;
+					}
+				}
+				@media (max-width: 736px) {
+				.imagen{
+					margin-left: 80px!important;
+				    margin-top: 10px!important;
+					}
+				}
+				@media (max-width: 567px) {
+				.imagen{
+					margin-left: 60px!important;
+				    margin-top: 10px!important;
+					}
+				}
+				@media (max-width: 659px) {
+				.imagen{
+					margin-left: 80px!important;
+				    margin-top: 10px!important;
+					}
+				}
+				@media (max-width: 533px) {
+				.imagen{
+					margin-left: 50px!important;
+				    margin-top: 10px!important;
+					}
+				}
+				@media (max-width: 640px) {
+				.imagen{
+					margin-left: 65px!important;
+				    margin-top: 10px!important;
+					}
+				}
+
 
 					</style>"
 		html.html_safe
