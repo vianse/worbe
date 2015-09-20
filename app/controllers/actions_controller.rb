@@ -346,8 +346,7 @@ else
    def preview
     @cv      = Cv.where(user_id: current_user.id).first
     @nombre  = Dg.where(user_id: current_user.id).first
-    @dgs     = Dg.where(user_id: current_user.id).first
-    @dgsid  = Dg.select(:id).where(user_id: current_user.id)
+    @dgs     = Dg.where(user_id: current_user.id)
   	@titlecv = Cv.where(user_id: current_user.id).pluck(:title).first
   	@name    = Dg.where(user_id: current_user.id).pluck(:name).first
   	@datebirthday = Dg.where(user_id: current_user.id).first
