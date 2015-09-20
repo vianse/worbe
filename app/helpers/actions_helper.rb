@@ -458,7 +458,7 @@ module ActionsHelper
 					.btn-file {
 					  position: relative;
 					  overflow: hidden;
-					  left:17%!important;
+					  left:5%!important;
 					  top: 10px;
 					}
 					.btn-file input[type=file] {
@@ -482,7 +482,7 @@ module ActionsHelper
 					.btn-send {
 					  position: relative;
 					  overflow: hidden;
-					  left:20%!important;
+					  left:5%!important;
 					  top: 10px;
 					}
 
@@ -512,9 +512,13 @@ module ActionsHelper
 				}
 				@media (max-width: 480px) {
 				.imagen{
-					margin-left: 40px!important;
+					margin-left: 50px!important;
 				    margin-top: 10px!important;
 					}
+				.title{
+					padding-left: 0px;
+				}
+
 				}
 				@media (max-width: 736px) {
 				.imagen{
@@ -545,7 +549,10 @@ module ActionsHelper
 					margin-left: 65px!important;
 				    margin-top: 10px!important;
 					}
+
 				}
+
+
 
 
 					</style>"
